@@ -51,7 +51,7 @@ class _HomepageScreenState extends State<HomepageScreen> {
                 ),
                 SizedBox(height: 15.0),
                 Text(
-                  'Start Meeting Poll',
+                  'Some text goes here',
                   style: TextStyle(
                     fontSize: 17.0,
                     fontStyle: FontStyle.italic,
@@ -64,8 +64,8 @@ class _HomepageScreenState extends State<HomepageScreen> {
                   width: 95.0,
                   child: Material(
                     borderRadius: BorderRadius.circular(20.0),
-                    shadowColor: Colors.greenAccent,
-                    color: Colors.green,
+                    shadowColor: Colors.blueAccent,
+                    color: Colors.blue,
                     elevation: 7.0,
                     child: GestureDetector(
                       onTap: (){},
