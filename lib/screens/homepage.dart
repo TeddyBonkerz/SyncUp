@@ -57,6 +57,26 @@ class _HomepageScreenState extends State<HomepageScreen> {
                     fontStyle: FontStyle.italic,
                     fontFamily: 'Montserrat'
                   ),
+                ),
+                SizedBox(height: 25.0),
+                Container(
+                  height: 30.0,
+                  width: 95.0,
+                  child: Material(
+                    borderRadius: BorderRadius.circular(20.0),
+                    shadowColor: Colors.greenAccent,
+                    color: Colors.green,
+                    elevation: 7.0,
+                    child: GestureDetector(
+                      onTap: (){},
+                      child: Center(
+                        child: Text(
+                          'Create Poll',
+                          style: TextStyle(color: Colors.white, fontFamily: 'Montserrat'),
+                        ),
+                      ),
+                    ),
+                  )
                 )
             ],
           )
