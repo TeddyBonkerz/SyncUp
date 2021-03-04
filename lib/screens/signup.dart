@@ -109,7 +109,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     color: Colors.blue[900],
                     elevation: 7.0,
                     child: GestureDetector(
-                      onTap: () {},
+                      onTap: () {
+                        Navigator.of(context).pushNamed('/homepage');
+                      },
                       child: Center(
                         child: Text(
                           'Sign Up',
