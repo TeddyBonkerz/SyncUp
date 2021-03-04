@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import '../constants.dart';
 
 class SignUpScreen extends StatefulWidget {
   @override
@@ -33,7 +34,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     style: TextStyle(
                         fontSize: 80.0,
                         fontWeight: FontWeight.bold,
-                        color: Colors.blue[900]),
+                        color: primaryColor),
                   ),
                 )
               ],
@@ -46,13 +47,17 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 //First Name Field
                 TextField(
                   decoration: InputDecoration(
+                    icon: Icon(
+                      Icons.person,
+                      color: primaryColor,
+                    ),
                     labelText: 'FIRST NAME',
                     labelStyle: TextStyle(
                         //fontWeight: FontWeight.bold,
                         fontFamily: 'Montserrat',
                         color: Colors.grey),
                     focusedBorder: UnderlineInputBorder(
-                      borderSide: BorderSide(color: Colors.blue[900]),
+                      borderSide: BorderSide(color: primaryColor),
                     ),
                   ),
                 ),
@@ -60,13 +65,17 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 //Last Name Field
                 TextField(
                   decoration: InputDecoration(
+                    icon: Icon(
+                      Icons.person,
+                      color: primaryColor,
+                    ),
                     labelText: 'LAST NAME',
                     labelStyle: TextStyle(
                         //fontWeight: FontWeight.bold,
                         fontFamily: 'Montserrat',
                         color: Colors.grey),
                     focusedBorder: UnderlineInputBorder(
-                      borderSide: BorderSide(color: Colors.blue[900]),
+                      borderSide: BorderSide(color: primaryColor),
                     ),
                   ),
                 ),
@@ -74,13 +83,17 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 //Email Field
                 TextField(
                   decoration: InputDecoration(
+                    icon: Icon(
+                      Icons.email,
+                      color: primaryColor,
+                    ),
                     labelText: 'EMAIL',
                     labelStyle: TextStyle(
                         //fontWeight: FontWeight.bold,
                         fontFamily: 'Montserrat',
                         color: Colors.grey),
                     focusedBorder: UnderlineInputBorder(
-                      borderSide: BorderSide(color: Colors.blue[900]),
+                      borderSide: BorderSide(color: primaryColor),
                     ),
                   ),
                 ),
@@ -88,13 +101,21 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 //Password Field
                 TextField(
                   decoration: InputDecoration(
+                    icon: Icon(
+                      Icons.lock,
+                      color: primaryColor,
+                    ),
+                    suffixIcon: Icon(
+                      Icons.visibility,
+                      color: primaryColor,
+                    ),
                     labelText: 'PASSWORD',
                     labelStyle: TextStyle(
                         //fontWeight: FontWeight.bold,
                         fontFamily: 'Montserrat',
                         color: Colors.grey),
                     focusedBorder: UnderlineInputBorder(
-                      borderSide: BorderSide(color: Colors.blue[900]),
+                      borderSide: BorderSide(color: primaryColor),
                     ),
                   ),
                   obscureText: true,
@@ -106,7 +127,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   child: Material(
                     borderRadius: BorderRadius.circular(20.0),
                     shadowColor: Colors.blueAccent[900],
-                    color: Colors.blue[900],
+                    color: primaryColor,
                     elevation: 7.0,
                     child: GestureDetector(
                       onTap: () {
@@ -144,7 +165,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       child: Text(
                         'Login',
                         style: TextStyle(
-                            color: Colors.blue[900],
+                            color: primaryColor,
                             fontWeight: FontWeight.bold,
                             fontFamily: 'Montserrat',
                             decoration: TextDecoration.underline),
