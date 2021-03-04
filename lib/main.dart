@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'screens/homepage.dart';
 import 'screens/login.dart';
 import 'screens/signup.dart';
-import 'screens/homepage.dart';
 
 void main() {
   runApp(MyApp());
@@ -23,5 +23,3 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-
-

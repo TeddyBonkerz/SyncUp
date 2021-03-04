@@ -8,6 +8,11 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
+  final _emailText = TextEditingController();
+  final _passwordText = TextEditingController();
+  bool _validateEmail = false;
+  bool _validatePassword = false;
+
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
@@ -50,7 +55,9 @@ class _LoginScreenState extends State<LoginScreen> {
               children: <Widget>[
                 //Email Field
                 TextField(
+                  controller: _emailText,
                   decoration: InputDecoration(
+                    errorText: _validateEmail ? 'Email cannot be empty' : null,
                     labelText: 'EMAIL',
                     labelStyle: TextStyle(
                         //fontWeight: FontWeight.bold,
@@ -64,7 +71,11 @@ class _LoginScreenState extends State<LoginScreen> {
                 SizedBox(height: 20.0),
                 //Password Field
                 TextField(
+                  controller: _passwordText,
                   decoration: InputDecoration(
+                    errorText: _validatePassword
+                        ? 'Password must be longer than 6 characters'
+                        : null,
                     labelText: 'PASSWORD',
                     labelStyle: TextStyle(
                         //fontWeight: FontWeight.bold,
@@ -104,7 +115,22 @@ class _LoginScreenState extends State<LoginScreen> {
                     elevation: 7.0,
                     child: GestureDetector(
                       onTap: () {
-                        Navigator.of(context).pushNamed('/homepage');
+                        setState(() {
+                          if (_emailText.text.isEmpty ||
+                              _passwordText.text.length < 6) {
+                            _emailText.text.isEmpty
+                                ? _validateEmail = true
+                                : _validateEmail = false;
+                            _passwordText.text.length < 6
+                                ? _validatePassword = true
+                                : _validatePassword = false;
+                          } else {
+                            _validatePassword = false;
+                            _validateEmail = false;
+                            Navigator.of(context).pushNamed('/homepage');
+                          }
+                        });
+                        // Navigator.of(context).pushNamed('/homepage');
                       },
                       child: Center(
                         child: Text(
