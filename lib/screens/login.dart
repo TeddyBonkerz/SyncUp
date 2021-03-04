@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import '../constants.dart';
 import 'package:flutter/services.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -37,7 +38,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       textStyle: TextStyle(
                           fontSize: 80.0,
                           fontWeight: FontWeight.bold,
-                          color: Colors.blue[900]),
+                          color: primaryColor),
                     ),
                   ),
                 ),
@@ -51,13 +52,17 @@ class _LoginScreenState extends State<LoginScreen> {
                 //Email Field
                 TextField(
                   decoration: InputDecoration(
+                    icon: Icon(
+                      Icons.email,
+                      color: primaryColor,
+                    ),
                     labelText: 'EMAIL',
                     labelStyle: TextStyle(
                         //fontWeight: FontWeight.bold,
                         fontFamily: 'Montserrat',
                         color: Colors.grey),
                     focusedBorder: UnderlineInputBorder(
-                      borderSide: BorderSide(color: Colors.blue[900]),
+                      borderSide: BorderSide(color: primaryColor),
                     ),
                   ),
                 ),
@@ -65,13 +70,21 @@ class _LoginScreenState extends State<LoginScreen> {
                 //Password Field
                 TextField(
                   decoration: InputDecoration(
+                    icon: Icon(
+                      Icons.lock,
+                      color: primaryColor,
+                    ),
+                    suffixIcon: Icon(
+                      Icons.visibility,
+                      color: primaryColor,
+                    ),
                     labelText: 'PASSWORD',
                     labelStyle: TextStyle(
                         //fontWeight: FontWeight.bold,
                         fontFamily: 'Montserrat',
                         color: Colors.grey),
                     focusedBorder: UnderlineInputBorder(
-                      borderSide: BorderSide(color: Colors.blue[900]),
+                      borderSide: BorderSide(color: primaryColor),
                     ),
                   ),
                   obscureText: true,
@@ -86,7 +99,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       'Forgot Password',
                       style: GoogleFonts.mcLaren(
                         textStyle: TextStyle(
-                            color: Colors.blue[900],
+                            color: primaryColor,
                             fontWeight: FontWeight.bold,
                             decoration: TextDecoration.underline),
                       ),
@@ -100,7 +113,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   child: Material(
                     borderRadius: BorderRadius.circular(20.0),
                     shadowColor: Colors.blueAccent[900],
-                    color: Colors.blue[900],
+                    color: primaryColor,
                     elevation: 7.0,
                     child: GestureDetector(
                       onTap: () {
@@ -140,7 +153,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         'Register',
                         style: GoogleFonts.mcLaren(
                           textStyle: TextStyle(
-                              color: Colors.blue[900],
+                              color: primaryColor,
                               fontWeight: FontWeight.bold,
                               decoration: TextDecoration.underline),
                         ),
