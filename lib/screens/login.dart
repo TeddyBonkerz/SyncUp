@@ -93,7 +93,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                   ),
                 ),
-                SizedBox(height: 40.0),
+                SizedBox(height: 100.0),
                 //Login Button
                 Container(
                   height: 40.0,
@@ -103,7 +103,9 @@ class _LoginScreenState extends State<LoginScreen> {
                     color: Colors.blue[900],
                     elevation: 7.0,
                     child: GestureDetector(
-                      onTap: () {},
+                      onTap: () {
+                        Navigator.of(context).pushNamed('/homepage');
+                      },
                       child: Center(
                         child: Text(
                           'LOGIN',
@@ -131,7 +133,9 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                     SizedBox(width: 5.0),
                     InkWell(
-                      onTap: () {},
+                      onTap: () {
+                        Navigator.of(context).pushNamed('/signup');
+                      },
                       child: Text(
                         'Register',
                         style: GoogleFonts.mcLaren(
