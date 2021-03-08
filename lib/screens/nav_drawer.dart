@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:syncup/screens/home.dart';
+import 'package:syncup/screens/login.dart';
 import 'package:syncup/screens/user_profile.dart';
 
 class NavDrawer extends StatelessWidget {
@@ -57,13 +58,13 @@ class NavDrawer extends StatelessWidget {
           ),
           //List of Navigations from the Nav Drawer
           ListTile(
-              leading: Icon(Icons.house),
+              leading: Icon(Icons.house, color: Colors.black),
               title: Text(
                 'Home',
-                style: GoogleFonts.mcLaren(
+                style: GoogleFonts.lato(
                   textStyle: TextStyle(
-                    fontSize: 18,
-                    color: Colors.grey,
+                    fontSize: 15,
+                    color: Colors.black,
                   ),
                 ),
               ),
@@ -75,13 +76,13 @@ class NavDrawer extends StatelessWidget {
                 );
               }),
           ListTile(
-            leading: Icon(Icons.person),
+            leading: Icon(Icons.person, color: Colors.black),
             title: Text(
               'Profile',
-              style: GoogleFonts.mcLaren(
+              style: GoogleFonts.lato(
                 textStyle: TextStyle(
-                  fontSize: 18,
-                  color: Colors.grey,
+                  fontSize: 15,
+                  color: Colors.black,
                 ),
               ),
             ),
@@ -94,28 +95,35 @@ class NavDrawer extends StatelessWidget {
             },
           ),
           ListTile(
-            leading: Icon(Icons.settings),
+            leading: Icon(Icons.settings, color: Colors.black),
             title: Text(
               'Settings',
-              style: GoogleFonts.mcLaren(
+              style: GoogleFonts.lato(
                 textStyle: TextStyle(
-                  fontSize: 18,
-                  color: Colors.grey,
+                  fontSize: 15,
+                  color: Colors.black,
                 ),
               ),
             ),
           ),
           ListTile(
-            leading: Icon(Icons.logout),
+            leading: Icon(Icons.logout, color: Colors.black),
             title: Text(
               'LogOut',
-              style: GoogleFonts.mcLaren(
+              style: GoogleFonts.lato(
                 textStyle: TextStyle(
-                  fontSize: 18,
-                  color: Colors.grey,
+                  fontSize: 15,
+                  color: Colors.black,
                 ),
               ),
             ),
+            onTap: () {
+              Navigator.pushAndRemoveUntil(
+                context,
+                MaterialPageRoute(builder: (context) => LoginScreen()),
+                (Route route) => false,
+              );
+            },
           )
         ],
       ),
