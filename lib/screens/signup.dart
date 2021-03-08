@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:syncup/screens/home.dart';
 import '../constants.dart';
 
 class SignUpScreen extends StatefulWidget {
@@ -131,7 +132,11 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     elevation: 7.0,
                     child: GestureDetector(
                       onTap: () {
-                        Navigator.of(context).pushNamed('/homepage');
+                        Navigator.pushAndRemoveUntil(
+                          context,
+                          MaterialPageRoute(builder: (context) => HomeScreen()),
+                          (Route<dynamic> route) => false,
+                        );
                       },
                       child: Center(
                         child: Text(

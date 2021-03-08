@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:syncup/screens/home.dart';
 import '../constants.dart';
 import 'package:flutter/services.dart';
 
@@ -116,7 +117,11 @@ class _LoginScreenState extends State<LoginScreen> {
                     elevation: 7.0,
                     child: GestureDetector(
                       onTap: () {
-                        Navigator.of(context).pushNamed('/homepage');
+                        Navigator.pushAndRemoveUntil(
+                          context,
+                          MaterialPageRoute(builder: (context) => HomeScreen()),
+                          (Route<dynamic> route) => false,
+                        );
                       },
                       child: Center(
                         child: Text(
