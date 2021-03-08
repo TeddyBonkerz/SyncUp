@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
+import 'nav_drawer.dart';
+
 class ProfileScreen extends StatefulWidget {
   @override
   _ProfileScreenState createState() => _ProfileScreenState();
@@ -13,6 +15,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
         appBar: AppBar(
           title: Text('Profile Screen'),
         ),
+        drawer: NavDrawer(),
         body: new Stack(
           children: <Widget>[
             //black slant background
