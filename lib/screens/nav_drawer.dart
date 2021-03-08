@@ -107,6 +107,18 @@ class NavDrawer extends StatelessWidget {
             ),
           ),
           ListTile(
+            leading: Icon(Icons.info, color: Colors.black),
+            title: Text(
+              'About',
+              style: GoogleFonts.lato(
+                textStyle: TextStyle(
+                  fontSize: 15,
+                  color: Colors.black,
+                ),
+              ),
+            ),
+          ),
+          ListTile(
             leading: Icon(Icons.logout, color: Colors.black),
             title: Text(
               'LogOut',
