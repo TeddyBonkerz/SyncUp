@@ -14,7 +14,7 @@ class _LoginScreenState extends State<LoginScreen> {
     return new Scaffold(
       resizeToAvoidBottomPadding: false,
       body: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
           //SyncUp Container
           Container(
@@ -66,7 +66,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                   ),
                 ),
-                SizedBox(height: 20.0),
+
                 //Password Field
                 TextField(
                   decoration: InputDecoration(
@@ -89,7 +89,6 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                   obscureText: true,
                 ),
-                SizedBox(height: 20.0),
                 //Forgot Password Link
                 Container(
                   alignment: Alignment(1.0, 0.0),
@@ -106,7 +105,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                   ),
                 ),
-                SizedBox(height: 100.0),
+                SizedBox(height: 50.0),
                 //Login Button
                 Container(
                   height: 40.0,

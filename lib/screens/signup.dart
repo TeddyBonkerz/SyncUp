@@ -13,7 +13,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
     return new Scaffold(
       resizeToAvoidBottomPadding: false,
       body: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
           //SyncUp Container
           Container(
@@ -61,7 +61,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     ),
                   ),
                 ),
-                SizedBox(height: 5.0),
+
                 //Last Name Field
                 TextField(
                   decoration: InputDecoration(
@@ -79,7 +79,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     ),
                   ),
                 ),
-                SizedBox(height: 5.0),
+
                 //Email Field
                 TextField(
                   decoration: InputDecoration(
@@ -97,7 +97,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     ),
                   ),
                 ),
-                SizedBox(height: 5.0),
+
                 //Password Field
                 TextField(
                   decoration: InputDecoration(
