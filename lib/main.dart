@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
-import 'screens/homepage.dart';
 
 import 'constants.dart';
+import 'screens/home.dart';
 import 'screens/login.dart';
 import 'screens/signup.dart';
+
+import 'screens/user_profile.dart';
 
 void main() {
   runApp(MyApp());
@@ -22,8 +24,9 @@ class MyApp extends StatelessWidget {
         scaffoldBackgroundColor: Colors.white,
       ),
       routes: <String, WidgetBuilder>{
+        '/home': (BuildContext context) => new HomeScreen(),
         '/signup': (BuildContext context) => new SignUpScreen(),
-        '/homepage': (BuildContext context) => new HomepageScreen()
+        '/user_profile': (BuildContext context) => new ProfileScreen()
       },
       home: LoginScreen(),
     );

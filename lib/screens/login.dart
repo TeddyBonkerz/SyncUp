@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:syncup/screens/home.dart';
 import '../constants.dart';
 import 'package:flutter/services.dart';
 
@@ -20,7 +21,7 @@ class _LoginScreenState extends State<LoginScreen> {
       resizeToAvoidBottomPadding: false,
       body: SingleChildScrollView(
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
             //SyncUp Container
             Container(
@@ -75,14 +76,14 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                     ),
                   ),
-                  SizedBox(height: 20.0),
+
                   //Password Field
                   TextField(
                     controller: _passwordText,
                     decoration: InputDecoration(
                       errorText: _validatePassword
                           ? null
-                          : 'Password must be longer than 6 characters',
+                          : 'Password must be greater than 6 characters',
                       icon: Icon(
                         Icons.lock,
                         color: primaryColor,
@@ -102,7 +103,6 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                     obscureText: true,
                   ),
-                  SizedBox(height: 20.0),
                   //Forgot Password Link
                   Container(
                     alignment: Alignment(1.0, 0.0),
@@ -119,7 +119,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                     ),
                   ),
-                  SizedBox(height: 100.0),
+                  SizedBox(height: 50.0),
                   //Login Button
                   Container(
                     height: 40.0,
@@ -140,7 +140,13 @@ class _LoginScreenState extends State<LoginScreen> {
                             if (emailTextValid && passwordTextValid) {
                               _validateEmail = true;
                               _validatePassword = true;
-                              Navigator.of(context).pushNamed('/homepage');
+                              // Navigator.of(context).pushNamed('/homepage');
+                              Navigator.pushAndRemoveUntil(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => HomeScreen()),
+                                (Route<dynamic> route) => false,
+                              );
                             } else {
                               if (!emailTextValid) {
                                 _validateEmail = false;
@@ -149,22 +155,14 @@ class _LoginScreenState extends State<LoginScreen> {
                                 _validatePassword = false;
                               }
                             }
-
-                            // if (_emailText.text.isEmpty ||
-                            //     _passwordText.text.length < 6) {
-                            //   _emailText.text.isEmpty
-                            //       ? _validateEmail = true
-                            //       : _validateEmail = false;
-                            //   _passwordText.text.length < 6
-                            //       ? _validatePassword = true
-                            //       : _validatePassword = false;
-                            // } else {
-                            //   _validatePassword = false;
-                            //   _validateEmail = false;
-                            //   Navigator.of(context).pushNamed('/homepage');
-                            // }
                           });
-                          // Navigator.of(context).pushNamed('/homepage');
+
+                          // Navigator.pushAndRemoveUntil(
+                          //   context,
+                          //   MaterialPageRoute(
+                          //       builder: (context) => HomeScreen()),
+                          //   (Route<dynamic> route) => false,
+                          // );
                         },
                         child: Center(
                           child: Text(
@@ -207,8 +205,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         ),
                       )
                     ],
-                  ),
-                  SizedBox(height: 35.0),
+                  )
                 ],
               ),
             ),
