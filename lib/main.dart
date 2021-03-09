@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+
 import 'constants.dart';
 import 'screens/home.dart';
 import 'screens/login.dart';
 import 'screens/signup.dart';
+
 import 'screens/user_profile.dart';
 
 void main() {

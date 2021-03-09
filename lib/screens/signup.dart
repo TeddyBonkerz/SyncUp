@@ -9,6 +9,15 @@ class SignUpScreen extends StatefulWidget {
 }
 
 class _SignUpScreenState extends State<SignUpScreen> {
+  final _firstNameText = TextEditingController();
+  final _lastNameText = TextEditingController();
+  final _emailText = TextEditingController();
+  final _passwordText = TextEditingController();
+  bool _validateFirstName = true;
+  bool _validateLastName = true;
+  bool _validateEmail = true;
+  bool _validatePassword = true;
+
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
@@ -47,7 +56,11 @@ class _SignUpScreenState extends State<SignUpScreen> {
               children: <Widget>[
                 //First Name Field
                 TextField(
+                  controller: _firstNameText,
                   decoration: InputDecoration(
+                    errorText: _validateFirstName
+                        ? null
+                        : 'First name cannot be empty',
                     icon: Icon(
                       Icons.person,
                       color: primaryColor,
@@ -65,7 +78,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
 
                 //Last Name Field
                 TextField(
+                  controller: _lastNameText,
                   decoration: InputDecoration(
+                    errorText:
+                        _validateLastName ? null : 'Last name cannot be empty',
                     icon: Icon(
                       Icons.person,
                       color: primaryColor,
@@ -83,7 +99,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
 
                 //Email Field
                 TextField(
+                  controller: _emailText,
                   decoration: InputDecoration(
+                    errorText:
+                        _validateEmail ? null : 'This is not a valid email',
                     icon: Icon(
                       Icons.email,
                       color: primaryColor,
@@ -101,7 +120,11 @@ class _SignUpScreenState extends State<SignUpScreen> {
 
                 //Password Field
                 TextField(
+                  controller: _passwordText,
                   decoration: InputDecoration(
+                    errorText: _validatePassword
+                        ? null
+                        : 'Password must be greater than 6 characters',
                     icon: Icon(
                       Icons.lock,
                       color: primaryColor,
@@ -121,7 +144,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   ),
                   obscureText: true,
                 ),
-                SizedBox(height: 60.0),
+                SizedBox(height: 30.0),
                 //Sign Up Button
                 Container(
                   height: 40.0,
@@ -132,11 +155,60 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     elevation: 7.0,
                     child: GestureDetector(
                       onTap: () {
-                        Navigator.pushAndRemoveUntil(
-                          context,
-                          MaterialPageRoute(builder: (context) => HomeScreen()),
-                          (Route<dynamic> route) => false,
-                        );
+                        setState(() {
+                          bool firstNameTextValid =
+                              _firstNameText.text.isNotEmpty;
+                          bool lastNameTextValid =
+                              _lastNameText.text.isNotEmpty;
+                          bool emailTextValid = RegExp(
+                                  r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
+                              .hasMatch(_emailText.text);
+                          // bool emailTextValid = _emailText.text.isNotEmpty;
+                          bool passwordTextValid =
+                              _passwordText.text.length > 6;
+
+                          if (emailTextValid &&
+                              passwordTextValid &&
+                              firstNameTextValid &&
+                              lastNameTextValid) {
+                            Navigator.pushAndRemoveUntil(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => HomeScreen()),
+                              (Route<dynamic> route) => false,
+                            );
+
+                            // _validateFirstName = true;
+                            // _validateLastName = true;
+                            // _validateEmail = true;
+                            // _validatePassword = true;
+                            // Navigator.of(context).pushNamed('/homepage');
+                          } else {
+                            if (!firstNameTextValid) {
+                              _validateFirstName = false;
+                            }
+
+                            if (!lastNameTextValid) {
+                              _validateLastName = false;
+                            }
+
+                            if (!emailTextValid) {
+                              _validateEmail = false;
+                            }
+
+                            if (!passwordTextValid) {
+                              _validatePassword = false;
+                            }
+                          }
+
+                          // Navigator.of(context).pushNamed('/homepage');
+                        });
+
+                        // Navigator.pushAndRemoveUntil(
+                        //   context,
+                        //   MaterialPageRoute(builder: (context) => HomeScreen()),
+                        //   (Route<dynamic> route) => false,
+                        // );
                       },
                       child: Center(
                         child: Text(
