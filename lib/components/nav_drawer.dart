@@ -87,10 +87,12 @@ class NavDrawer extends StatelessWidget {
               ),
             ),
             onTap: () {
-              Navigator.pushAndRemoveUntil(
+              Navigator.pop(context);
+              Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => ProfileScreen()),
-                (Route<dynamic> route) => false,
+                MaterialPageRoute(
+                  builder: (context) => ProfileScreen(),
+                ),
               );
             },
           ),
