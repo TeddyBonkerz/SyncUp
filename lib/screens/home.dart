@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:syncup/screens/nav_drawer.dart';
-import 'user_profile.dart';
+import 'package:syncup/components/meeting_cards.dart';
+import 'package:syncup/components/nav_drawer.dart';
+import 'package:syncup/constants.dart';
+
+import 'create_meeting.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -16,24 +19,22 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
       //Side Menu Drawer For Easy Navigation
       drawer: NavDrawer(),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Text(
-              'Howdy?',
-            ),
-            RaisedButton(
-              child: Text('Profile'),
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => ProfileScreen()),
-                );
-              },
-            ),
-          ],
+      body: Container(
+        child: HomePageCards(),
+      ),
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: primaryColor,
+        child: Icon(
+          Icons.create,
         ),
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => CreateMeeting(),
+            ),
+          );
+        },
       ),
     );
   }
