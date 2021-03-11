@@ -171,6 +171,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
                               passwordTextValid &&
                               firstNameTextValid &&
                               lastNameTextValid) {
+                            _validateFirstName = true;
+                            _validateLastName = true;
+                            _validateEmail = true;
+                            _validatePassword = true;
                             Navigator.pushAndRemoveUntil(
                               context,
                               MaterialPageRoute(
