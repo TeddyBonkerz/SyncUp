@@ -1,32 +1,35 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:syncup/models/attendeeModel.dart';
 import 'package:syncup/models/meetingModel.dart';
 import 'package:syncup/screens/meeting_details.dart';
 
 class HomePageCards extends StatelessWidget {
   //example list
-  final List<Meeting> meetingList = [
+  List<Meeting> meetingList = [
     new Meeting(
-        "123",
-        "Grim Munchkins",
-        "Rick and Morty Season 5 Premieres",
-        "Invite to see who will be comming for the new Rick and Morty Season Premiere",
-        "04/15/2020 2:30pm", [
-      new Attendee("Zander", "Zander@gmail.com"),
-      new Attendee("Cindy", "Cindy@gmail.com")
-    ]),
+        meetingId: "123",
+        organizer: "Grim Munchkins",
+        title: "Rick and Morty Season 5 Premieres",
+        description:
+            "Invite to see who will be comming for the new Rick and Morty Season Premiere",
+        meetingDate: "04/15/2020 2:30pm",
+        attendees: [
+          new Attendee(email: "Zander@gmail.com"),
+          new Attendee(email: "Cindy@gmail.com")
+        ]),
     new Meeting(
-        "124",
-        "Grim Munchkins",
-        "Graduation Party",
-        "Invitation for all who wish to attend my graduation party",
-        "04/25/2020 4:30pm", [
-      new Attendee("Zander", "Zander@gmail.com"),
-      new Attendee("Cindy", "Cindy@gmail.com"),
-      new Attendee("Marco", "Marco@gmail.com"),
-      new Attendee("Freeze", "Freeze@gmail.com"),
-    ]),
+        meetingId: "124",
+        organizer: "Grim Munchkins",
+        title: "Graduation Party",
+        description:
+            "Invitation for all who wish to attend my graduation party",
+        meetingDate: "04/25/2020 4:30pm",
+        attendees: [
+          new Attendee(email: "Zander@gmail.com"),
+          new Attendee(email: "Cindy@gmail.com"),
+          new Attendee(email: "Marco@gmail.com"),
+          new Attendee(email: "Freeze@gmail.com"),
+        ]),
   ];
 
   @override

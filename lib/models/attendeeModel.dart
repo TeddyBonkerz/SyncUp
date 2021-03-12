@@ -1,6 +1,9 @@
 class Attendee {
-  final String firstName;
-  final String email;
+  String email;
 
-  Attendee(this.firstName, this.email);
+  Attendee({this.email});
+
+  get getEmail => this.email;
+
+  set setEmail(email) => this.email = email;
 }

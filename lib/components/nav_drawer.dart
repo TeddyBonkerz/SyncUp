@@ -6,8 +6,12 @@ import 'package:syncup/screens/login.dart';
 import 'package:syncup/screens/user_profile.dart';
 
 class NavDrawer extends StatelessWidget {
-  final User appUser =
-      new User(1011, "Grim", "Fandango", "Gmunchkins@y.com", "stuff");
+  final User appUser = new User(
+      uId: 1011,
+      firstName: "Grim",
+      lastName: "Fandango",
+      email: "Gmunchkins@y.com",
+      password: "stuff");
 
   @override
   Widget build(BuildContext context) {
