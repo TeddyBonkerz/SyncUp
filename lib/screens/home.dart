@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:syncup/components/meeting_cards.dart';
 import 'package:syncup/components/nav_drawer.dart';
 import 'package:syncup/constants.dart';
-
 import 'create_meeting.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -15,7 +14,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Home Screen'),
+        title: Text('SyncUp'),
       ),
       //Side Menu Drawer For Easy Navigation
       drawer: NavDrawer(),
