@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:syncup/constants.dart';
 import 'package:syncup/screens/home.dart';
-import 'meeting_details.dart';
 
 class CreateMeeting extends StatefulWidget {
   @override
@@ -128,11 +127,13 @@ class _CreateMeetingState extends State<CreateMeeting> {
                     color: primaryColor,
                   ),
                   SizedBox(width: 15.0),
-                  RaisedButton(
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10.0),
+                  ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10.0),
+                      ),
+                      primary: primaryColor,
                     ),
-                    color: Colors.blueAccent,
                     onPressed: () => _selectDate(context),
                     // child: Text('Select date'),
                     child: Text(
@@ -153,11 +154,13 @@ class _CreateMeetingState extends State<CreateMeeting> {
                     color: primaryColor,
                   ),
                   SizedBox(width: 15.0),
-                  RaisedButton(
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10.0),
+                  ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10.0),
+                      ),
+                      primary: primaryColor,
                     ),
-                    color: Colors.blueAccent,
                     onPressed: () => _selectTime(context),
                     // child: Text('Select date'),
                     child: Text(
@@ -195,11 +198,13 @@ class _CreateMeetingState extends State<CreateMeeting> {
                 ),
               ),
               SizedBox(height: 10.0),
-              RaisedButton(
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10.0),
+              ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10.0),
+                  ),
+                  primary: primaryColor,
                 ),
-                color: primaryColor,
                 onPressed: () {
                   setState(() {
                     bool subjectTextValid = _subjectText.text.isNotEmpty;
@@ -229,7 +234,6 @@ class _CreateMeetingState extends State<CreateMeeting> {
                         error = "You haven't chosen date or time";
                       }
                     }
-                    ;
                   });
 
                   // setState(() {
@@ -264,13 +268,13 @@ class _CreateMeetingState extends State<CreateMeeting> {
 showAlertDialog(BuildContext context, String subject, String content,
     String date, String time, List<String> emailList) {
   // set up the buttons
-  Widget cancelButton = FlatButton(
+  Widget cancelButton = TextButton(
     child: Text("Go back"),
     onPressed: () {
       Navigator.of(context).pop();
     },
   );
-  Widget continueButton = FlatButton(
+  Widget continueButton = TextButton(
     child: Text("Confirm"),
     onPressed: () {
       Navigator.pushAndRemoveUntil(

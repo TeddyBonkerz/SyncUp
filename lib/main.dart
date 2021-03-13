@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primaryColor: primaryColor,
-        scaffoldBackgroundColor: Colors.white,
+        scaffoldBackgroundColor: scaffoldBackgroundColor,
       ),
       routes: <String, WidgetBuilder>{
         '/home': (BuildContext context) => new HomeScreen(),

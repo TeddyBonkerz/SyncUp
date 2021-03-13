@@ -1,10 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:syncup/models/userModel.dart';
 import 'package:syncup/screens/home.dart';
 import 'package:syncup/screens/login.dart';
 import 'package:syncup/screens/user_profile.dart';
 
 class NavDrawer extends StatelessWidget {
+  final User appUser = new User(
+      uId: 1011,
+      firstName: "Grim",
+      lastName: "Fandango",
+      email: "Gmunchkins@y.com",
+      password: "stuff");
+
   @override
   Widget build(BuildContext context) {
     return Drawer(
@@ -35,7 +43,7 @@ class NavDrawer extends StatelessWidget {
                   ),
                   //Nav Drawer Name
                   Text(
-                    'Grim Munchkins',
+                    appUser.firstName + ' ' + appUser.lastName,
                     style: GoogleFonts.mcLaren(
                       textStyle: TextStyle(
                         fontSize: 22,
@@ -45,7 +53,7 @@ class NavDrawer extends StatelessWidget {
                   ),
                   //Nav Drawer Email
                   Text(
-                    'Gmunchkins@y.com',
+                    appUser.email,
                     style: GoogleFonts.mcLaren(
                       textStyle: TextStyle(
                         color: Colors.white,
