@@ -1,106 +1,55 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:syncup/constants.dart';
 import 'package:syncup/screens/home.dart';
 
+class MeetingDetails extends StatefulWidget{
+  @override
+  _MeetingDetails createState() => _MeetingDetails();
+}
 
-class MeetingDetails extends StatelessWidget {
+class _MeetingDetails extends State<MeetingDetails> {
+  bool checkCompleted = false; // check box value for complete or not
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: primaryColor,
-        title: Text('MeetingTitle')
+        title: Text('MeetingTitle'),
         ),
-        body: Container(
-          padding: EdgeInsets.all(10),
-          child: RaisedButton(
-            onPressed: (){
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => HomeScreen(),
-                ),
-              );
-            }, 
-            child: 
-            Icon(Icons.arrow_back),
-          )
-        )
+        body: Column(
+          children: <Widget>[
+            //General Info: Description, time / date, Complete or not
+            ListTile(
+              contentPadding: const EdgeInsets.all(10.0),
+              title: Text('Meeting Description Meeting Description Meeting Description Meeting Description Meeting Description Meeting Description Meeting Description Meeting Description Meeting Description Meeting Description Meeting Description',
+                    textAlign: TextAlign.center,
+              ),
+            ),
+            // Time and Date Info
+            ListTile(
+              contentPadding: const EdgeInsets.all(10.0),
+              title: Text('Time / Date'),
+              subtitle: Text('##:## AM/PM @@,@@@@')
+            ),
+            // Location Info
+            ListTile(
+              contentPadding: const EdgeInsets.all(10.0),
+              title: Text('Location'),
+              subtitle: Text('TestLocation')
+            ),
+            // Meeting Check box for completion status
+            CheckboxListTile(
+              title: const Text('Meeting Completed: '),
+              value: checkCompleted,
+              onChanged: (bool value){
+                setState(() {
+                  checkCompleted = value;
+                });
+              }
+            ),
+            // List of People Coming
+            
+        ],)
     );
-
-
-
-    // return Column(
-    //   children: <Widget> [
-    //     Stack(
-    //       alignment: Alignment.center,
-    //       children: <Widget>[
-    //         Text(
-    //           'MeetingTitle',
-    //           textAlign: TextAlign.center,
-    //           overflow: TextOverflow.ellipsis,
-    //           style: TextStyle(
-    //             fontWeight: FontWeight.bold),
-    //           ),
-    //         ],),
-    //         SizedBox(
-    //           height: 30,
-    //           ),
-    //         ListTile(
-    //           title: Text(
-    //             'Meeting Detail:'
-    //           ),
-    //           subtitle: Text(
-    //             'Meeting filler info to see if this wraps around the application screen'
-    //           ),
-    //         ),
-    //         ListTile(
-    //           title: Text(
-    //             'Meeting Time & Date'
-    //           ),
-    //           subtitle: Text(
-    //             '##:## AM/PM  @@/@@@@'
-    //           ),
-    //         ),
-    //         ListTile(
-    //           title: Text(
-    //             'Meeting Location'
-    //           ),
-    //           subtitle: Text(
-    //             'Location'
-    //           ),
-    //         ),
-    //         ListView.builder(
-    //           padding: const EdgeInsets.all(8),
-    //           itemCount: 10, // how many people going
-    //           itemBuilder: (BuildContext context, int index){
-    //             return Container(
-    //               height: 50,
-    //               margin: EdgeInsets.all(2),
-    //               color: primaryColor,
-    //               child: Center(
-    //                 child: Text (
-    //                     'name email'
-    //                     // style: anystyle
-    //                   ),
-    //                 ),  
-    //             );
-    //           }
-    //         ),
-    //       // CheckboxListTile(
-    //       //   title: Text("Is the meeting complete?"),
-    //       //   secondary: Icon(Icons.check),
-    //       //   controlAffinity: 
-    //       //   ListTileControlAffinity.leading,
-    //       //   // need to tie in a way to save state
-    //       //   // value: _checked,
-    //       //   // onChanged: (bool value){
-    //       //   //   setState((){
-    //       //   //     _checked = value;
-    //       //   //   });
-    //       //   // }
-    //       // )
-    //   ],
-    // );
   }
 }
