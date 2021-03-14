@@ -51,6 +51,7 @@ class _MeetingDetails extends State<MeetingDetails> {
                   }
                 ),
               ],),
+              // View who is attending List
               ListTile(
                 contentPadding: const EdgeInsets.all(10.0),
                 title: Text('List of Attendence')
