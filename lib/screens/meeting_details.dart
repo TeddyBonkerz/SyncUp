@@ -60,7 +60,7 @@ class _MeetingDetails extends State<MeetingDetails> {
           child: ListView.builder(
             itemCount: 10, // filler till we have actual list length
             itemBuilder: (context, index){
-              return ListTile(
+              return ListTile( // will change to variables / values when we have actual list to grab from
                 title: Text('ContactName'),
                 subtitle: Text('email')
               );
