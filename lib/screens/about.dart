@@ -139,7 +139,7 @@ class _AboutScreenState extends State<AboutScreen> {
                             ),
                             SizedBox(height: 30.0),
                             Text(
-                              'Enjoy Schduling Made Easy! Creators:',
+                              'Enjoy Scheduling Made Easy! Creators:',
                               style: kTitleStyle,
                             ),
                             SizedBox(height: 15.0),
