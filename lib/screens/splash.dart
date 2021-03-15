@@ -1,15 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:syncup/animations/drop.dart';
 import 'package:syncup/animations/circle.dart';
+import 'package:syncup/constants.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+
 class SplashScreen extends StatefulWidget {
-  SplashScreen({
-    this.color
-  });
-
-  final Color color;
-
+  
   @override
   _SplashScreenState createState() => _SplashScreenState();
 }
@@ -51,7 +48,7 @@ class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderSt
           height: double.infinity,
           child: CustomPaint(
             painter: CirclePainter(
-              color: widget.color,
+              color: primaryLightColor,
               holeSize: _animation.holeSize.value * size.width
             )
           )

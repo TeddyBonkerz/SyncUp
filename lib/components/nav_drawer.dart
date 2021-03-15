@@ -4,6 +4,7 @@ import 'package:syncup/models/userModel.dart';
 import 'package:syncup/screens/home.dart';
 import 'package:syncup/screens/login.dart';
 import 'package:syncup/screens/user_profile.dart';
+import 'package:syncup/screens/about.dart';
 
 class NavDrawer extends StatelessWidget {
   final User appUser = new User(
@@ -127,6 +128,13 @@ class NavDrawer extends StatelessWidget {
                 ),
               ),
             ),
+            onTap: () {
+              Navigator.pushAndRemoveUntil(
+                context,
+                MaterialPageRoute(builder: (context) => AboutScreen()),
+                (Route route) => false,
+              );
+            },
           ),
           ListTile(
             leading: Icon(Icons.logout, color: Colors.black),
