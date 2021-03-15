@@ -44,7 +44,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     ),
                     SizedBox(height: 90.0),
                     Text(
-                      'fName lName',
+                      'Grim Fandango',
                       style: TextStyle(
                           fontSize: 30.0,
                           fontWeight: FontWeight.bold,
@@ -52,7 +52,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     ),
                     SizedBox(height: 15.0),
                     Text(
-                      'Some text goes here',
+                      'Gmunchkins@yahoo.com',
                       style: TextStyle(
                           fontSize: 17.0,
                           fontStyle: FontStyle.italic,
@@ -71,7 +71,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             onTap: () {},
                             child: Center(
                               child: Text(
-                                'Create Poll',
+                                'Update Profile',
                                 style: TextStyle(
                                     color: Colors.white,
                                     fontFamily: 'Montserrat'),

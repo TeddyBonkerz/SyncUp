@@ -10,7 +10,7 @@ class NavDrawer extends StatelessWidget {
       uId: 1011,
       firstName: "Grim",
       lastName: "Fandango",
-      email: "Gmunchkins@y.com",
+      email: "Gmunchkins@yahoo.com",
       password: "stuff");
 
   @override
