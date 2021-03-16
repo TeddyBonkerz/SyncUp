@@ -7,6 +7,8 @@ import 'screens/signup.dart';
 import 'screens/user_profile.dart';
 import 'screens/about.dart';
 
+
+
 void main() {
   runApp(MyApp());
 }
@@ -43,19 +45,14 @@ class _MySplashState extends State<MySplashPage> {
   @override
   Widget build(BuildContext context) {
     return Material(
-        child: Stack(
-          children: <Widget>[
-      Scaffold(
-        body: LoginScreen()
-        ),
+        child: Stack(children: <Widget>[
+      Scaffold(body: LoginScreen()),
       IgnorePointer(
-        child: SplashScreen(
-          //primaryColor: Theme.of(context).accentColor
-          )
-          )
-    ]
-    )
-    );
+          child: SplashScreen(
+              //primaryColor: Theme.of(context).accentColor
+              ))
+    ]));
   }
 }
+
 

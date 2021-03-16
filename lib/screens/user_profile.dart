@@ -1,5 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:syncup/components/info_card.dart';
+import 'package:syncup/components/nav_drawer.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:syncup/constants.dart';
+
+const email = 'Gmunchkins@yahoo.com';
 
 class ProfileScreen extends StatefulWidget {
   @override
@@ -14,77 +20,67 @@ class _ProfileScreenState extends State<ProfileScreen> {
           title: Text('Profile Screen'),
         ),
         //drawer: NavDrawer(),
-        body: new Stack(
-          children: <Widget>[
-            //black slant background
-            ClipPath(
-              child: Container(color: Colors.black.withOpacity(0.8)),
-              clipper: getClipper(),
+        body: SafeArea(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            CircleAvatar(
+              radius: 100,
+              backgroundImage: AssetImage('assets/images/grim.webp'),
             ),
-            //User image
-            Positioned(
-                width: 350.0,
-                left: 25.0,
-                top: MediaQuery.of(context).size.height / 5,
-                child: Column(
-                  children: <Widget>[
-                    Container(
-                      width: 150.0,
-                      height: 150.0,
-                      decoration: BoxDecoration(
-                          color: Colors.blue,
-                          image: DecorationImage(
-                              image: AssetImage(
-                                  'assets/images/default_profile.png'),
-                              fit: BoxFit.cover),
-                          borderRadius: BorderRadius.all(Radius.circular(75.0)),
-                          boxShadow: [
-                            BoxShadow(blurRadius: 7.0, color: Colors.black)
-                          ]),
-                    ),
-                    SizedBox(height: 90.0),
-                    Text(
-                      'Grim Fandango',
+            Text('Grim Fandango',
+                style: GoogleFonts.pacifico(
+                    fontSize: 40,
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold)),
+            Text(
+              'Software Engineer',
+              style: GoogleFonts.sourceSansPro(
+                  fontSize: 30,
+                  color: primaryColor,
+                  letterSpacing: 2.5,
+                  fontWeight: FontWeight.bold),
+            ),
+            SizedBox(
+              height: 20,
+              width: 200,
+              child: Divider(
+                color: Colors.teal.shade700,
+              ),
+            ),
+            InfoCard(
+              text: email,
+              icon: Icons.email,
+            ),
+            Container(
+              height: 30.0,
+              width: 95.0,
+              child: Material(
+                borderRadius: BorderRadius.circular(5.0),
+                shadowColor: Colors.blueAccent,
+                color: primaryColor,
+                elevation: 7.0,
+                child: GestureDetector(
+                  onTap: () {},
+                  child: Center(
+                    child: Text(
+                      'Update Profile',
                       style: TextStyle(
-                          fontSize: 30.0,
-                          fontWeight: FontWeight.bold,
-                          fontFamily: 'Montserrat'),
+                        color: Colors.white,
+                        fontFamily: 'Montserrat'),
                     ),
-                    SizedBox(height: 15.0),
-                    Text(
-                      'Gmunchkins@yahoo.com',
-                      style: TextStyle(
-                          fontSize: 17.0,
-                          fontStyle: FontStyle.italic,
-                          fontFamily: 'Montserrat'),
-                    ),
-                    SizedBox(height: 25.0),
-                    Container(
-                        height: 30.0,
-                        width: 95.0,
-                        child: Material(
-                          borderRadius: BorderRadius.circular(20.0),
-                          shadowColor: Colors.blueAccent,
-                          color: Colors.blue,
-                          elevation: 7.0,
-                          child: GestureDetector(
-                            onTap: () {},
-                            child: Center(
-                              child: Text(
-                                'Update Profile',
-                                style: TextStyle(
-                                    color: Colors.white,
-                                    fontFamily: 'Montserrat'),
-                              ),
-                            ),
-                          ),
-                        ))
-                  ],
-                ))
+                  ),
+                ),
+               ))
+          
           ],
-        ));
+        ),
+      ),
+      backgroundColor: primaryLightColor,
+    );
   }
 }
+
 
 class getClipper extends CustomClipper<Path> {
   @override

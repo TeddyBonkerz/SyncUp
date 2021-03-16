@@ -37,7 +37,7 @@ class NavDrawer extends StatelessWidget {
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,
                       image: DecorationImage(
-                        image: AssetImage('assets/images/default_profile.png'),
+                        image: AssetImage('assets/images/grim.webp'),
                         fit: BoxFit.fill,
                       ),
                     ),
