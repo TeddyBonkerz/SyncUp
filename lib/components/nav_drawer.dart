@@ -4,13 +4,14 @@ import 'package:syncup/models/userModel.dart';
 import 'package:syncup/screens/home.dart';
 import 'package:syncup/screens/login.dart';
 import 'package:syncup/screens/user_profile.dart';
+import 'package:syncup/screens/about.dart';
 
 class NavDrawer extends StatelessWidget {
   final User appUser = new User(
       uId: 1011,
       firstName: "Grim",
       lastName: "Fandango",
-      email: "Gmunchkins@y.com",
+      email: "Gmunchkins@yahoo.com",
       password: "stuff");
 
   @override
@@ -36,7 +37,7 @@ class NavDrawer extends StatelessWidget {
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,
                       image: DecorationImage(
-                        image: AssetImage('assets/images/default_profile.png'),
+                        image: AssetImage('assets/images/grim.webp'),
                         fit: BoxFit.fill,
                       ),
                     ),
@@ -127,6 +128,13 @@ class NavDrawer extends StatelessWidget {
                 ),
               ),
             ),
+            onTap: () {
+              Navigator.pushAndRemoveUntil(
+                context,
+                MaterialPageRoute(builder: (context) => AboutScreen()),
+                (Route route) => false,
+              );
+            },
           ),
           ListTile(
             leading: Icon(Icons.logout, color: Colors.black),

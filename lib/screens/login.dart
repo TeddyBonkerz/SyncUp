@@ -38,7 +38,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                   ),
                   Container(
-                    padding: EdgeInsets.fromLTRB(210.0, 110.0, 0.0, 0.0),
+                    padding: EdgeInsets.fromLTRB(206.0, 110.0, 0.0, 0.0),
                     child: Text(
                       'Up',
                       style: GoogleFonts.mcLaren(
