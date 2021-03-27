@@ -270,6 +270,7 @@ class _CreateMeetingState extends State<CreateMeeting> {
 //Method for sending email to recipients
 sendEmail(String subject, String content, String date, String time,
     List<String> emailList) async {
+  //Enter email and password, ensure you enable less secure app access if its a gmail account
   String username = 'username@gmail.com';
   String password = 'password';
 
