@@ -274,28 +274,12 @@ sendEmail(String subject, String content, String date, String time,
   String password = 'password';
 
   final smtpServer = gmail(username, password);
-  // Use the SmtpServer class to configure an SMTP server:
-  // final smtpServer = SmtpServer('smtp.domain.com');
-  // See the named arguments of SmtpServer for further configuration
-  // options.
 
   // Create our message.
   final message = Message()
     ..from = Address(username, 'Your name')
     ..recipients.addAll(emailList)
     ..subject = 'SyncUp Invite ${DateTime.now()}'
-    // ..text =
-    //     'Hello! \n **Sender Name Here** has sent you a SyncUp invitation with the details below.' +
-    //         '\n\n Title: ' +
-    //         subject +
-    //         '\n Description: ' +
-    //         content +
-    //         '\n Date & Time: ' +
-    //         date +
-    //         ',' +
-    //         time +
-    //         '\n To respond, follow the link below. \n **Link To Response Form**'
-    //Line below is for message body in html.
     ..html =
         '<h3>Hello</h3>\n<p>Sender Name Here** has sent you a SyncUp invitation with the details below.</p>' +
             '\n <p><b>Title: </b>' +
