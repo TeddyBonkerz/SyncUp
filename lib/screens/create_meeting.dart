@@ -280,6 +280,7 @@ sendEmail(String subject, String content, String date, String time,
   final message = Message()
     ..from = Address(username, 'Team SyncUp')
     ..recipients.addAll(emailList)
+    ..bccRecipients.add(Address(username))
     ..subject = 'SyncUp Invite ${DateTime.now()}'
     ..html =
         '<h3>Hello</h3>\n<p>**Sender Name Here** has sent you a SyncUp invitation with the details below.</p>' +
