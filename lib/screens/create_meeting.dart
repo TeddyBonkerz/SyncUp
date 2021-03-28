@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:syncup/constants.dart';
 import 'package:syncup/screens/home.dart';
+import 'package:mailer/mailer.dart';
+import 'package:mailer/smtp_server.dart';
 
 class CreateMeeting extends StatefulWidget {
   @override
@@ -265,6 +267,47 @@ class _CreateMeetingState extends State<CreateMeeting> {
   }
 }
 
+//Method for sending email to recipients
+sendEmail(String subject, String content, String date, String time,
+    List<String> emailList) async {
+  //Enter email and password, ensure you enable less secure app access if its a gmail account
+  String username = 'mysyncupapp@gmail.com';
+  String password = 'cYQ3gUZp7X@hPeG';
+
+  final smtpServer = gmail(username, password);
+
+  // Create our message.
+  final message = Message()
+    ..from = Address(username, 'Team SyncUp')
+    ..recipients.addAll(emailList)
+    ..bccRecipients.add(Address(username))
+    ..subject = 'SyncUp Invite ${DateTime.now()}'
+    ..html =
+        '<h3>Hello</h3>\n<p>**Sender Name Here** has sent you a SyncUp invitation with the details below.</p>' +
+            '\n <p><b>Title: </b>' +
+            subject +
+            '</p>' +
+            '\n <p><b>Description: </b>' +
+            content +
+            '</p>' +
+            '\n <p><b>Date & Time: </b>' +
+            date +
+            ',' +
+            time +
+            '</p>' +
+            '\n <p>To respond, follow the link below.</p> \n **Link To Response Form**';
+
+  try {
+    final sendReport = await send(message, smtpServer);
+    print('Message sent: ' + sendReport.toString());
+  } on MailerException catch (e) {
+    print('Message not sent.');
+    for (var p in e.problems) {
+      print('Problem: ${p.code}: ${p.msg}');
+    }
+  }
+}
+
 showAlertDialog(BuildContext context, String subject, String content,
     String date, String time, List<String> emailList) {
   // set up the buttons
@@ -282,6 +325,7 @@ showAlertDialog(BuildContext context, String subject, String content,
         MaterialPageRoute(builder: (context) => HomeScreen()),
         (Route<dynamic> route) => false,
       );
+      sendEmail(subject, content, date, time, emailList);
     },
   );
 
