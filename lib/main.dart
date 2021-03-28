@@ -6,14 +6,18 @@ import 'screens/splash.dart';
 import 'screens/signup.dart';
 import 'screens/user_profile.dart';
 import 'screens/about.dart';
+import 'package:flutter/material.dart';
+import 'package:firebase_core/firebase_core.dart';
 
 
-
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
+  final Future<FirebaseApp> _initialization = Firebase.initializeApp();
   @override
   Widget build(BuildContext context) {
     SystemChrome.setEnabledSystemUIOverlays([SystemUiOverlay.bottom]);
@@ -32,6 +36,19 @@ class MyApp extends StatelessWidget {
         '/about': (BuildContext context) => new AboutScreen()
       },
       home: MySplashPage(),
+      body: FutureBuilder(
+        future: Firebase..?
+        builder: (context, snapshot) {
+          if (snapshot.hasError) {
+            return SomethingWentWrong;
+          }
+
+          if (snapshot.connectionsState == ConnectionState.done) {
+            return MaterialApp();
+          }
+          return Loading();
+        }
+      )
     );
   }
 }

@@ -23,11 +23,21 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  firebase_core: ^1.0.2
+  # Newly reworked plugins covered by this migration guide:
+  firebase_auth: ^1.0.1
+  # firebase_crashlytics: "^0.4.0+1"
+  cloud_firestore: ^1.0.3
+  cloud_functions: ^1.0.2
+  firebase_storage: ^8.0.1
+  # firebase_messaging: "^8.0.0-dev.15"
+  firebase_remote_config: ^0.9.0-dev.1
+  url_launcher: "^6.0.3"
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.0
   google_fonts: ^2.0.0
-  flutter_svg: ^0.17.4
+  flutter_svg: ^0.19.3
 
 dev_dependencies:
   flutter_test:
