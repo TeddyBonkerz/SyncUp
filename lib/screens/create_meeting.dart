@@ -271,18 +271,18 @@ class _CreateMeetingState extends State<CreateMeeting> {
 sendEmail(String subject, String content, String date, String time,
     List<String> emailList) async {
   //Enter email and password, ensure you enable less secure app access if its a gmail account
-  String username = 'username@gmail.com';
-  String password = 'password';
+  String username = 'mysyncupapp@gmail.com';
+  String password = 'cYQ3gUZp7X@hPeG';
 
   final smtpServer = gmail(username, password);
 
   // Create our message.
   final message = Message()
-    ..from = Address(username, 'Your name')
+    ..from = Address(username, 'Team SyncUp')
     ..recipients.addAll(emailList)
     ..subject = 'SyncUp Invite ${DateTime.now()}'
     ..html =
-        '<h3>Hello</h3>\n<p>Sender Name Here** has sent you a SyncUp invitation with the details below.</p>' +
+        '<h3>Hello</h3>\n<p>**Sender Name Here** has sent you a SyncUp invitation with the details below.</p>' +
             '\n <p><b>Title: </b>' +
             subject +
             '</p>' +
