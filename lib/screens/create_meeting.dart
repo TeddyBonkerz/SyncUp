@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:syncup/constants.dart';
+import 'package:syncup/models/attendeeModel.dart';
+import 'package:syncup/models/listMeetingModel.dart';
+import 'package:syncup/models/meetingModel.dart';
 import 'package:syncup/screens/home.dart';
 import 'package:mailer/mailer.dart';
 import 'package:mailer/smtp_server.dart';
@@ -320,6 +323,15 @@ showAlertDialog(BuildContext context, String subject, String content,
   Widget continueButton = TextButton(
     child: Text("Confirm"),
     onPressed: () {
+      Meeting meeting = Meeting(
+          meetingId: '0',
+          organizer: 'ABC',
+          title: subject,
+          description: content,
+          meetingDate: '$date at $time',
+          attendees: emailList.map((email) => Attendee(email: email)).toList());
+      MeetingList.instance.meetingList.add(meeting);
+
       Navigator.pushAndRemoveUntil(
         context,
         MaterialPageRoute(builder: (context) => HomeScreen()),
