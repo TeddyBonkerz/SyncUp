@@ -38,7 +38,7 @@ class Meeting {
 
   set setMeetingDate(meetingDate) => this.meetingDate = meetingDate;
 
-  get getAttendees => this.attendees;
+  List<Attendee> get getAttendees => this.attendees;
 
   set setAttendees(attendees) => this.attendees = attendees;
 }
