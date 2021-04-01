@@ -10,7 +10,7 @@ import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 
 
-void main() async {
+Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   runApp(MyApp());
@@ -35,18 +35,18 @@ class MyApp extends StatelessWidget {
         '/user_profile': (BuildContext context) => new ProfileScreen(),
         '/about': (BuildContext context) => new AboutScreen()
       },
-      home: MySplashPage(),
-      body: FutureBuilder(
-        future: Firebase..?
-        builder: (context, snapshot) {
+      home: FutureBuilder(
+        future: _initialization,
+        builder: (context, snapshot,) {
           if (snapshot.hasError) {
-            return SomethingWentWrong;
+            print ('You have an error! ${snapshot.error.toString()}');
+            return Text('Something went wrong!');
           }
 
-          if (snapshot.connectionsState == ConnectionState.done) {
-            return MaterialApp();
+          if (snapshot.connectionState == ConnectionState.done) {
+            return MyApp();
           }
-          return Loading();
+          return MySplashPage();
         }
       )
     );
@@ -71,5 +71,3 @@ class _MySplashState extends State<MySplashPage> {
     ]));
   }
 }
-
-
