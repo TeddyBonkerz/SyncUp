@@ -3,15 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import 'package:syncup/models/userModel.dart';
-import 'package:syncup/screens/authenticate.dart';
 import 'package:syncup/screens/wrapper.dart';
 import 'package:syncup/services/authenticationservice.dart';
-import 'screens/home.dart';
-import 'screens/login.dart';
-import 'screens/splash.dart';
-import 'screens/signup.dart';
-import 'screens/user_profile.dart';
 import 'screens/about.dart';
+import 'screens/home.dart';
+import 'screens/signup.dart';
+import 'screens/splash.dart';
+import 'screens/user_profile.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -56,12 +54,16 @@ class _MySplashState extends State<MySplashPage> {
   Widget build(BuildContext context) {
     final user = Provider.of<UserModel>(context);
     return Material(
-        child: Stack(children: <Widget>[
-      Scaffold(body: Wrapper()),
-      IgnorePointer(
-          child: SplashScreen(
-              //primaryColor: Theme.of(context).accentColor
-              ))
-    ]));
+      child: Stack(
+        children: <Widget>[
+          Scaffold(body: Wrapper()),
+          IgnorePointer(
+            child: SplashScreen(
+                //primaryColor: Theme.of(context).accentColor
+                ),
+          )
+        ],
+      ),
+    );
   }
 }
