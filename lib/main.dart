@@ -34,6 +34,7 @@ class MyApp extends StatelessWidget {
           visualDensity: VisualDensity.adaptivePlatformDensity,
         ),
         routes: <String, WidgetBuilder>{
+          '/wrapper': (BuildContext context) => new Wrapper(),
           '/home': (BuildContext context) => new HomeScreen(),
           '/signup': (BuildContext context) => new SignUpScreen(),
           '/user_profile': (BuildContext context) => new ProfileScreen(),
