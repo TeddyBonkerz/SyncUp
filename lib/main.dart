@@ -12,7 +12,6 @@ import 'package:firebase_core/firebase_core.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp();
   runApp(MyApp());
 }
 
@@ -44,9 +43,11 @@ class MyApp extends StatelessWidget {
           }
 
           if (snapshot.connectionState == ConnectionState.done) {
-            return MyApp();
+            return MySplashPage();
           }
-          return MySplashPage();
+          return Center(
+            child: CircularProgressIndicator(),
+          );
         }
       )
     );

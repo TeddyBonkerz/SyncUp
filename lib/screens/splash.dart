@@ -20,8 +20,8 @@ class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderSt
   void initState() {
     super.initState();
     _controller = AnimationController(
-      duration: const Duration(milliseconds: 3000),
       vsync: this,
+      duration: const Duration(milliseconds: 3000),
     );
     _animation = RaindropAnimation(_controller);
     _controller.forward();
@@ -89,6 +89,7 @@ class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderSt
   void dispose() {
     _controller.dispose();
     super.dispose();
+    
   }
 }
 
