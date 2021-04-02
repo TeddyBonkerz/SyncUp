@@ -1,11 +1,12 @@
-class User {
-  int uId;
+class UserModel {
+  String uId;
   String firstName;
   String lastName;
   String email;
   String password;
 
-  User({this.uId, this.firstName, this.lastName, this.email, this.password});
+  UserModel(
+      {this.uId, this.firstName, this.lastName, this.email, this.password});
 
   get getUId => this.uId;
 

@@ -16,11 +16,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
-        appBar: AppBar(
-          title: Text('Profile Screen'),
-        ),
-        //drawer: NavDrawer(),
-        body: SafeArea(
+      appBar: AppBar(
+        title: Text('Profile Screen'),
+      ),
+      //drawer: NavDrawer(),
+      body: SafeArea(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
@@ -66,13 +66,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     child: Text(
                       'Update Profile',
                       style: TextStyle(
-                        color: Colors.white,
-                        fontFamily: 'Montserrat'),
+                          color: Colors.white, fontFamily: 'Montserrat'),
                     ),
                   ),
                 ),
-               ))
-          
+              ),
+            )
           ],
         ),
       ),
@@ -80,7 +79,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
     );
   }
 }
-
 
 class getClipper extends CustomClipper<Path> {
   @override

@@ -5,10 +5,14 @@ import 'package:syncup/screens/home.dart';
 import 'package:syncup/screens/login.dart';
 import 'package:syncup/screens/user_profile.dart';
 import 'package:syncup/screens/about.dart';
+import 'package:syncup/screens/wrapper.dart';
+import 'package:syncup/services/authenticationservice.dart';
 
 class NavDrawer extends StatelessWidget {
-  final User appUser = new User(
-      uId: 1011,
+  final AuthService _firebaseAuth = AuthService();
+
+  final UserModel appUser = new UserModel(
+      uId: "1011",
       firstName: "Grim",
       lastName: "Fandango",
       email: "Gmunchkins@yahoo.com",
@@ -147,12 +151,14 @@ class NavDrawer extends StatelessWidget {
                 ),
               ),
             ),
-            onTap: () {
+            onTap: () async {
+              await _firebaseAuth.signOut();
               Navigator.pushAndRemoveUntil(
                 context,
-                MaterialPageRoute(builder: (context) => LoginScreen()),
+                MaterialPageRoute(builder: (context) => Wrapper()),
                 (Route route) => false,
               );
+              // await _firebaseAuth.signOut();
             },
           )
         ],
