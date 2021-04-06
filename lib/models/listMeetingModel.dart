@@ -12,7 +12,8 @@ class MeetingList {
         title: "Rick and Morty Season 5 Premieres",
         description:
             "Invite to see who will be comming for the new Rick and Morty Season Premiere",
-        meetingDate: "04/15/2020 2:30pm",
+        meetingDate: "04/15/2020 at 2:30pm",
+        location: 'Online',
         attendees: [
           new Attendee(email: "Zander@gmail.com"),
           new Attendee(email: "Cindy@gmail.com")
@@ -23,7 +24,8 @@ class MeetingList {
         title: "Graduation Party",
         description:
             "Invitation for all who wish to attend my graduation party",
-        meetingDate: "04/25/2020 4:30pm",
+        meetingDate: "04/25/2020 at 4:30pm",
+        location: 'Online',
         attendees: [
           new Attendee(email: "Zander@gmail.com"),
           new Attendee(email: "Cindy@gmail.com"),

@@ -249,7 +249,11 @@ class _SignUpScreenState extends State<SignUpScreen> {
 
                                 dynamic result = await _firebaseAuth
                                     .registerWithEmailAndPassword(
-                                        _emailText.text, _passwordText.text);
+                                        _emailText.text,
+                                        _passwordText.text,
+                                        _firstNameText.text,
+                                        _lastNameText.text,
+                                        'ABC');
                                 if (result == null) {
                                   setState(() {
                                     error = 'Please supply a valid email';

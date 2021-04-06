@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:syncup/constants.dart';
 import 'package:syncup/models/attendeeModel.dart';
 import 'package:syncup/models/meetingModel.dart';
@@ -11,6 +12,8 @@ class HomePageCards extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final meetingListFirebase = Provider.of<List<Meeting>>(context);
+    print("meetingList here $meetingListFirebase");
     return Scaffold(
       body: ListView.builder(
         itemCount: meetingList.length,
@@ -23,6 +26,9 @@ class HomePageCards extends StatelessWidget {
 //Actual list of cards
   Widget buildMeetingCard(BuildContext context, int index) {
     //double width = MediaQuery.of(context).size.width * 0.7;
+
+    // final meetingList = Provider.of<List<Meeting>>(context) ?? [];
+
     return SafeArea(
       top: false,
       bottom: false,

@@ -4,9 +4,15 @@ class UserModel {
   String lastName;
   String email;
   String password;
+  String organizer;
 
   UserModel(
-      {this.uId, this.firstName, this.lastName, this.email, this.password});
+      {this.uId,
+      this.firstName,
+      this.lastName,
+      this.organizer,
+      this.email,
+      this.password});
 
   get getUId => this.uId;
 
@@ -23,6 +29,10 @@ class UserModel {
   get getEmail => this.email;
 
   set setEmail(email) => this.email = email;
+
+  get getOrganization => this.organizer;
+
+  set setOrganization(organization) => this.organizer = organizer;
 
   get getPassword => this.password;
 

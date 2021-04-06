@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:syncup/screens/home.dart';
 import 'package:syncup/screens/loading.dart';
+import 'package:syncup/services/DatabaseService.dart';
 import 'package:syncup/services/authenticationservice.dart';
 import '../constants.dart';
 import 'package:flutter/services.dart';
@@ -198,6 +199,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                   dynamic result = await _firebaseAuth
                                       .signInWithEmailAndPassword(
                                           _emailText.text, _passwordText.text);
+                                  // DatabaseService(uId: result.id);
                                   if (result == null) {
                                     setState(() {
                                       loading = false;

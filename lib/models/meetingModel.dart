@@ -1,4 +1,5 @@
 import 'package:syncup/models/attendeeModel.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class Meeting {
   String meetingId;
@@ -6,6 +7,7 @@ class Meeting {
   String title;
   String description;
   String meetingDate;
+  String location;
   //we intend to use DateTime at some point:
   //final DateTime meetingDate;
   List<Attendee> attendees;
@@ -16,6 +18,7 @@ class Meeting {
       this.title,
       this.description,
       this.meetingDate,
+      this.location,
       this.attendees});
 
   get getMeetingId => this.meetingId;
@@ -37,6 +40,10 @@ class Meeting {
   get getMeetingDate => this.meetingDate;
 
   set setMeetingDate(meetingDate) => this.meetingDate = meetingDate;
+
+  get getLocation => this.location;
+
+  set setLocation(location) => this.location = location;
 
   List<Attendee> get getAttendees => this.attendees;
 
