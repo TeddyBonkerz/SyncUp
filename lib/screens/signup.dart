@@ -102,7 +102,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           ),
                         ),
                       ),
-
                       //Last Name Field
                       TextField(
                         controller: _lastNameText,
@@ -124,7 +123,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           ),
                         ),
                       ),
-
                       //Email Field
                       TextField(
                         controller: _emailText,
@@ -146,7 +144,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           ),
                         ),
                       ),
-
                       //Password Field
                       TextField(
                         controller: _passwordText,
@@ -195,7 +192,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                 // bool emailTextValid = _emailText.text.isNotEmpty;
                                 bool passwordTextValid =
                                     _passwordText.text.length > 6;
-
                                 if (emailTextValid &&
                                     passwordTextValid &&
                                     firstNameTextValid &&
@@ -249,18 +245,17 @@ class _SignUpScreenState extends State<SignUpScreen> {
 
                                 dynamic result = await _firebaseAuth
                                     .registerWithEmailAndPassword(
-                                        _emailText.text,
-                                        _passwordText.text,
-                                        _firstNameText.text,
-                                        _lastNameText.text,
-                                        'ABC');
+                                  _emailText.text,
+                                  _passwordText.text,
+                                  _firstNameText.text,
+                                  _lastNameText.text,
+                                );
                                 if (result == null) {
                                   setState(() {
                                     error = 'Please supply a valid email';
                                   });
                                 }
                               }
-
                               // Navigator.pushAndRemoveUntil(
                               //   context,
                               //   MaterialPageRoute(builder: (context) => HomeScreen()),

@@ -367,7 +367,7 @@ showAlertDialog(
     onPressed: () async {
       Meeting meeting = Meeting(
           meetingId: '0',
-          organizer: 'ABC',
+          // organizer: 'ABC',
           title: subject,
           description: content,
           meetingDate: '$date at $time',

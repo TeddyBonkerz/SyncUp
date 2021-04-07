@@ -4,13 +4,13 @@ class UserModel {
   String lastName;
   String email;
   String password;
-  String organizer;
+  // String organizer;
 
   UserModel(
       {this.uId,
       this.firstName,
       this.lastName,
-      this.organizer,
+      // this.organizer,
       this.email,
       this.password});
 
@@ -30,9 +30,9 @@ class UserModel {
 
   set setEmail(email) => this.email = email;
 
-  get getOrganization => this.organizer;
-
-  set setOrganization(organization) => this.organizer = organizer;
+  // get getOrganization => this.organizer;
+  //
+  // set setOrganization(organization) => this.organizer = organizer;
 
   get getPassword => this.password;
 

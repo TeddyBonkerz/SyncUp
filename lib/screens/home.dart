@@ -15,31 +15,28 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
-    return StreamProvider<List<Meeting>>.value(
-      value: DatabaseService().meetingList,
-      child: Scaffold(
-        appBar: AppBar(
-          title: Text('SyncUp'),
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('SyncUp'),
+      ),
+      //Side Menu Drawer For Easy Navigation
+      drawer: NavDrawer(),
+      body: Container(
+        child: HomePageCards(),
+      ),
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: primaryColor,
+        child: Icon(
+          Icons.create,
         ),
-        //Side Menu Drawer For Easy Navigation
-        drawer: NavDrawer(),
-        body: Container(
-          child: HomePageCards(),
-        ),
-        floatingActionButton: FloatingActionButton(
-          backgroundColor: primaryColor,
-          child: Icon(
-            Icons.create,
-          ),
-          onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => CreateMeeting(),
-              ),
-            );
-          },
-        ),
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => CreateMeeting(),
+            ),
+          );
+        },
       ),
     );
   }

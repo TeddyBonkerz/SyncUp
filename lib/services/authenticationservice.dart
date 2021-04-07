@@ -22,8 +22,8 @@ class AuthService {
       UserCredential result = await _firebaseAuth.signInWithEmailAndPassword(
           email: email, password: password);
       User user = result.user;
-      await DatabaseService(uId: user.uid).getOrganizer();
-      return user;
+      await DatabaseService(uId: user.uid);
+      return _userFromFirebaseUser(user);
     } catch (error) {
       print(error.toString());
       return null;
@@ -31,21 +31,17 @@ class AuthService {
   }
 
   // register with email and password
-  Future registerWithEmailAndPassword(String email, String password,
-      String firstName, String lastName, String organizer) async {
+  Future registerWithEmailAndPassword(
+      String email, String password, String firstName, String lastName) async {
     try {
       UserCredential result = await _firebaseAuth
           .createUserWithEmailAndPassword(email: email, password: password);
       User user = result.user;
-      // create a new document for the user with the uid
-      // await DatabaseService(uid: user.uid)
-      //     .updateUserData('0', 'new crew member', 100);
       await DatabaseService(
-              uId: user.uid,
-              firstName: firstName,
-              lastName: lastName,
-              organizer: organizer)
-          .createUserData();
+        uId: user.uid,
+        firstName: firstName,
+        lastName: lastName,
+      ).createUserData();
       return _userFromFirebaseUser(user);
     } catch (error) {
       print(error.toString());

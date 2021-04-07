@@ -199,7 +199,6 @@ class _LoginScreenState extends State<LoginScreen> {
                                   dynamic result = await _firebaseAuth
                                       .signInWithEmailAndPassword(
                                           _emailText.text, _passwordText.text);
-                                  // DatabaseService(uId: result.id);
                                   if (result == null) {
                                     setState(() {
                                       loading = false;

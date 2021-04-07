@@ -5,26 +5,32 @@ import 'package:syncup/models/attendeeModel.dart';
 import 'package:syncup/models/meetingModel.dart';
 import 'package:syncup/screens/meeting_details.dart';
 import 'package:syncup/models/listMeetingModel.dart';
+import 'package:syncup/services/DatabaseService.dart';
 
 class HomePageCards extends StatelessWidget {
   //example list
-  List<Meeting> meetingList = MeetingList.instance.meetingList;
+  // List<Meeting> meetingList = MeetingList.instance.meetingList;
+
+  // List meetingList = Provider.of<List<Meeting>>(context);
+  // DatabaseService databaseService = DatabaseService();
 
   @override
   Widget build(BuildContext context) {
-    final meetingListFirebase = Provider.of<List<Meeting>>(context);
-    print("meetingList here $meetingListFirebase");
+    List<Meeting> meetingList = Provider.of<List<Meeting>>(context);
+    DatabaseService databaseService = DatabaseService();
+    print("meeting list is here $meetingList");
     return Scaffold(
       body: ListView.builder(
         itemCount: meetingList.length,
         itemBuilder: (BuildContext context, int index) =>
-            buildMeetingCard(context, index),
+            buildMeetingCard(context, index, meetingList),
       ),
     );
   }
 
 //Actual list of cards
-  Widget buildMeetingCard(BuildContext context, int index) {
+  Widget buildMeetingCard(
+      BuildContext context, int index, List<Meeting> meetingList) {
     //double width = MediaQuery.of(context).size.width * 0.7;
 
     // final meetingList = Provider.of<List<Meeting>>(context) ?? [];
@@ -56,7 +62,7 @@ class HomePageCards extends StatelessWidget {
                 CircleAvatar(
                   backgroundColor: primaryColor,
                   child: Text(
-                    meetingList[index].organizer.substring(0, 1),
+                    meetingList[index].title.substring(0, 1),
                     style: TextStyle(color: Colors.white),
                   ),
                 ),
