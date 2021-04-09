@@ -1,36 +1,69 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:syncup/constants.dart';
 import 'package:syncup/models/attendeeModel.dart';
 import 'package:syncup/models/meetingModel.dart';
+import 'package:syncup/models/userModel.dart';
 import 'package:syncup/screens/meeting_details.dart';
 import 'package:syncup/models/listMeetingModel.dart';
 import 'package:syncup/services/DatabaseService.dart';
 
 class HomePageCards extends StatelessWidget {
   //example list
-  // List<Meeting> meetingList = MeetingList.instance.meetingList;
-
-  // List meetingList = Provider.of<List<Meeting>>(context);
-  // DatabaseService databaseService = DatabaseService();
+  List<Meeting> meetingList = MeetingList.instance.meetingList;
 
   @override
   Widget build(BuildContext context) {
-    List<Meeting> meetingList = Provider.of<List<Meeting>>(context);
-    DatabaseService databaseService = DatabaseService();
-    print("meeting list is here $meetingList");
-    return Scaffold(
-      body: ListView.builder(
-        itemCount: meetingList.length,
-        itemBuilder: (BuildContext context, int index) =>
-            buildMeetingCard(context, index, meetingList),
+    final user = Provider.of<UserModel>(context);
+    String uId = user.uId;
+    CollectionReference users = FirebaseFirestore.instance.collection('users');
+
+    return StreamBuilder<QuerySnapshot>(
+      stream: users.doc(uId).collection('meeting').snapshots(),
+      builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
+        if (snapshot.hasError) {
+          return Text('Something went wrong');
+        }
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return Text("Loading");
+        }
+
+        return Scaffold(
+            body: ListView.builder(
+          itemCount: snapshot.data.docs.length,
+          itemBuilder: (BuildContext context, int index) =>
+              buildMeetingCard(context, index, snapshot.data.docs),
+        ));
+
+        //   new ListView(
+        //   children: snapshot.data.docs.map((DocumentSnapshot document) {
+        //     return new ListTile(
+        //       title: new Text(document.data()['title']),
+        //       subtitle: new Text(document.data()['content']),
+        //     );
+        //   }).toList(),
+        // );
+      },
+    );
+  }
+// }
+
+/*
+      child: Scaffold(
+        body: ListView.builder(
+          itemCount: meetingList.length,
+          itemBuilder: (BuildContext context, int index) =>
+              buildMeetingCard(context, index, meetingList),
+        ),
       ),
     );
   }
+*/
 
 //Actual list of cards
-  Widget buildMeetingCard(
-      BuildContext context, int index, List<Meeting> meetingList) {
+  Widget buildMeetingCard(BuildContext context, int index,
+      List<QueryDocumentSnapshot> meetingList) {
     //double width = MediaQuery.of(context).size.width * 0.7;
 
     // final meetingList = Provider.of<List<Meeting>>(context) ?? [];
@@ -62,7 +95,10 @@ class HomePageCards extends StatelessWidget {
                 CircleAvatar(
                   backgroundColor: primaryColor,
                   child: Text(
-                    meetingList[index].title.substring(0, 1),
+                    meetingList[index]
+                        .data()['title']
+                        .toString()
+                        .substring(0, 1),
                     style: TextStyle(color: Colors.white),
                   ),
                 ),
@@ -72,7 +108,7 @@ class HomePageCards extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        meetingList[index].title,
+                        meetingList[index].data()['title'].toString(),
                         style: TextStyle(
                           fontSize: 15,
                           fontWeight: FontWeight.w500,
@@ -80,7 +116,7 @@ class HomePageCards extends StatelessWidget {
                       ),
                       Padding(padding: EdgeInsets.only(top: 8)),
                       Text(
-                        meetingList[index].description,
+                        meetingList[index].data()['content'],
                       ),
                       Padding(padding: EdgeInsets.only(left: 16)),
                       Padding(padding: EdgeInsets.only(top: 8)),

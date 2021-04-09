@@ -12,18 +12,25 @@ class DatabaseService {
   DatabaseService({this.uId, this.lastName, this.firstName});
 
   final CollectionReference userCollection =
-      FirebaseFirestore.instance.collection('user');
+      FirebaseFirestore.instance.collection('users');
 
-  Stream<List<Meeting>> getmeetingList() {
-    Stream<List<Meeting>> meetingList = userCollection
+  // Stream<List<Meeting>> getmeetingList() {
+  //   Stream<List<Meeting>> meetingList = userCollection
+  //       .doc(uId)
+  //       .collection('meeting')
+  //       .snapshots()
+  //       .map((snapshot) => snapshot.docs
+  //           .map((document) => Meeting.fromJson(document.data()))
+  //           .toList());
+  //   return meetingList;
+  // }
+
+  Stream getStream() {
+    return FirebaseFirestore.instance
+        .collection('users')
         .doc(uId)
         .collection('meeting')
-        .snapshots()
-        .map((snapshot) => snapshot.docs
-            .map((document) => Meeting.fromJson(document.data()))
-            .toList());
-    print("stream here $meetingList");
-    return meetingList;
+        .snapshots();
   }
 
   Future<void> createUserData() async {
@@ -40,15 +47,16 @@ class DatabaseService {
     // await userCollection.doc(uId).get().then((snapshot) {
     //   organizer = snapshot.get('organizer').toString();
     // });
+    List<Map<String, Object>> attendeeList =
+        list.map((e) => {'email': e, 'response': false}).toList();
     return await userCollection.doc(uId).collection('meeting').add({
       'title': title,
       'content': content,
       'dateTime': dateTime,
       'location': location,
-      'attendeeList': list,
+      'attendeeList': attendeeList,
+      'completed': false,
       // 'organizer': organizer,
-      'numberYes': 0,
-      'numberNo': 0,
     });
   }
 }
