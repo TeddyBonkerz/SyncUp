@@ -2,29 +2,31 @@ import 'package:syncup/models/attendeeModel.dart';
 
 class Meeting {
   String meetingId;
-  String organizer;
+  // String organizer;
   String title;
   String description;
   String meetingDate;
   //we intend to use DateTime at some point:
   //final DateTime meetingDate;
+  String location;
   List<Attendee> attendees;
 
   Meeting(
       {this.meetingId,
-      this.organizer,
+      // this.organizer,
       this.title,
       this.description,
       this.meetingDate,
-      this.attendees});
+      this.attendees,
+      this.location});
 
   get getMeetingId => this.meetingId;
 
   set setMeetingId(meetingId) => this.meetingId = meetingId;
 
-  get getOrganizer => this.organizer;
-
-  set setOrganizer(organizer) => this.organizer = organizer;
+  // get getOrganizer => this.organizer;
+  //
+  // set setOrganizer(organizer) => this.organizer = organizer;
 
   get getTitle => this.title;
 

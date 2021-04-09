@@ -8,7 +8,7 @@ class MeetingList {
   List<Meeting> meetingList = [
     new Meeting(
         meetingId: "123",
-        organizer: "Grim Munchkins",
+        // organizer: "Grim Munchkins",
         title: "Rick and Morty Season 5 Premieres",
         description:
             "Invite to see who will be comming for the new Rick and Morty Season Premiere",
@@ -19,7 +19,7 @@ class MeetingList {
         ]),
     new Meeting(
         meetingId: "124",
-        organizer: "Grim Munchkins",
+        // organizer: "Grim Munchkins",
         title: "Graduation Party",
         description:
             "Invitation for all who wish to attend my graduation party",

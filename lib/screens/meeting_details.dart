@@ -49,7 +49,7 @@ class _MeetingDetails extends State<MeetingDetails> {
                 ListTile(
                     contentPadding: const EdgeInsets.all(10.0),
                     title: Text('Location'),
-                    subtitle: Text('TestLocation')),
+                    subtitle: Text(meeting.location)),
                 // Meeting Check box for completion status
                 CheckboxListTile(
                     title: const Text('Meeting Completed: '),

@@ -50,7 +50,7 @@ class HomePageCards extends StatelessWidget {
                 CircleAvatar(
                   backgroundColor: primaryColor,
                   child: Text(
-                    meetingList[index].organizer.substring(0, 1),
+                    meetingList[index].title.substring(0, 1),
                     style: TextStyle(color: Colors.white),
                   ),
                 ),
