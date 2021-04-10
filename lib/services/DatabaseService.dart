@@ -40,6 +40,16 @@ class DatabaseService {
         .set({'firstName': firstName, 'lastName': lastName});
   }
 
+  Future<void> deleteMeeting(String meetingId) {
+    return userCollection
+        .doc(uId)
+        .collection('meeting')
+        .doc(meetingId)
+        .delete()
+        .then((value) => print("Meeting Deleted"))
+        .catchError((error) => print("Failed to delete meeting: $error"));
+  }
+
   Future<void> addMeeting(String title, String content, String dateTime,
       String location, List<String> list) async {
     print(userCollection.doc(uId));
