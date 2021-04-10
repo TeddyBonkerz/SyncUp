@@ -37,7 +37,7 @@ class DatabaseService {
     // userCollection.doc(uId).collection('meeting');
     return userCollection
         .doc(uId)
-        .set({'firtName': firstName, 'lastName': lastName});
+        .set({'firstName': firstName, 'lastName': lastName});
   }
 
   Future<void> addMeeting(String title, String content, String dateTime,
