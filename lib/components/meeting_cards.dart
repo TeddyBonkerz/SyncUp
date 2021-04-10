@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:empty_widget/empty_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:syncup/constants.dart';
@@ -26,38 +27,41 @@ class HomePageCards extends StatelessWidget {
         if (snapshot.connectionState == ConnectionState.waiting) {
           return Text("Loading");
         }
-
+        if (snapshot.data.docs.length == 0) {
+          return Scaffold(
+            body: Center(
+              child: Container(
+                height: 500,
+                width: 350,
+                child: EmptyListWidget(
+                    image: null,
+                    packageImage: PackageImage.Image_1,
+                    title: 'No Open Meetings',
+                    //subTitle: 'No  notification available yet',
+                    titleTextStyle: Theme.of(context)
+                        .typography
+                        .dense
+                        .headline4
+                        .copyWith(color: Color(0xff9da9c7)),
+                    subtitleTextStyle: Theme.of(context)
+                        .typography
+                        .dense
+                        .bodyText1
+                        .copyWith(color: Color(0xffabb8d6))),
+              ),
+            ),
+          );
+        }
         return Scaffold(
-            body: ListView.builder(
-          itemCount: snapshot.data.docs.length,
-          itemBuilder: (BuildContext context, int index) =>
-              buildMeetingCard(context, index, snapshot.data.docs),
-        ));
-
-        //   new ListView(
-        //   children: snapshot.data.docs.map((DocumentSnapshot document) {
-        //     return new ListTile(
-        //       title: new Text(document.data()['title']),
-        //       subtitle: new Text(document.data()['content']),
-        //     );
-        //   }).toList(),
-        // );
+          body: ListView.builder(
+            itemCount: snapshot.data.docs.length,
+            itemBuilder: (BuildContext context, int index) =>
+                buildMeetingCard(context, index, snapshot.data.docs),
+          ),
+        );
       },
     );
   }
-// }
-
-/*
-      child: Scaffold(
-        body: ListView.builder(
-          itemCount: meetingList.length,
-          itemBuilder: (BuildContext context, int index) =>
-              buildMeetingCard(context, index, meetingList),
-        ),
-      ),
-    );
-  }
-*/
 
 //Actual list of cards
   Widget buildMeetingCard(BuildContext context, int index,
