@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:syncup/models/userModel.dart';
 import 'package:syncup/screens/home.dart';
-import 'package:syncup/screens/login.dart';
 import 'package:syncup/screens/user_profile.dart';
 import 'package:syncup/screens/about.dart';
 import 'package:syncup/screens/wrapper.dart';
@@ -11,12 +10,8 @@ import 'package:syncup/services/authenticationservice.dart';
 class NavDrawer extends StatelessWidget {
   final AuthService _firebaseAuth = AuthService();
 
-  final UserModel appUser = new UserModel(
-      uId: "1011",
-      firstName: "Grim",
-      lastName: "Fandango",
-      email: "Gmunchkins@yahoo.com",
-      password: "stuff");
+  final UserModel appUser =
+      new UserModel(uId: "1011", firstName: "Grim", lastName: "Fandango");
 
   @override
   Widget build(BuildContext context) {
@@ -58,7 +53,7 @@ class NavDrawer extends StatelessWidget {
                   ),
                   //Nav Drawer Email
                   Text(
-                    appUser.email,
+                    "google@gmail.com",
                     style: GoogleFonts.mcLaren(
                       textStyle: TextStyle(
                         color: Colors.white,

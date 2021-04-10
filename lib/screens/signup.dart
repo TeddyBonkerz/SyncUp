@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:syncup/screens/home.dart';
 import 'package:syncup/screens/loading.dart';
 import 'package:syncup/services/authenticationservice.dart';
 import '../constants.dart';
@@ -200,18 +198,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                   _validateLastName = true;
                                   _validateEmail = true;
                                   _validatePassword = true;
-                                  // Navigator.pushAndRemoveUntil(
-                                  //   context,
-                                  //   MaterialPageRoute(
-                                  //       builder: (context) => HomeScreen()),
-                                  //   (Route<dynamic> route) => false,
-                                  // );
-
-                                  // _validateFirstName = true;
-                                  // _validateLastName = true;
-                                  // _validateEmail = true;
-                                  // _validatePassword = true;
-                                  // Navigator.of(context).pushNamed('/homepage');
                                 } else {
                                   if (!firstNameTextValid) {
                                     _validateFirstName = false;

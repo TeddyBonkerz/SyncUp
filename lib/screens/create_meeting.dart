@@ -21,12 +21,9 @@ class _CreateMeetingState extends State<CreateMeeting> {
   final _emailList = TextEditingController();
   final _locationText = TextEditingController();
 
-  // final _passwordText = TextEditingController();
   bool _validateSubject = true;
-  // bool _validateContent = true;
   bool _validateEmail = true;
   bool _validateLocation = true;
-  // bool _validatePassword = true;
 
   DateTime selectedDate;
   String date;
@@ -74,13 +71,10 @@ class _CreateMeetingState extends State<CreateMeeting> {
     UserModel user = Provider.of<UserModel>(context);
 
     return Scaffold(
-      // resizeToAvoidBottomPadding: false,
       appBar: AppBar(
         title: Text('Create A Meeting'),
       ),
       body: SingleChildScrollView(
-        // child: Container(
-        //   padding: EdgeInsets.symmetric(vertical: 20.0, horizontal: 50),
         child: Padding(
           padding: EdgeInsets.symmetric(vertical: 80.0, horizontal: 20.0),
           child: Column(
@@ -111,11 +105,7 @@ class _CreateMeetingState extends State<CreateMeeting> {
                 keyboardType: TextInputType.multiline,
                 minLines: 1,
                 maxLines: 3,
-                // controller: _firstNameText,
                 decoration: InputDecoration(
-                  // errorText: _validateFirstName
-                  //     ? null
-                  //     : 'First name cannot be empty',
                   icon: Icon(
                     Icons.content_paste_rounded,
                     color: primaryColor,
@@ -239,48 +229,41 @@ class _CreateMeetingState extends State<CreateMeeting> {
                   primary: primaryColor,
                 ),
                 onPressed: () {
-                  setState(() {
-                    bool subjectTextValid = _subjectText.text.isNotEmpty;
-                    bool emailListValid = _emailList.text.isNotEmpty;
-                    bool locationTextValid = _locationText.text.isNotEmpty;
-                    if (subjectTextValid &&
-                        emailListValid &&
-                        locationTextValid &&
-                        date != null &&
-                        time != null) {
-                      error = '';
-                      _validateEmail = true;
-                      _validateSubject = true;
-                      _validateLocation = true;
-                      subject = _subjectText.text.toString();
-                      content = _contentText.text.toString();
-                      location = _locationText.text.toString();
-                      emailList = _emailList.text.toString().split("\n");
+                  setState(
+                    () {
+                      bool subjectTextValid = _subjectText.text.isNotEmpty;
+                      bool emailListValid = _emailList.text.isNotEmpty;
+                      bool locationTextValid = _locationText.text.isNotEmpty;
+                      if (subjectTextValid &&
+                          emailListValid &&
+                          locationTextValid &&
+                          date != null &&
+                          time != null) {
+                        error = '';
+                        _validateEmail = true;
+                        _validateSubject = true;
+                        _validateLocation = true;
+                        subject = _subjectText.text.toString();
+                        content = _contentText.text.toString();
+                        location = _locationText.text.toString();
+                        emailList = _emailList.text.toString().split("\n");
 
-                      showAlertDialog(context, subject, content, date, time,
-                          location, emailList, user);
-                      print("$subject $date $time $content $emailList");
-                    } else {
-                      if (!subjectTextValid) {
-                        _validateSubject = false;
+                        showAlertDialog(context, subject, content, date, time,
+                            location, emailList, user);
+                        print("$subject $date $time $content $emailList");
+                      } else {
+                        if (!subjectTextValid) {
+                          _validateSubject = false;
+                        }
+                        if (!emailListValid) {
+                          _validateEmail = false;
+                        }
+                        if (date == null || time == null) {
+                          error = "You haven't chosen date or time";
+                        }
                       }
-                      if (!emailListValid) {
-                        _validateEmail = false;
-                      }
-                      if (date == null || time == null) {
-                        error = "You haven't chosen date or time";
-                      }
-                    }
-                  });
-
-                  // setState(() {
-                  //   subject = _subjectText.text.toString();
-                  //   content = _contentText.text.toString();
-                  //   emailList = _emailList.text.toString().split("\n");
-                  // });
-                  // showAlertDialog(
-                  //     context, subject, content, date, time, emailList);
-                  // print("$subject $date $time $content $emailList");
+                    },
+                  );
                 },
                 child: Text(
                   'Create',

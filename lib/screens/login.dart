@@ -174,13 +174,6 @@ class _LoginScreenState extends State<LoginScreen> {
                                   if (emailTextValid && passwordTextValid) {
                                     _validateEmail = true;
                                     _validatePassword = true;
-                                    // Navigator.of(context).pushNamed('/homepage');
-                                    // Navigator.pushAndRemoveUntil(
-                                    //   context,
-                                    //   MaterialPageRoute(
-                                    //       builder: (context) => HomeScreen()),
-                                    //   (Route<dynamic> route) => false,
-                                    // );
                                   } else {
                                     if (!emailTextValid) {
                                       _validateEmail = false;

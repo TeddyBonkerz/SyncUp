@@ -3,13 +3,10 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 
 class Meeting {
   String meetingId;
-  // String organizer;
   String title;
   String description;
   String meetingDate;
   String location;
-  //we intend to use DateTime at some point:
-  //final DateTime meetingDate;
   List<Attendee> attendees;
 
   Meeting(
@@ -22,7 +19,6 @@ class Meeting {
       this.attendees});
 
   Meeting.fromJson(Map<String, dynamic> parsedJSON)
-      // : meetingId = parsedJSON['id'],
       : title = parsedJSON['title'],
         description = parsedJSON['content'],
         meetingDate = parsedJSON['dateTime'],
@@ -32,10 +28,6 @@ class Meeting {
   get getMeetingId => this.meetingId;
 
   set setMeetingId(meetingId) => this.meetingId = meetingId;
-
-  // get getOrganizer => this.organizer;
-  //
-  // set setOrganizer(organizer) => this.organizer = organizer;
 
   get getTitle => this.title;
 

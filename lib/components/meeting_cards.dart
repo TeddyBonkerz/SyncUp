@@ -2,12 +2,10 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:syncup/constants.dart';
-import 'package:syncup/models/attendeeModel.dart';
 import 'package:syncup/models/meetingModel.dart';
 import 'package:syncup/models/userModel.dart';
 import 'package:syncup/screens/meeting_details.dart';
 import 'package:syncup/models/listMeetingModel.dart';
-import 'package:syncup/services/DatabaseService.dart';
 
 class HomePageCards extends StatelessWidget {
   //example list
