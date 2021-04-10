@@ -97,10 +97,16 @@ class HomePageCards extends StatelessWidget {
                 CircleAvatar(
                   backgroundColor: primaryColor,
                   child: Text(
+<<<<<<< HEAD
                     meetingList[index]
                         .data()['title']
                         .toString()
                         .substring(0, 1),
+||||||| merged common ancestors
+                    meetingList[index].organizer.substring(0, 1),
+=======
+                    meetingList[index].title.substring(0, 1),
+>>>>>>> 417e877b140a086117b405a1550964472906df03
                     style: TextStyle(color: Colors.white),
                   ),
                 ),

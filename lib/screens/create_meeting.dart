@@ -19,11 +19,25 @@ class _CreateMeetingState extends State<CreateMeeting> {
   final _subjectText = TextEditingController();
   final _contentText = TextEditingController();
   final _emailList = TextEditingController();
+<<<<<<< HEAD
   final _locationText = TextEditingController();
 
+||||||| merged common ancestors
+  // final _passwordText = TextEditingController();
+=======
+  final _locationText = TextEditingController();
+  // final _passwordText = TextEditingController();
+>>>>>>> 417e877b140a086117b405a1550964472906df03
   bool _validateSubject = true;
   bool _validateEmail = true;
+<<<<<<< HEAD
   bool _validateLocation = true;
+||||||| merged common ancestors
+  // bool _validatePassword = true;
+=======
+  // bool _validatePassword = true;
+  bool _validateLocation = true;
+>>>>>>> 417e877b140a086117b405a1550964472906df03
 
   DateTime selectedDate;
   String date;
@@ -111,6 +125,25 @@ class _CreateMeetingState extends State<CreateMeeting> {
                     color: primaryColor,
                   ),
                   labelText: 'Content',
+                  labelStyle: TextStyle(
+                      //fontWeight: FontWeight.bold,
+                      fontFamily: 'Montserrat',
+                      color: Colors.grey),
+                  focusedBorder: UnderlineInputBorder(
+                    borderSide: BorderSide(color: primaryColor),
+                  ),
+                ),
+              ),
+              TextField(
+                controller: _locationText,
+                decoration: InputDecoration(
+                  errorText:
+                      _validateLocation ? null : 'Location cannot be empty',
+                  icon: Icon(
+                    Icons.location_on,
+                    color: primaryColor,
+                  ),
+                  labelText: 'Location',
                   labelStyle: TextStyle(
                       //fontWeight: FontWeight.bold,
                       fontFamily: 'Montserrat',
@@ -229,6 +262,7 @@ class _CreateMeetingState extends State<CreateMeeting> {
                   primary: primaryColor,
                 ),
                 onPressed: () {
+<<<<<<< HEAD
                   setState(
                     () {
                       bool subjectTextValid = _subjectText.text.isNotEmpty;
@@ -247,7 +281,41 @@ class _CreateMeetingState extends State<CreateMeeting> {
                         content = _contentText.text.toString();
                         location = _locationText.text.toString();
                         emailList = _emailList.text.toString().split("\n");
+||||||| merged common ancestors
+                  setState(() {
+                    bool subjectTextValid = _subjectText.text.isNotEmpty;
+                    bool emailListValid = _emailList.text.isNotEmpty;
+                    if (subjectTextValid &&
+                        emailListValid &&
+                        date != null &&
+                        time != null) {
+                      error = '';
+                      _validateEmail = true;
+                      _validateSubject = true;
+                      subject = _subjectText.text.toString();
+                      content = _contentText.text.toString();
+                      emailList = _emailList.text.toString().split("\n");
+=======
+                  setState(() {
+                    bool subjectTextValid = _subjectText.text.isNotEmpty;
+                    bool emailListValid = _emailList.text.isNotEmpty;
+                    bool locationTextValid = _locationText.text.isNotEmpty;
+                    if (subjectTextValid &&
+                        emailListValid &&
+                        locationTextValid &&
+                        date != null &&
+                        time != null) {
+                      error = '';
+                      _validateEmail = true;
+                      _validateSubject = true;
+                      _validateLocation = true;
+                      location = _locationText.text.toString();
+                      subject = _subjectText.text.toString();
+                      content = _contentText.text.toString();
+                      emailList = _emailList.text.toString().split("\n");
+>>>>>>> 417e877b140a086117b405a1550964472906df03
 
+<<<<<<< HEAD
                         showAlertDialog(context, subject, content, date, time,
                             location, emailList, user);
                         print("$subject $date $time $content $emailList");
@@ -261,9 +329,56 @@ class _CreateMeetingState extends State<CreateMeeting> {
                         if (date == null || time == null) {
                           error = "You haven't chosen date or time";
                         }
+||||||| merged common ancestors
+                      showAlertDialog(
+                          context, subject, content, date, time, emailList);
+                      print("$subject $date $time $content $emailList");
+                    } else {
+                      if (!subjectTextValid) {
+                        _validateSubject = false;
                       }
+                      if (!emailListValid) {
+                        _validateEmail = false;
+                      }
+                      if (date == null || time == null) {
+                        error = "You haven't chosen date or time";
+=======
+                      showAlertDialog(context, subject, location, content, date,
+                          time, emailList);
+                      print("$subject $date $time $content $emailList");
+                    } else {
+                      if (!subjectTextValid) {
+                        _validateSubject = false;
+                      }
+                      if (!locationTextValid) {
+                        _validateLocation = false;
+                      }
+                      if (!emailListValid) {
+                        _validateEmail = false;
+                      }
+                      if (date == null || time == null) {
+                        error = "You haven't chosen date or time";
+>>>>>>> 417e877b140a086117b405a1550964472906df03
+                      }
+<<<<<<< HEAD
                     },
                   );
+||||||| merged common ancestors
+                    }
+                  });
+
+                  // setState(() {
+                  //   subject = _subjectText.text.toString();
+                  //   content = _contentText.text.toString();
+                  //   emailList = _emailList.text.toString().split("\n");
+                  // });
+                  // showAlertDialog(
+                  //     context, subject, content, date, time, emailList);
+                  // print("$subject $date $time $content $emailList");
+=======
+                    }
+                  });
+>>>>>>> 417e877b140a086117b405a1550964472906df03
                 },
                 child: Text(
                   'Create',
@@ -286,8 +401,16 @@ class _CreateMeetingState extends State<CreateMeeting> {
 }
 
 //Method for sending email to recipients
+<<<<<<< HEAD
 sendEmail(String subject, String content, String date, String time,
     String location, List<String> emailList) async {
+||||||| merged common ancestors
+sendEmail(String subject, String content, String date, String time,
+    List<String> emailList) async {
+=======
+sendEmail(String subject, String content, String location, String date,
+    String time, List<String> emailList) async {
+>>>>>>> 417e877b140a086117b405a1550964472906df03
   //Enter email and password, ensure you enable less secure app access if its a gmail account
   String username = 'mysyncupapp@gmail.com';
   String password = 'cYQ3gUZp7X@hPeG';
@@ -304,6 +427,9 @@ sendEmail(String subject, String content, String date, String time,
         '<h3>Hello</h3>\n<p>**Sender Name Here** has sent you a SyncUp invitation with the details below.</p>' +
             '\n <p><b>Title: </b>' +
             subject +
+            '</p>' +
+            '\n <p><b>Location: </b>' +
+            location +
             '</p>' +
             '\n <p><b>Description: </b>' +
             content +
@@ -329,6 +455,7 @@ sendEmail(String subject, String content, String date, String time,
   }
 }
 
+<<<<<<< HEAD
 showAlertDialog(
     BuildContext context,
     String subject,
@@ -338,6 +465,13 @@ showAlertDialog(
     String location,
     List<String> emailList,
     UserModel user) {
+||||||| merged common ancestors
+showAlertDialog(BuildContext context, String subject, String content,
+    String date, String time, List<String> emailList) {
+=======
+showAlertDialog(BuildContext context, String subject, String location,
+    String content, String date, String time, List<String> emailList) {
+>>>>>>> 417e877b140a086117b405a1550964472906df03
   // set up the buttons
   Widget cancelButton = TextButton(
     child: Text("Go back"),
@@ -350,7 +484,14 @@ showAlertDialog(
     onPressed: () async {
       Meeting meeting = Meeting(
           meetingId: '0',
+<<<<<<< HEAD
           // organizer: 'ABC',
+||||||| merged common ancestors
+          organizer: 'ABC',
+=======
+          // organizer: 'ABC',
+          location: location,
+>>>>>>> 417e877b140a086117b405a1550964472906df03
           title: subject,
           description: content,
           meetingDate: '$date at $time',
@@ -365,7 +506,13 @@ showAlertDialog(
         MaterialPageRoute(builder: (context) => HomeScreen()),
         (Route<dynamic> route) => false,
       );
+<<<<<<< HEAD
       sendEmail(subject, content, date, time, location, emailList);
+||||||| merged common ancestors
+      sendEmail(subject, content, date, time, emailList);
+=======
+      sendEmail(subject, content, location, date, time, emailList);
+>>>>>>> 417e877b140a086117b405a1550964472906df03
     },
   );
 
@@ -384,6 +531,16 @@ showAlertDialog(
               ),
               SizedBox(width: 5.0),
               Text("$subject"),
+            ],
+          ),
+          Row(
+            children: <Widget>[
+              Text(
+                "Location:",
+                style: TextStyle(fontWeight: FontWeight.bold),
+              ),
+              SizedBox(width: 5.0),
+              Text("$location"),
             ],
           ),
           Row(

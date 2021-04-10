@@ -131,8 +131,90 @@ class _MeetingDetails extends State<MeetingDetails> {
                       ),
                     ),
                   ),
+<<<<<<< HEAD
                 ],
               )));
         });
+||||||| merged common ancestors
+                ),
+                // Time and Date Info
+                ListTile(
+                    contentPadding: const EdgeInsets.all(10.0),
+                    title: Text('Time / Date'),
+                    subtitle: Text(meeting.getMeetingDate)),
+                // Location Info
+                ListTile(
+                    contentPadding: const EdgeInsets.all(10.0),
+                    title: Text('Location'),
+                    subtitle: Text('TestLocation')),
+                // Meeting Check box for completion status
+                CheckboxListTile(
+                    title: const Text('Meeting Completed: '),
+                    value: checkCompleted,
+                    onChanged: (bool value) {
+                      setState(() {
+                        checkCompleted = value;
+                      });
+                    }),
+              ],
+            ),
+            // View who is attending List
+            ListTile(
+                contentPadding: const EdgeInsets.all(10.0),
+                title: Text('List of Attendence')),
+            Expanded(
+              child: ListView.builder(
+                  itemCount: meeting.getAttendees
+                      .length, // filler till we have actual list length
+                  itemBuilder: (context, index) {
+                    return ListTile(
+                        // will change to variables / values when we have actual list to grab from
+                        title: Text('ContactName'),
+                        subtitle: Text(meeting.getAttendees[index].getEmail));
+                  }),
+            )
+          ],
+        )));
+=======
+                ),
+                // Time and Date Info
+                ListTile(
+                    contentPadding: const EdgeInsets.all(10.0),
+                    title: Text('Time / Date'),
+                    subtitle: Text(meeting.getMeetingDate)),
+                // Location Info
+                ListTile(
+                    contentPadding: const EdgeInsets.all(10.0),
+                    title: Text('Location'),
+                    subtitle: Text(meeting.location)),
+                // Meeting Check box for completion status
+                CheckboxListTile(
+                    title: const Text('Meeting Completed: '),
+                    value: checkCompleted,
+                    onChanged: (bool value) {
+                      setState(() {
+                        checkCompleted = value;
+                      });
+                    }),
+              ],
+            ),
+            // View who is attending List
+            ListTile(
+                contentPadding: const EdgeInsets.all(10.0),
+                title: Text('List of Attendence')),
+            Expanded(
+              child: ListView.builder(
+                  itemCount: meeting.getAttendees
+                      .length, // filler till we have actual list length
+                  itemBuilder: (context, index) {
+                    return ListTile(
+                        // will change to variables / values when we have actual list to grab from
+                        title: Text('ContactName'),
+                        subtitle: Text(meeting.getAttendees[index].getEmail));
+                  }),
+            )
+          ],
+        )));
+>>>>>>> 417e877b140a086117b405a1550964472906df03
   }
 }
