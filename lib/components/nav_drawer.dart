@@ -122,18 +122,6 @@ class NavDrawer extends StatelessWidget {
                     },
                   ),
                   ListTile(
-                    leading: Icon(Icons.settings, color: Colors.black),
-                    title: Text(
-                      'Settings',
-                      style: GoogleFonts.lato(
-                        textStyle: TextStyle(
-                          fontSize: 15,
-                          color: Colors.black,
-                        ),
-                      ),
-                    ),
-                  ),
-                  ListTile(
                     leading: Icon(Icons.info, color: Colors.black),
                     title: Text(
                       'About',
