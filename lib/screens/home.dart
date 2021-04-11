@@ -19,6 +19,13 @@ class _HomeScreenState extends State<HomeScreen> {
       //Side Menu Drawer For Easy Navigation
       drawer: NavDrawer(),
       body: Container(
+        //FOR ADDING AN IMAGE AS BACKGROUND
+        // constraints: BoxConstraints.expand(),
+        // decoration: BoxDecoration(
+        //   image: DecorationImage(
+        //       image: AssetImage("assets/images/backImage.jpg"),
+        //       fit: BoxFit.cover),
+        // ),
         child: HomePageCards(),
       ),
       floatingActionButton: FloatingActionButton(
