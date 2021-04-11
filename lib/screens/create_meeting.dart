@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:syncup/constants.dart';
 import 'package:syncup/models/attendeeModel.dart';
 import 'package:syncup/models/listMeetingModel.dart';
 import 'package:syncup/models/meetingModel.dart';
+import 'package:syncup/models/userModel.dart';
 import 'package:syncup/screens/home.dart';
 import 'package:mailer/mailer.dart';
 import 'package:mailer/smtp_server.dart';
+import 'package:syncup/services/DatabaseService.dart';
 
 class CreateMeeting extends StatefulWidget {
   @override
@@ -17,11 +20,9 @@ class _CreateMeetingState extends State<CreateMeeting> {
   final _contentText = TextEditingController();
   final _emailList = TextEditingController();
   final _locationText = TextEditingController();
-  // final _passwordText = TextEditingController();
+
   bool _validateSubject = true;
-  // bool _validateContent = true;
   bool _validateEmail = true;
-  // bool _validatePassword = true;
   bool _validateLocation = true;
 
   DateTime selectedDate;
@@ -67,14 +68,13 @@ class _CreateMeetingState extends State<CreateMeeting> {
 
   @override
   Widget build(BuildContext context) {
+    UserModel user = Provider.of<UserModel>(context);
+
     return Scaffold(
-      // resizeToAvoidBottomPadding: false,
       appBar: AppBar(
         title: Text('Create A Meeting'),
       ),
       body: SingleChildScrollView(
-        // child: Container(
-        //   padding: EdgeInsets.symmetric(vertical: 20.0, horizontal: 50),
         child: Padding(
           padding: EdgeInsets.symmetric(vertical: 80.0, horizontal: 20.0),
           child: Column(
@@ -105,11 +105,7 @@ class _CreateMeetingState extends State<CreateMeeting> {
                 keyboardType: TextInputType.multiline,
                 minLines: 1,
                 maxLines: 3,
-                // controller: _firstNameText,
                 decoration: InputDecoration(
-                  // errorText: _validateFirstName
-                  //     ? null
-                  //     : 'First name cannot be empty',
                   icon: Icon(
                     Icons.content_paste_rounded,
                     color: primaryColor,
@@ -124,13 +120,14 @@ class _CreateMeetingState extends State<CreateMeeting> {
                   ),
                 ),
               ),
+              // Text("${selectedDate.toLocal()}".split(' ')[0]),
               TextField(
                 controller: _locationText,
                 decoration: InputDecoration(
                   errorText:
                       _validateLocation ? null : 'Location cannot be empty',
                   icon: Icon(
-                    Icons.location_on,
+                    Icons.location_pin,
                     color: primaryColor,
                   ),
                   labelText: 'Location',
@@ -143,7 +140,6 @@ class _CreateMeetingState extends State<CreateMeeting> {
                   ),
                 ),
               ),
-              // Text("${selectedDate.toLocal()}".split(' ')[0]),
               SizedBox(
                 height: 10.0,
               ),
@@ -233,42 +229,41 @@ class _CreateMeetingState extends State<CreateMeeting> {
                   primary: primaryColor,
                 ),
                 onPressed: () {
-                  setState(() {
-                    bool subjectTextValid = _subjectText.text.isNotEmpty;
-                    bool emailListValid = _emailList.text.isNotEmpty;
-                    bool locationTextValid = _locationText.text.isNotEmpty;
-                    if (subjectTextValid &&
-                        emailListValid &&
-                        locationTextValid &&
-                        date != null &&
-                        time != null) {
-                      error = '';
-                      _validateEmail = true;
-                      _validateSubject = true;
-                      _validateLocation = true;
-                      location = _locationText.text.toString();
-                      subject = _subjectText.text.toString();
-                      content = _contentText.text.toString();
-                      emailList = _emailList.text.toString().split("\n");
+                  setState(
+                    () {
+                      bool subjectTextValid = _subjectText.text.isNotEmpty;
+                      bool emailListValid = _emailList.text.isNotEmpty;
+                      bool locationTextValid = _locationText.text.isNotEmpty;
+                      if (subjectTextValid &&
+                          emailListValid &&
+                          locationTextValid &&
+                          date != null &&
+                          time != null) {
+                        error = '';
+                        _validateEmail = true;
+                        _validateSubject = true;
+                        _validateLocation = true;
+                        subject = _subjectText.text.toString();
+                        content = _contentText.text.toString();
+                        location = _locationText.text.toString();
+                        emailList = _emailList.text.toString().split("\n");
 
-                      showAlertDialog(context, subject, location, content, date,
-                          time, emailList);
-                      print("$subject $date $time $content $emailList");
-                    } else {
-                      if (!subjectTextValid) {
-                        _validateSubject = false;
+                        showAlertDialog(context, subject, content, date, time,
+                            location, emailList, user);
+                        print("$subject $date $time $content $emailList");
+                      } else {
+                        if (!subjectTextValid) {
+                          _validateSubject = false;
+                        }
+                        if (!emailListValid) {
+                          _validateEmail = false;
+                        }
+                        if (date == null || time == null) {
+                          error = "You haven't chosen date or time";
+                        }
                       }
-                      if (!locationTextValid) {
-                        _validateLocation = false;
-                      }
-                      if (!emailListValid) {
-                        _validateEmail = false;
-                      }
-                      if (date == null || time == null) {
-                        error = "You haven't chosen date or time";
-                      }
-                    }
-                  });
+                    },
+                  );
                 },
                 child: Text(
                   'Create',
@@ -291,8 +286,8 @@ class _CreateMeetingState extends State<CreateMeeting> {
 }
 
 //Method for sending email to recipients
-sendEmail(String subject, String content, String location, String date,
-    String time, List<String> emailList) async {
+sendEmail(String subject, String content, String date, String time,
+    String location, List<String> emailList) async {
   //Enter email and password, ensure you enable less secure app access if its a gmail account
   String username = 'mysyncupapp@gmail.com';
   String password = 'cYQ3gUZp7X@hPeG';
@@ -310,11 +305,11 @@ sendEmail(String subject, String content, String location, String date,
             '\n <p><b>Title: </b>' +
             subject +
             '</p>' +
-            '\n <p><b>Location: </b>' +
-            location +
-            '</p>' +
             '\n <p><b>Description: </b>' +
             content +
+            '</p>' +
+            '\n <p><b>Location: </b>' +
+            location +
             '</p>' +
             '\n <p><b>Date & Time: </b>' +
             date +
@@ -334,8 +329,15 @@ sendEmail(String subject, String content, String location, String date,
   }
 }
 
-showAlertDialog(BuildContext context, String subject, String location,
-    String content, String date, String time, List<String> emailList) {
+showAlertDialog(
+    BuildContext context,
+    String subject,
+    String content,
+    String date,
+    String time,
+    String location,
+    List<String> emailList,
+    UserModel user) {
   // set up the buttons
   Widget cancelButton = TextButton(
     child: Text("Go back"),
@@ -345,23 +347,25 @@ showAlertDialog(BuildContext context, String subject, String location,
   );
   Widget continueButton = TextButton(
     child: Text("Confirm"),
-    onPressed: () {
+    onPressed: () async {
       Meeting meeting = Meeting(
           meetingId: '0',
           // organizer: 'ABC',
-          location: location,
           title: subject,
           description: content,
           meetingDate: '$date at $time',
+          location: location,
           attendees: emailList.map((email) => Attendee(email: email)).toList());
       MeetingList.instance.meetingList.add(meeting);
+      await DatabaseService(uId: user.uId)
+          .addMeeting(subject, content, '$date at $time', location, emailList);
 
       Navigator.pushAndRemoveUntil(
         context,
         MaterialPageRoute(builder: (context) => HomeScreen()),
         (Route<dynamic> route) => false,
       );
-      sendEmail(subject, content, location, date, time, emailList);
+      sendEmail(subject, content, date, time, location, emailList);
     },
   );
 
@@ -385,21 +389,21 @@ showAlertDialog(BuildContext context, String subject, String location,
           Row(
             children: <Widget>[
               Text(
-                "Location:",
-                style: TextStyle(fontWeight: FontWeight.bold),
-              ),
-              SizedBox(width: 5.0),
-              Text("$location"),
-            ],
-          ),
-          Row(
-            children: <Widget>[
-              Text(
                 "Date & Time:",
                 style: TextStyle(fontWeight: FontWeight.bold),
               ),
               SizedBox(width: 5.0),
               Text("$date at $time"),
+            ],
+          ),
+          Row(
+            children: <Widget>[
+              Text(
+                "Location:",
+                style: TextStyle(fontWeight: FontWeight.bold),
+              ),
+              SizedBox(width: 5.0),
+              Text(location),
             ],
           ),
           Row(

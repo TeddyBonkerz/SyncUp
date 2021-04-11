@@ -52,7 +52,6 @@ class MySplashPage extends StatefulWidget {
 class _MySplashState extends State<MySplashPage> {
   @override
   Widget build(BuildContext context) {
-    final user = Provider.of<UserModel>(context);
     return Material(
       child: Stack(
         children: <Widget>[

@@ -3,10 +3,8 @@ class UserModel {
   String firstName;
   String lastName;
   String email;
-  String password;
 
-  UserModel(
-      {this.uId, this.firstName, this.lastName, this.email, this.password});
+  UserModel({this.uId, this.firstName, this.lastName, this.email});
 
   get getUId => this.uId;
 
@@ -19,12 +17,4 @@ class UserModel {
   get getLastName => this.lastName;
 
   set setLastName(lastName) => this.lastName = lastName;
-
-  get getEmail => this.email;
-
-  set setEmail(email) => this.email = email;
-
-  get getPassword => this.password;
-
-  set setPassword(password) => this.password = password;
 }

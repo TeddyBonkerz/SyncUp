@@ -1,11 +1,12 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:syncup/models/userModel.dart';
+import 'package:syncup/services/DatabaseService.dart';
 
 class AuthService {
   final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
 
   UserModel _userFromFirebaseUser(User user) {
-    return user != null ? UserModel(uId: user.uid) : null;
+    return user != null ? UserModel(uId: user.uid, email: user.email) : null;
   }
 
   Stream<UserModel> get user {
@@ -21,7 +22,8 @@ class AuthService {
       UserCredential result = await _firebaseAuth.signInWithEmailAndPassword(
           email: email, password: password);
       User user = result.user;
-      return user;
+      await DatabaseService(uId: user.uid);
+      return _userFromFirebaseUser(user);
     } catch (error) {
       print(error.toString());
       return null;
@@ -29,14 +31,17 @@ class AuthService {
   }
 
   // register with email and password
-  Future registerWithEmailAndPassword(String email, String password) async {
+  Future registerWithEmailAndPassword(
+      String email, String password, String firstName, String lastName) async {
     try {
       UserCredential result = await _firebaseAuth
           .createUserWithEmailAndPassword(email: email, password: password);
       User user = result.user;
-      // create a new document for the user with the uid
-      // await DatabaseService(uid: user.uid)
-      //     .updateUserData('0', 'new crew member', 100);
+      await DatabaseService(
+        uId: user.uid,
+        firstName: firstName,
+        lastName: lastName,
+      ).createUserData();
       return _userFromFirebaseUser(user);
     } catch (error) {
       print(error.toString());

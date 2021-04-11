@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:syncup/components/info_card.dart';
-import 'package:syncup/components/nav_drawer.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:syncup/constants.dart';
 

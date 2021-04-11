@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:syncup/screens/home.dart';
 import 'package:syncup/screens/loading.dart';
 import 'package:syncup/services/authenticationservice.dart';
 import '../constants.dart';
@@ -102,7 +100,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           ),
                         ),
                       ),
-
                       //Last Name Field
                       TextField(
                         controller: _lastNameText,
@@ -124,7 +121,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           ),
                         ),
                       ),
-
                       //Email Field
                       TextField(
                         controller: _emailText,
@@ -146,7 +142,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           ),
                         ),
                       ),
-
                       //Password Field
                       TextField(
                         controller: _passwordText,
@@ -195,7 +190,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                 // bool emailTextValid = _emailText.text.isNotEmpty;
                                 bool passwordTextValid =
                                     _passwordText.text.length > 6;
-
                                 if (emailTextValid &&
                                     passwordTextValid &&
                                     firstNameTextValid &&
@@ -204,18 +198,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                   _validateLastName = true;
                                   _validateEmail = true;
                                   _validatePassword = true;
-                                  // Navigator.pushAndRemoveUntil(
-                                  //   context,
-                                  //   MaterialPageRoute(
-                                  //       builder: (context) => HomeScreen()),
-                                  //   (Route<dynamic> route) => false,
-                                  // );
-
-                                  // _validateFirstName = true;
-                                  // _validateLastName = true;
-                                  // _validateEmail = true;
-                                  // _validatePassword = true;
-                                  // Navigator.of(context).pushNamed('/homepage');
                                 } else {
                                   if (!firstNameTextValid) {
                                     _validateFirstName = false;
@@ -249,14 +231,17 @@ class _SignUpScreenState extends State<SignUpScreen> {
 
                                 dynamic result = await _firebaseAuth
                                     .registerWithEmailAndPassword(
-                                        _emailText.text, _passwordText.text);
+                                  _emailText.text,
+                                  _passwordText.text,
+                                  _firstNameText.text,
+                                  _lastNameText.text,
+                                );
                                 if (result == null) {
                                   setState(() {
                                     error = 'Please supply a valid email';
                                   });
                                 }
                               }
-
                               // Navigator.pushAndRemoveUntil(
                               //   context,
                               //   MaterialPageRoute(builder: (context) => HomeScreen()),

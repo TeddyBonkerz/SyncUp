@@ -85,6 +85,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.0.0"
+  empty_widget:
+    dependency: "direct main"
+    description:
+      name: empty_widget
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.0.1"
   fake_async:
     dependency: transitive
     description:
@@ -351,7 +358,7 @@ packages:
       name: provider
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "5.0.0"
+    version: "4.3.3"
   sky_engine:
     dependency: transitive
     description: flutter
