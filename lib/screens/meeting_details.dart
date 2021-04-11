@@ -1,7 +1,10 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:syncup/constants.dart';
 import 'package:syncup/models/userModel.dart';
+import 'package:syncup/screens/home.dart';
+import 'package:syncup/services/DatabaseService.dart';
 
 class MeetingDetails extends StatefulWidget {
   QueryDocumentSnapshot meeting;
@@ -21,6 +24,7 @@ class _MeetingDetails extends State<MeetingDetails> {
   Widget build(BuildContext context) {
     final user = Provider.of<UserModel>(context);
     String uId = user.uId;
+
     CollectionReference meetingList = FirebaseFirestore.instance
         .collection('users')
         .doc(uId)
@@ -64,25 +68,25 @@ class _MeetingDetails extends State<MeetingDetails> {
                           title: Text('Location'),
                           subtitle: Text(meeting.data()['location'])),
                       // Meeting Check box for completion status
-                      CheckboxListTile(
-                          title: const Text('Meeting Completed: '),
-                          value: meeting.data()['completed'],
-                          onChanged: (bool value) async {
-                            await meetingList
-                                .doc(meeting.id)
-                                .update({'completed': value})
-                                .then((value) => print("Meeting Updated"))
-                                .catchError((error) =>
-                                    print("Failed to update meeting: $error"));
-                            // setState(() {
-                            //
-                            //   checkCompleted = value;
-                            // });
-
-                            // setState(() {
-                            //   checkCompleted = value;
-                            // });
-                          }),
+                      // CheckboxListTile(
+                      //     title: const Text('Meeting Completed: '),
+                      //     value: meeting.data()['completed'],
+                      //     onChanged: (bool value) async {
+                      //       await meetingList
+                      //           .doc(meeting.id)
+                      //           .update({'completed': value})
+                      //           .then((value) => print("Meeting Updated"))
+                      //           .catchError((error) =>
+                      //               print("Failed to update meeting: $error"));
+                      //       // setState(() {
+                      //       //
+                      //       //   checkCompleted = value;
+                      //       // });
+                      //
+                      //       // setState(() {
+                      //       //   checkCompleted = value;
+                      //       // });
+                      //     }),
                     ],
                   ),
                   // View who is attending List
@@ -102,7 +106,31 @@ class _MeetingDetails extends State<MeetingDetails> {
                                   .data()['attendeeList'][index]['email']
                                   .toString()));
                         }),
-                  )
+                  ),
+                  ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10.0),
+                      ),
+                      primary: primaryColor,
+                    ),
+                    onPressed: () async {
+                      await DatabaseService(uId: user.uId)
+                          .deleteMeeting(meeting.id);
+
+                      Navigator.pushAndRemoveUntil(
+                        context,
+                        MaterialPageRoute(builder: (context) => HomeScreen()),
+                        (Route<dynamic> route) => false,
+                      );
+                    },
+                    child: Text(
+                      'Close Meeting',
+                      style: TextStyle(
+                        color: Colors.white,
+                      ),
+                    ),
+                  ),
                 ],
               )));
         });
