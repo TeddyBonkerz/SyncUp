@@ -70,6 +70,21 @@ class HomePageCards extends StatelessWidget {
     //double width = MediaQuery.of(context).size.width * 0.7;
 
     // final meetingList = Provider.of<List<Meeting>>(context) ?? [];
+    //
+    int totalAttendees = meetingList[index].data()['attendeeList'].length;
+    int totalAcceptedAttendees = 0;
+    String participants = " " +
+        totalAcceptedAttendees.toString() +
+        "/" +
+        totalAttendees.toString() +
+        " Participant(s)";
+
+    for (int i = 0; i < totalAttendees; i++) {
+      bool response = meetingList[index].data()['attendeeList'][i]['response'];
+      if (response == true) {
+        totalAcceptedAttendees++;
+      }
+    }
 
     return SafeArea(
       top: false,
@@ -125,6 +140,21 @@ class HomePageCards extends StatelessWidget {
                       Padding(padding: EdgeInsets.only(top: 8)),
                       Divider(
                         thickness: 2.0,
+                      ),
+                      Row(
+                        children: [
+                          Icon(
+                            Icons.people,
+                            color: primaryColor,
+                          ),
+                          Text(
+                            participants,
+                            style: TextStyle(
+                              fontSize: 15,
+                              fontWeight: FontWeight.w500,
+                            ),
+                          ),
+                        ],
                       ),
                     ],
                   ),
