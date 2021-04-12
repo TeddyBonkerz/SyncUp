@@ -5,6 +5,7 @@ import 'package:provider/provider.dart';
 import 'package:syncup/constants.dart';
 import 'package:syncup/models/meetingModel.dart';
 import 'package:syncup/models/userModel.dart';
+import 'package:syncup/screens/loading.dart';
 import 'package:syncup/screens/meeting_details.dart';
 import 'package:syncup/models/listMeetingModel.dart';
 
@@ -25,7 +26,7 @@ class HomePageCards extends StatelessWidget {
           return Text('Something went wrong');
         }
         if (snapshot.connectionState == ConnectionState.waiting) {
-          return Text("Loading");
+          return Loading();
         }
         if (snapshot.data.docs.length == 0) {
           return Scaffold(
