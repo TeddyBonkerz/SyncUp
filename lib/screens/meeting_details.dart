@@ -1,9 +1,11 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:syncup/components/meeting_cards.dart';
 import 'package:syncup/constants.dart';
 import 'package:syncup/models/userModel.dart';
 import 'package:syncup/screens/home.dart';
+import 'package:syncup/screens/wrapper.dart';
 import 'package:syncup/services/DatabaseService.dart';
 
 class MeetingDetails extends StatefulWidget {
@@ -118,11 +120,7 @@ class _MeetingDetails extends State<MeetingDetails> {
                       await DatabaseService(uId: user.uId)
                           .deleteMeeting(meeting.id);
 
-                      Navigator.pushAndRemoveUntil(
-                        context,
-                        MaterialPageRoute(builder: (context) => HomeScreen()),
-                        (Route<dynamic> route) => false,
-                      );
+                      Navigator.pop(context);
                     },
                     child: Text(
                       'Close Meeting',
