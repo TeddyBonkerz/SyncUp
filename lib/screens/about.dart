@@ -203,12 +203,12 @@ class _AboutScreenState extends State<AboutScreen> {
               color: Colors.white,
               child: GestureDetector(
                 onTap: () {
-                Navigator.pushAndRemoveUntil(
-                  context,
-                  MaterialPageRoute(builder: (context) => HomeScreen()),
-                  (Route<dynamic> route) => false,
-                );
-              },
+                  Navigator.pushAndRemoveUntil(
+                    context,
+                    MaterialPageRoute(builder: (context) => HomeScreen()),
+                    (Route<dynamic> route) => false,
+                  );
+                },
                 child: Center(
                   child: Padding(
                     padding: EdgeInsets.only(bottom: 30.0),
