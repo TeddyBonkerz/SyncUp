@@ -153,11 +153,11 @@ class NavDrawer extends StatelessWidget {
                     ),
                     onTap: () async {
                       await _firebaseAuth.signOut();
-                      Navigator.pushAndRemoveUntil(
-                        context,
-                        MaterialPageRoute(builder: (context) => Wrapper()),
-                        (Route route) => false,
-                      );
+                      // Navigator.pushAndRemoveUntil(
+                      //   context,
+                      //   MaterialPageRoute(builder: (context) => Wrapper()),
+                      //   (Route route) => false,
+                      // );
                     },
                   )
                 ],
