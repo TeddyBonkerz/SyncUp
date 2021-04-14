@@ -69,11 +69,6 @@ class HomePageCards extends StatelessWidget {
       List<QueryDocumentSnapshot> meetingList) {
     int totalAttendees = meetingList[index].data()['attendeeList'].length;
     int totalAcceptedAttendees = 0;
-    String participants = " " +
-        totalAcceptedAttendees.toString() +
-        "/" +
-        totalAttendees.toString() +
-        " Participant(s)";
 
     for (int i = 0; i < totalAttendees; i++) {
       bool response = meetingList[index].data()['attendeeList'][i]['response'];
@@ -81,6 +76,12 @@ class HomePageCards extends StatelessWidget {
         totalAcceptedAttendees++;
       }
     }
+
+    String participants = " " +
+        totalAcceptedAttendees.toString() +
+        "/" +
+        totalAttendees.toString() +
+        " Participant(s)";
 
     return SafeArea(
       top: false,

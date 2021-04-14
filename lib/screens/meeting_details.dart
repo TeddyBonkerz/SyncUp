@@ -82,13 +82,13 @@ class _MeetingDetails extends State<MeetingDetails> {
                         // will change to variables / values when we have actual list to grab from
                         trailing: Icon(
                           meeting
-                                      .data()['attendeeList'][index]['email']
+                                      .data()['attendeeList'][index]['response']
                                       .toString() ==
                                   "true"
                               ? Icons.done
                               : Icons.clear,
                           color: meeting
-                                      .data()['attendeeList'][index]['email']
+                                      .data()['attendeeList'][index]['response']
                                       .toString() ==
                                   "true"
                               ? Colors.green
