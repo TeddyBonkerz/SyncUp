@@ -107,7 +107,7 @@ class HomePageCards extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 CircleAvatar(
-                  backgroundColor: primaryColor,
+                  backgroundColor: primaryLightColor,
                   child: Text(
                     meetingList[index]
                         .data()['title']
@@ -141,7 +141,7 @@ class HomePageCards extends StatelessWidget {
                         children: [
                           Icon(
                             Icons.people,
-                            color: primaryColor,
+                            color: primaryLightColor,
                           ),
                           Text(
                             participants,

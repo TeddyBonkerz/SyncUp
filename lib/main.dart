@@ -26,8 +26,8 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         title: 'SyncUp',
         theme: ThemeData(
-          primaryColor: Colors.blueAccent,
-          primarySwatch: Colors.blue,
+          primaryColor: Color(0xFF3632a8),
+          primarySwatch: Colors.grey,
           visualDensity: VisualDensity.adaptivePlatformDensity,
         ),
         routes: <String, WidgetBuilder>{

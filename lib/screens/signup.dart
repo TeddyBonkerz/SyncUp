@@ -68,7 +68,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         : 'First name cannot be empty',
                     icon: Icon(
                       Icons.person,
-                      color: primaryColor,
+                      color: primaryLightColor,
                     ),
                     labelText: 'FIRST NAME',
                     labelStyle: TextStyle(
@@ -88,7 +88,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         _validateLastName ? null : 'Last name cannot be empty',
                     icon: Icon(
                       Icons.person,
-                      color: primaryColor,
+                      color: primaryLightColor,
                     ),
                     labelText: 'LAST NAME',
                     labelStyle: TextStyle(
@@ -108,7 +108,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         _validateEmail ? null : 'This is not a valid email',
                     icon: Icon(
                       Icons.email,
-                      color: primaryColor,
+                      color: primaryLightColor,
                     ),
                     labelText: 'EMAIL',
                     labelStyle: TextStyle(
@@ -129,11 +129,11 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         : 'Password must be greater than 6 characters',
                     icon: Icon(
                       Icons.lock,
-                      color: primaryColor,
+                      color: primaryLightColor,
                     ),
                     suffixIcon: Icon(
                       Icons.visibility,
-                      color: primaryColor,
+                      color: primaryLightColor,
                     ),
                     labelText: 'PASSWORD',
                     labelStyle: TextStyle(

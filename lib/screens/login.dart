@@ -70,7 +70,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           _validateEmail ? null : 'This is not a valid email',
                       icon: Icon(
                         Icons.email,
-                        color: primaryColor,
+                        color: primaryLightColor,
                       ),
                       labelText: 'EMAIL',
                       labelStyle: TextStyle(
@@ -92,11 +92,11 @@ class _LoginScreenState extends State<LoginScreen> {
                           : 'Password must be greater than 6 characters',
                       icon: Icon(
                         Icons.lock,
-                        color: primaryColor,
+                        color: primaryLightColor,
                       ),
                       suffixIcon: Icon(
                         Icons.visibility,
-                        color: primaryColor,
+                        color: primaryLightColor,
                       ),
                       labelText: 'PASSWORD',
                       labelStyle: TextStyle(
