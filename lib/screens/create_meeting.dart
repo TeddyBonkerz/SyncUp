@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import 'package:syncup/constants.dart';
 import 'package:syncup/models/attendeeModel.dart';
@@ -68,6 +69,7 @@ class _CreateMeetingState extends State<CreateMeeting> {
 
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setEnabledSystemUIOverlays([SystemUiOverlay.top]);
     UserModel user = Provider.of<UserModel>(context);
 
     return Scaffold(

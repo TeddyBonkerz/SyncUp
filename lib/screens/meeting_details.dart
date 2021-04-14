@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import 'package:syncup/constants.dart';
 import 'package:syncup/models/userModel.dart';
@@ -21,6 +22,7 @@ class _MeetingDetails extends State<MeetingDetails> {
 
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setEnabledSystemUIOverlays([SystemUiOverlay.top]);
     final user = Provider.of<UserModel>(context);
     String uId = user.uId;
 

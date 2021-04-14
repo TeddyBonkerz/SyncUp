@@ -34,6 +34,7 @@ class _HomeScreenState extends State<HomeScreen> {
         backgroundColor: primaryColor,
         child: Icon(
           Icons.create,
+          color: Colors.white,
         ),
         onPressed: () {
           Navigator.push(
