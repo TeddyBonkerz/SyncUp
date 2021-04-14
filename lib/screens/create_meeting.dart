@@ -8,6 +8,7 @@ import 'package:syncup/models/userModel.dart';
 import 'package:syncup/screens/home.dart';
 import 'package:mailer/mailer.dart';
 import 'package:mailer/smtp_server.dart';
+import 'package:syncup/screens/wrapper.dart';
 import 'package:syncup/services/DatabaseService.dart';
 
 class CreateMeeting extends StatefulWidget {
@@ -362,7 +363,7 @@ showAlertDialog(
 
       Navigator.pushAndRemoveUntil(
         context,
-        MaterialPageRoute(builder: (context) => HomeScreen()),
+        MaterialPageRoute(builder: (context) => Wrapper()),
         (Route<dynamic> route) => false,
       );
       String fName = user.firstName;
