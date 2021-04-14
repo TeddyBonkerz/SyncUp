@@ -6,7 +6,6 @@ import 'package:syncup/models/userModel.dart';
 import 'package:syncup/screens/home.dart';
 import 'package:syncup/screens/user_profile.dart';
 import 'package:syncup/screens/about.dart';
-import 'package:syncup/screens/wrapper.dart';
 import 'package:syncup/services/authenticationservice.dart';
 
 class NavDrawer extends StatelessWidget {

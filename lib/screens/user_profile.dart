@@ -78,7 +78,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
   }
 }
 
-class getClipper extends CustomClipper<Path> {
+class GetClipper extends CustomClipper<Path> {
   @override
   Path getClip(Size size) {
     var path = new Path();
@@ -91,7 +91,6 @@ class getClipper extends CustomClipper<Path> {
 
   @override
   bool shouldReclip(CustomClipper<Path> oldClipper) {
-    // TODO
     return true;
   }
 }

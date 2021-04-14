@@ -1,5 +1,4 @@
 import 'package:syncup/models/attendeeModel.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 
 class Meeting {
   String meetingId;

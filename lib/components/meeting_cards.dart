@@ -11,7 +11,7 @@ import 'package:syncup/models/listMeetingModel.dart';
 
 class HomePageCards extends StatelessWidget {
   //example list
-  List<Meeting> meetingList = MeetingList.instance.meetingList;
+  final List<Meeting> meetingList = MeetingList.instance.meetingList;
 
   @override
   Widget build(BuildContext context) {
@@ -67,10 +67,6 @@ class HomePageCards extends StatelessWidget {
 //Actual list of cards
   Widget buildMeetingCard(BuildContext context, int index,
       List<QueryDocumentSnapshot> meetingList) {
-    //double width = MediaQuery.of(context).size.width * 0.7;
-
-    // final meetingList = Provider.of<List<Meeting>>(context) ?? [];
-    //
     int totalAttendees = meetingList[index].data()['attendeeList'].length;
     int totalAcceptedAttendees = 0;
     String participants = " " +

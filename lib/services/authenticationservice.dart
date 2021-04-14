@@ -22,7 +22,7 @@ class AuthService {
       UserCredential result = await _firebaseAuth.signInWithEmailAndPassword(
           email: email, password: password);
       User user = result.user;
-      await DatabaseService(uId: user.uid);
+      DatabaseService(uId: user.uid);
       return _userFromFirebaseUser(user);
     } catch (error) {
       print(error.toString());

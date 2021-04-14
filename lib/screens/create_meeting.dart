@@ -5,7 +5,6 @@ import 'package:syncup/models/attendeeModel.dart';
 import 'package:syncup/models/listMeetingModel.dart';
 import 'package:syncup/models/meetingModel.dart';
 import 'package:syncup/models/userModel.dart';
-import 'package:syncup/screens/home.dart';
 import 'package:mailer/mailer.dart';
 import 'package:mailer/smtp_server.dart';
 import 'package:syncup/screens/wrapper.dart';
@@ -50,7 +49,7 @@ class _CreateMeetingState extends State<CreateMeeting> {
   }
 
   Future<void> _selectTime(BuildContext context) async {
-    final TimeOfDay picked_s = await showTimePicker(
+    final TimeOfDay pickedS = await showTimePicker(
         context: context,
         initialTime: selectedTime == null ? TimeOfDay.now() : selectedTime,
         builder: (BuildContext context, Widget child) {
@@ -60,10 +59,10 @@ class _CreateMeetingState extends State<CreateMeeting> {
           );
         });
 
-    if (picked_s != null && picked_s != selectedTime)
+    if (pickedS != null && pickedS != selectedTime)
       setState(() {
-        selectedTime = picked_s;
-        time = picked_s.format(context);
+        selectedTime = pickedS;
+        time = pickedS.format(context);
       });
   }
 
@@ -282,7 +281,6 @@ class _CreateMeetingState extends State<CreateMeeting> {
         ),
       ),
     );
-    // );
   }
 }
 

@@ -1,12 +1,8 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:syncup/screens/home.dart';
 import 'package:syncup/screens/loading.dart';
-import 'package:syncup/services/DatabaseService.dart';
 import 'package:syncup/services/authenticationservice.dart';
 import '../constants.dart';
-import 'package:flutter/services.dart';
 
 class LoginScreen extends StatefulWidget {
   final Function toggleView;
@@ -18,8 +14,6 @@ class LoginScreen extends StatefulWidget {
 
 class _LoginScreenState extends State<LoginScreen> {
   final AuthService _firebaseAuth = AuthService();
-  // final Function toggleView;
-  // _LoginScreenState({this.toggleView});
   final _emailText = TextEditingController();
   final _passwordText = TextEditingController();
   bool _validateEmail = true;
@@ -33,23 +27,6 @@ class _LoginScreenState extends State<LoginScreen> {
     return loading
         ? Loading()
         : Scaffold(
-            // appBar: AppBar(
-            //   backgroundColor: primaryColor,
-            //   elevation: 0.0,
-            //   actions: <Widget>[
-            //     TextButton.icon(
-            //       icon: Icon(
-            //         Icons.person,
-            //         color: Colors.white,
-            //       ),
-            //       label: Text(
-            //         'Register',
-            //         style: TextStyle(color: Colors.white),
-            //       ),
-            //       onPressed: () => widget.toggleView(),
-            //     ),
-            //   ],
-            // ),
             resizeToAvoidBottomInset: false,
             body: SingleChildScrollView(
               child: Column(
