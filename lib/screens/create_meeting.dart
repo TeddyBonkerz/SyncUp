@@ -8,6 +8,7 @@ import 'package:syncup/models/userModel.dart';
 import 'package:syncup/screens/home.dart';
 import 'package:mailer/mailer.dart';
 import 'package:mailer/smtp_server.dart';
+import 'package:syncup/screens/wrapper.dart';
 import 'package:syncup/services/DatabaseService.dart';
 
 class CreateMeeting extends StatefulWidget {
@@ -286,8 +287,8 @@ class _CreateMeetingState extends State<CreateMeeting> {
 }
 
 //Method for sending email to recipients
-sendEmail(String subject, String content, String date, String time,
-    String location, List<String> emailList) async {
+sendEmail(String firstName, String lastName, String subject, String content,
+    String date, String time, String location, List<String> emailList) async {
   //Enter email and password, ensure you enable less secure app access if its a gmail account
   String username = 'mysyncupapp@gmail.com';
   String password = 'cYQ3gUZp7X@hPeG';
@@ -300,23 +301,23 @@ sendEmail(String subject, String content, String date, String time,
     ..recipients.addAll(emailList)
     ..bccRecipients.add(Address(username))
     ..subject = 'SyncUp Invite ${DateTime.now()}'
-    ..html =
-        '<h3>Hello</h3>\n<p>**Sender Name Here** has sent you a SyncUp invitation with the details below.</p>' +
-            '\n <p><b>Title: </b>' +
-            subject +
-            '</p>' +
-            '\n <p><b>Description: </b>' +
-            content +
-            '</p>' +
-            '\n <p><b>Location: </b>' +
-            location +
-            '</p>' +
-            '\n <p><b>Date & Time: </b>' +
-            date +
-            ',' +
-            time +
-            '</p>' +
-            '\n <p>To respond, follow the link below.</p> \n **Link To Response Form**';
+    ..html = '<h3>Hello</h3>\n<p>' +
+        '<b> $firstName $lastName </b> has sent you a SyncUp invitation with the details below.</p>' +
+        '\n <p><b>Title: </b>' +
+        subject +
+        '</p>' +
+        '\n <p><b>Description: </b>' +
+        content +
+        '</p>' +
+        '\n <p><b>Location: </b>' +
+        location +
+        '</p>' +
+        '\n <p><b>Date & Time: </b>' +
+        date +
+        ',' +
+        time +
+        '</p>' +
+        '\n <p>To respond, follow the link below.</p> \n **Link To Response Form**';
 
   try {
     final sendReport = await send(message, smtpServer);
@@ -362,10 +363,15 @@ showAlertDialog(
 
       Navigator.pushAndRemoveUntil(
         context,
-        MaterialPageRoute(builder: (context) => HomeScreen()),
+        MaterialPageRoute(builder: (context) => Wrapper()),
         (Route<dynamic> route) => false,
       );
-      sendEmail(subject, content, date, time, location, emailList);
+      String fName = user.firstName;
+      print(fName);
+      String lName = user.getFirstName;
+      print(lName);
+      sendEmail(
+          fName, lName, subject, content, date, time, location, emailList);
     },
   );
 

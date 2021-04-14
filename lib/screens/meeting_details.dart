@@ -92,22 +92,37 @@ class _MeetingDetails extends State<MeetingDetails> {
                     ],
                   ),
                   // View who is attending List
-                  ListTile(
-                      contentPadding: const EdgeInsets.all(10.0),
-                      title: Text('List of Attendence')),
+                  ListTile(title: Text('List of Attendee Emails')),
                   Expanded(
                     child: ListView.builder(
-                        itemCount: meeting
-                            .data()['attendeeList']
-                            .length, // filler till we have actual list length
-                        itemBuilder: (context, index) {
-                          return ListTile(
-                              // will change to variables / values when we have actual list to grab from
-                              title: Text('ContactName'),
-                              subtitle: Text(meeting
-                                  .data()['attendeeList'][index]['email']
-                                  .toString()));
-                        }),
+                      itemCount: meeting
+                          .data()['attendeeList']
+                          .length, // filler till we have actual list length
+                      itemBuilder: (context, index) {
+                        return ListTile(
+                          // will change to variables / values when we have actual list to grab from
+                          trailing: Icon(
+                            meeting
+                                        .data()['attendeeList'][index]['email']
+                                        .toString() ==
+                                    "true"
+                                ? Icons.done
+                                : Icons.clear,
+                            color: meeting
+                                        .data()['attendeeList'][index]['email']
+                                        .toString() ==
+                                    "true"
+                                ? Colors.green
+                                : Colors.red,
+                          ),
+                          title: Text(
+                            meeting
+                                .data()['attendeeList'][index]['email']
+                                .toString(),
+                          ),
+                        );
+                      },
+                    ),
                   ),
                   ElevatedButton(
                     style: ElevatedButton.styleFrom(

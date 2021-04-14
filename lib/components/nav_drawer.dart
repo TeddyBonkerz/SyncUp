@@ -12,16 +12,16 @@ import 'package:syncup/services/authenticationservice.dart';
 class NavDrawer extends StatelessWidget {
   final AuthService _firebaseAuth = AuthService();
 
-  // final UserModel appUser =
-  //     new UserModel(uId: "1011", firstName: "Grim", lastName: "Fandango");
-
   @override
   Widget build(BuildContext context) {
     final user = Provider.of<UserModel>(context);
 
+    Future<DocumentSnapshot> getData() async {
+      return FirebaseFirestore.instance.collection('users').doc(user.uId).get();
+    }
+
     return FutureBuilder<DocumentSnapshot>(
-        future:
-            FirebaseFirestore.instance.collection('users').doc(user.uId).get(),
+        future: getData(),
         builder:
             (BuildContext context, AsyncSnapshot<DocumentSnapshot> snapshot) {
           if (snapshot.hasError) {
@@ -153,12 +153,11 @@ class NavDrawer extends StatelessWidget {
                     ),
                     onTap: () async {
                       await _firebaseAuth.signOut();
-                      Navigator.pushAndRemoveUntil(
-                        context,
-                        MaterialPageRoute(builder: (context) => Wrapper()),
-                        (Route route) => false,
-                      );
-                      // await _firebaseAuth.signOut();
+                      // Navigator.pushAndRemoveUntil(
+                      //   context,
+                      //   MaterialPageRoute(builder: (context) => Wrapper()),
+                      //   (Route route) => false,
+                      // );
                     },
                   )
                 ],
