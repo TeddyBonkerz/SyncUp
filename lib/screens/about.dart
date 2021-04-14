@@ -161,7 +161,7 @@ class _AboutScreenState extends State<AboutScreen> {
                     ? Expanded(
                         child: Align(
                           alignment: FractionalOffset.bottomRight,
-                          child: FlatButton(
+                          child: ElevatedButton(
                             onPressed: () {
                               _pageController.nextPage(
                                 duration: Duration(milliseconds: 500),

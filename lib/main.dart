@@ -19,15 +19,15 @@ void main() async {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    SystemChrome.setEnabledSystemUIOverlays([SystemUiOverlay.bottom]);
+    SystemChrome.setEnabledSystemUIOverlays([SystemUiOverlay.top]);
     return StreamProvider.value(
       value: AuthService().user,
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'SyncUp',
         theme: ThemeData(
-          primaryColor: Colors.blueAccent,
-          primarySwatch: Colors.blue,
+          primaryColor: Color(0xFF3632a8),
+          primarySwatch: Colors.grey,
           visualDensity: VisualDensity.adaptivePlatformDensity,
         ),
         routes: <String, WidgetBuilder>{
