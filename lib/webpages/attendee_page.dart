@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:syncup/constants.dart';
 
@@ -18,6 +19,7 @@ class CheckAttendeeState extends State<CheckAttendee> {
   Widget _buildEmail() {
     return TextFormField(
       decoration: InputDecoration(labelText: 'Email'),
+      // ignore: missing_return
       validator: (String value) {
         if (value.isEmpty) {
           return 'Email is Required';
@@ -39,6 +41,7 @@ class CheckAttendeeState extends State<CheckAttendee> {
 
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setEnabledSystemUIOverlays([SystemUiOverlay.top]);
     return Scaffold(
       appBar: AppBar(
         title: Row(
