@@ -8,6 +8,8 @@ import 'package:syncup/screens/user_profile.dart';
 import 'package:syncup/screens/about.dart';
 import 'package:syncup/services/authenticationservice.dart';
 
+import '../constants.dart';
+
 class NavDrawer extends StatelessWidget {
   final AuthService _firebaseAuth = AuthService();
 
@@ -35,7 +37,7 @@ class NavDrawer extends StatelessWidget {
                   Container(
                     width: double.infinity,
                     padding: EdgeInsets.all(20),
-                    color: Theme.of(context).primaryColor,
+                    color: primaryColor,
                     child: Center(
                       child: Column(
                         children: <Widget>[

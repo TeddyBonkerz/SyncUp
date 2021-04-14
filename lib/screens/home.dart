@@ -3,6 +3,7 @@ import 'package:syncup/components/meeting_cards.dart';
 import 'package:syncup/components/nav_drawer.dart';
 import 'package:syncup/constants.dart';
 import 'create_meeting.dart';
+import 'package:flutter/services.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -12,6 +13,7 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setEnabledSystemUIOverlays([SystemUiOverlay.top]);
     return Scaffold(
       appBar: AppBar(
         title: Text('SyncUp'),

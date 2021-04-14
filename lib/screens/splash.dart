@@ -50,7 +50,7 @@ class _SplashScreenState extends State<SplashScreen>
           height: double.infinity,
           child: CustomPaint(
             painter: CirclePainter(
-                color: primaryLightColor,
+                color: primaryColor,
                 holeSize: _animation.holeSize.value * size.width),
           ),
         ),

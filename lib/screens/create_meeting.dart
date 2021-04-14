@@ -291,6 +291,7 @@ sendEmail(String firstName, String lastName, String subject, String content,
   String username = 'mysyncupapp@gmail.com';
   String password = 'cYQ3gUZp7X@hPeG';
 
+  // ignore: deprecated_member_use
   final smtpServer = gmail(username, password);
 
   // Create our message.

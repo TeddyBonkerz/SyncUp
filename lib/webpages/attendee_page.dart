@@ -18,6 +18,7 @@ class CheckAttendeeState extends State<CheckAttendee> {
   Widget _buildEmail() {
     return TextFormField(
       decoration: InputDecoration(labelText: 'Email'),
+      // ignore: missing_return
       validator: (String value) {
         if (value.isEmpty) {
           return 'Email is Required';
