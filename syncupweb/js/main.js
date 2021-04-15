@@ -11,17 +11,20 @@ var firebaseConfig = {
 };
 
 firebase.initializeApp(firebaseConfig);
+const database = firebase.firestore();
 
-var organizerId = document.getElementById("organizer-id").value;
-var meetingId = document.getElementById("organizer-id").value;
+const organizerId = document.getElementById("organizer-id").value;
+const userId = firebase.auth().organizerId;
+const meetingId = document.getElementById("meeting-id").value;
 //var email = document.getElementById("email").value;
 
 function checkAttendee() {
-    console.log("ikakjufje");
-    var database = firebase.database().ref(`users/${organizerId}/meeting/${meetingId}/attendeeList`);
-    database.once("value")
-        .then(function(snapshot) {
-            const userData = snapshot.val();
-            console.log("exists!", userData);
-        });
+    console.log(userId);
+    var result = database.collection('users').doc(userId).collection('meeting').doc(organizerId).get();
+    window.alert(result.data());
+    // .once("value")
+    //     .then(function(snapshot) {
+    //         const userData = snapshot.val();
+    //         console.log("exists!", userData);
+    //     });
 };
