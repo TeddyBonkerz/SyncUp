@@ -51,7 +51,7 @@ class DatabaseService {
   }
 
   Future<void> addMeeting(String title, String content, String dateTime,
-      String location, List<String> list) async {
+      String location, List<String> list, String meetingId) async {
     print(userCollection.doc(uId));
     // String organizer;
     // await userCollection.doc(uId).get().then((snapshot) {
@@ -59,7 +59,11 @@ class DatabaseService {
     // });
     List<Map<String, Object>> attendeeList =
         list.map((e) => {'email': e, 'response': false}).toList();
-    return await userCollection.doc(uId).collection('meeting').add({
+    return await userCollection
+        .doc(uId)
+        .collection('meeting')
+        .doc(meetingId)
+        .set({
       'title': title,
       'content': content,
       'dateTime': dateTime,

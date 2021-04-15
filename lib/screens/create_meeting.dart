@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:syncup/constants.dart';
@@ -70,6 +71,13 @@ class _CreateMeetingState extends State<CreateMeeting> {
   @override
   Widget build(BuildContext context) {
     UserModel user = Provider.of<UserModel>(context);
+
+    CollectionReference meetingCollection = FirebaseFirestore.instance
+        .collection('users')
+        .doc(user.uId)
+        .collection('meeting');
+
+    String meetingId = meetingCollection.doc().id;
 
     return Scaffold(
       appBar: AppBar(
@@ -250,7 +258,7 @@ class _CreateMeetingState extends State<CreateMeeting> {
                         emailList = _emailList.text.toString().split("\n");
 
                         showAlertDialog(context, subject, content, date, time,
-                            location, emailList, user);
+                            location, emailList, user, meetingId);
                         print("$subject $date $time $content $emailList");
                       } else {
                         if (!subjectTextValid) {
@@ -287,8 +295,17 @@ class _CreateMeetingState extends State<CreateMeeting> {
 }
 
 //Method for sending email to recipients
-sendEmail(String firstName, String lastName, String subject, String content,
-    String date, String time, String location, List<String> emailList) async {
+sendEmail(
+    String firstName,
+    String lastName,
+    String subject,
+    String content,
+    String date,
+    String time,
+    String location,
+    List<String> emailList,
+    String meetingId,
+    String userId) async {
   //Enter email and password, ensure you enable less secure app access if its a gmail account
   String username = 'mysyncupapp@gmail.com';
   String password = 'cYQ3gUZp7X@hPeG';
@@ -317,6 +334,12 @@ sendEmail(String firstName, String lastName, String subject, String content,
         ',' +
         time +
         '</p>' +
+        '\n <p><b>Organizer ID: </b>' +
+        userId +
+        '</p>' +
+        '\n <p><b>Meeting ID: </b>' +
+        meetingId +
+        '</p>' +
         '\n <p>To respond, follow the link below.</p> \n **Link To Response Form**';
 
   try {
@@ -338,7 +361,8 @@ showAlertDialog(
     String time,
     String location,
     List<String> emailList,
-    UserModel user) {
+    UserModel user,
+    String meetingId) {
   // set up the buttons
   Widget cancelButton = TextButton(
     child: Text("Go back"),
@@ -358,8 +382,8 @@ showAlertDialog(
           location: location,
           attendees: emailList.map((email) => Attendee(email: email)).toList());
       MeetingList.instance.meetingList.add(meeting);
-      await DatabaseService(uId: user.uId)
-          .addMeeting(subject, content, '$date at $time', location, emailList);
+      await DatabaseService(uId: user.uId).addMeeting(
+          subject, content, '$date at $time', location, emailList, meetingId);
 
       Navigator.pushAndRemoveUntil(
         context,
@@ -370,8 +394,8 @@ showAlertDialog(
       print(fName);
       String lName = user.getFirstName;
       print(lName);
-      sendEmail(
-          fName, lName, subject, content, date, time, location, emailList);
+      sendEmail(fName, lName, subject, content, date, time, location, emailList,
+          meetingId, user.uId);
     },
   );
 
