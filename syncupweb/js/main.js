@@ -41,7 +41,7 @@ function loadResults() {
     // organizerId = "4iOHIovYTBaglQW0bnYnMSC3vm02";
     // meetingId = "HPs2ADDsNHEXIuc236wS";
     // email = "rtihdfh@gmail.com";
-
+    showOrHideDiv()
 
     meetingRef = database.doc(`users/${organizerId}/meeting/${meetingId}`);
 
@@ -65,4 +65,9 @@ function setResponse() {
             console.error("Error updating doc", error);
         });
 
+}
+
+function showOrHideDiv() {
+    var x = document.getElementsByClassName("container")[0].style.display = "none";
+    var y = document.getElementsByClassName("resp-container")[0].style.display = "block";;
 }
