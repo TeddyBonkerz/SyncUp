@@ -19,7 +19,7 @@ function checkAttendee() {
     meetingId = document.getElementById("meeting-id").value;
     email = document.getElementById("email").value;
 
-    const meetingRef = database.doc(`users/${organizerId}/meeting/${meetingId}`);
+    meetingRef = database.doc(`users/${organizerId}/meeting/${meetingId}`);
 
 
     //console.log("organ" + organizerId)
@@ -30,8 +30,6 @@ function checkAttendee() {
             var attendee = doc.data()['attendeeList'][i]['email'];
             if (attendee == email) {
                 console.log(doc.data()['attendeeList'][i]['email']);
-
-                location.href = "attendee_response.html"
                 loadResults()
             }
         }
@@ -39,8 +37,14 @@ function checkAttendee() {
 }
 
 function loadResults() {
+    // database = firebase.firestore();
+    // organizerId = "4iOHIovYTBaglQW0bnYnMSC3vm02";
+    // meetingId = "HPs2ADDsNHEXIuc236wS";
+    // email = "rtihdfh@gmail.com";
 
-    const meetingRef = database.doc(`users/${organizerId}/meeting/${meetingId}`);
+
+    meetingRef = database.doc(`users/${organizerId}/meeting/${meetingId}`);
+
     meetingRef.onSnapshot((doc) => {
         if (!doc.exists) console.log("Aint here chief");
         console.log("Document data:", doc.data());
@@ -51,17 +55,14 @@ function loadResults() {
     });
 }
 
-// function setResponse() {
-//     meetingRef.where()
-//         .update({ attendeeList: [{ email: email, response: true }] })
-//         .then(() => {
-//             console.log("Document updated"); // Document updated
-//         })
-//         .catch((error) => {
-//             console.error("Error updating doc", error);
-//         });
+function setResponse() {
+    meetingRef
+        .update({ attendeeList: [{ email: email, response: true }] })
+        .then(() => {
+            console.log("Document updated"); // Document updated
+        })
+        .catch((error) => {
+            console.error("Error updating doc", error);
+        });
 
-// }
-
-// //checkAttendee();
-// setResponse();
+}
