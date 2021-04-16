@@ -383,7 +383,7 @@ sendEmail(
         '\n <p><b>Meeting ID: </b>' +
         meetingId +
         '</p>' +
-        '\n <p>To respond, follow the link below.</p> \n <a href="https://syncup-4cda3.firebaseapp.com">Sync Up</a>';
+        '\n <p>To respond, follow the link below.</p> \n <a href="https://syncup-4cda3.web.app">Sync Up</a>';
 
   try {
     final sendReport = await send(message, smtpServer);
