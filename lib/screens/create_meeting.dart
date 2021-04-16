@@ -9,6 +9,7 @@ import 'package:syncup/models/userModel.dart';
 import 'package:syncup/screens/home.dart';
 import 'package:mailer/mailer.dart';
 import 'package:mailer/smtp_server.dart';
+import 'package:syncup/screens/loading.dart';
 import 'package:syncup/screens/wrapper.dart';
 import 'package:syncup/services/DatabaseService.dart';
 
@@ -88,7 +89,7 @@ class _CreateMeetingState extends State<CreateMeeting> {
         builder:
             (BuildContext context, AsyncSnapshot<DocumentSnapshot> snapshot) {
           if (snapshot.hasError) {
-            return Text("Something went wrong");
+            return Loading();
           }
 
           if (snapshot.connectionState == ConnectionState.done) {
@@ -324,7 +325,7 @@ class _CreateMeetingState extends State<CreateMeeting> {
               ),
             );
           }
-          return Text("loading");
+          return Loading();
 
           // );
         });
@@ -382,7 +383,7 @@ sendEmail(
         '\n <p><b>Meeting ID: </b>' +
         meetingId +
         '</p>' +
-        '\n <p>To respond, follow the link below.</p> \n **Link To Response Form**';
+        '\n <p>To respond, follow the link below.</p> \n <a href="https://syncup-4cda3.firebaseapp.com">Sync Up</a>';
 
   try {
     final sendReport = await send(message, smtpServer);
