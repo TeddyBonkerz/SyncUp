@@ -1,12 +1,12 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import 'package:syncup/constants.dart';
 import 'package:syncup/models/attendeeModel.dart';
 import 'package:syncup/models/listMeetingModel.dart';
 import 'package:syncup/models/meetingModel.dart';
 import 'package:syncup/models/userModel.dart';
-import 'package:syncup/screens/home.dart';
 import 'package:mailer/mailer.dart';
 import 'package:mailer/smtp_server.dart';
 import 'package:syncup/screens/loading.dart';
@@ -52,7 +52,7 @@ class _CreateMeetingState extends State<CreateMeeting> {
   }
 
   Future<void> _selectTime(BuildContext context) async {
-    final TimeOfDay picked_s = await showTimePicker(
+    final TimeOfDay pickedS = await showTimePicker(
         context: context,
         initialTime: selectedTime == null ? TimeOfDay.now() : selectedTime,
         builder: (BuildContext context, Widget child) {
@@ -62,15 +62,16 @@ class _CreateMeetingState extends State<CreateMeeting> {
           );
         });
 
-    if (picked_s != null && picked_s != selectedTime)
+    if (pickedS != null && pickedS != selectedTime)
       setState(() {
-        selectedTime = picked_s;
-        time = picked_s.format(context);
+        selectedTime = pickedS;
+        time = pickedS.format(context);
       });
   }
 
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setEnabledSystemUIOverlays([SystemUiOverlay.top]);
     UserModel user = Provider.of<UserModel>(context);
 
     CollectionReference meetingCollection = FirebaseFirestore.instance
@@ -329,6 +330,7 @@ class _CreateMeetingState extends State<CreateMeeting> {
 
           // );
         });
+
   }
 }
 
@@ -348,6 +350,7 @@ sendEmail(
   String username = 'mysyncupapp@gmail.com';
   String password = 'cYQ3gUZp7X@hPeG';
 
+  // ignore: deprecated_member_use
   final smtpServer = gmail(username, password);
 
   // Create our message.

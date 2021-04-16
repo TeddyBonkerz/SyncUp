@@ -1,7 +1,4 @@
-import 'package:syncup/models/meetingModel.dart';
-import 'package:syncup/models/userModel.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:syncup/models/attendeeModel.dart';
 
 class DatabaseService {
   final String uId;
@@ -14,17 +11,6 @@ class DatabaseService {
   final CollectionReference userCollection =
       FirebaseFirestore.instance.collection('users');
 
-  // Stream<List<Meeting>> getmeetingList() {
-  //   Stream<List<Meeting>> meetingList = userCollection
-  //       .doc(uId)
-  //       .collection('meeting')
-  //       .snapshots()
-  //       .map((snapshot) => snapshot.docs
-  //           .map((document) => Meeting.fromJson(document.data()))
-  //           .toList());
-  //   return meetingList;
-  // }
-
   Stream getStream() {
     return FirebaseFirestore.instance
         .collection('users')
@@ -34,10 +20,9 @@ class DatabaseService {
   }
 
   Future<void> createUserData() async {
-    // userCollection.doc(uId).collection('meeting');
-    return userCollection
-        .doc(uId)
-        .set({'firstName': firstName, 'lastName': lastName});
+    return userCollection.doc(uId).set(
+      {'firstName': firstName, 'lastName': lastName},
+    );
   }
 
   Future<void> deleteMeeting(String meetingId) {
@@ -46,8 +31,12 @@ class DatabaseService {
         .collection('meeting')
         .doc(meetingId)
         .delete()
-        .then((value) => print("Meeting Deleted"))
-        .catchError((error) => print("Failed to delete meeting: $error"));
+        .then(
+          (value) => print("Meeting Deleted"),
+        )
+        .catchError(
+          (error) => print("Failed to delete meeting: $error"),
+        );
   }
 
   Future<void> addMeeting(String title, String content, String dateTime,
@@ -72,5 +61,6 @@ class DatabaseService {
       'completed': false,
       // 'organizer': organizer,
     });
+
   }
 }

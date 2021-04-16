@@ -1,4 +1,4 @@
-package com.example.syncup
+package com.team5.syncup
 
 import io.flutter.embedding.android.FlutterActivity
 

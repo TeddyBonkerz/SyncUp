@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:syncup/constants.dart';
 
@@ -11,7 +12,6 @@ class AttendeeResponse extends StatefulWidget {
 }
 
 class AttendeeResponseState extends State<AttendeeResponse> {
-
   Widget _buildMeetingDetails() {
     //Build meeting details based on meeting ID
     return Text(
@@ -57,6 +57,7 @@ class AttendeeResponseState extends State<AttendeeResponse> {
 
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setEnabledSystemUIOverlays([SystemUiOverlay.top]);
     return Scaffold(
       appBar: AppBar(
         title: Row(
