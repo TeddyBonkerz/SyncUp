@@ -22,7 +22,7 @@ function checkAttendee() {
     meetingRef = database.doc(`users/${organizerId}/meeting/${meetingId}`);
 
 
-    //console.log("organ" + organizerId)
+    console.log("organ" + organizerId)
     meetingRef.onSnapshot((doc) => {
         if (!doc.exists) console.log("Aint here chief");
         var length = doc.data()['attendeeList'].length
