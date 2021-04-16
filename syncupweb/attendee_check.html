@@ -13,7 +13,7 @@
     <div class="container">
         <div class="title">SyncUp Response Form</div>
         <div class="content">
-            <form onsubmit="checkAttendee(); return false">
+            <form onsubmit="return checkAttendee();">
                 <div class="user-details">
                     <div class="input-box">
                         <span class="details">Organizer ID</span>
@@ -23,10 +23,10 @@
                         <span class="details">Meeting ID</span>
                         <input id="meeting-id" type="text" placeholder="Enter Meeting ID" required>
                     </div>
-                    <!-- <div class="input-box">
+                    <div class="input-box">
                         <span class="details">Email</span>
                         <input id="email" type="text" placeholder="Enter your Email" required>
-                    </div> -->
+                    </div>
                 </div>
                 <div class="button">
                     <input id="submit" type="submit" value="Submit">
@@ -35,12 +35,13 @@
         </div>
     </div>
 
+    <script src="js/main.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.4.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.4.1/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.4.1/firebase-database.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.4.1/firebase-firestore.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.4.1/firebase-storage.js"></script>
-    <script src="js/main.js"></script>
+
 </body>
 
 </html>
