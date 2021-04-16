@@ -71,7 +71,6 @@ class _CreateMeetingState extends State<CreateMeeting> {
 
   @override
   Widget build(BuildContext context) {
-    SystemChrome.setEnabledSystemUIOverlays([SystemUiOverlay.top]);
     UserModel user = Provider.of<UserModel>(context);
 
     CollectionReference meetingCollection = FirebaseFirestore.instance
@@ -330,7 +329,6 @@ class _CreateMeetingState extends State<CreateMeeting> {
 
           // );
         });
-
   }
 }
 

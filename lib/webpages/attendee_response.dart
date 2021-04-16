@@ -57,7 +57,6 @@ class AttendeeResponseState extends State<AttendeeResponse> {
 
   @override
   Widget build(BuildContext context) {
-    SystemChrome.setEnabledSystemUIOverlays([SystemUiOverlay.top]);
     return Scaffold(
       appBar: AppBar(
         title: Row(

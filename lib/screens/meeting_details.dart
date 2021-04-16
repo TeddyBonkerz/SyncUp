@@ -22,7 +22,6 @@ class _MeetingDetails extends State<MeetingDetails> {
 
   @override
   Widget build(BuildContext context) {
-    SystemChrome.setEnabledSystemUIOverlays([SystemUiOverlay.top]);
     final user = Provider.of<UserModel>(context);
     String uId = user.uId;
 
