@@ -22,14 +22,14 @@ function checkAttendee() {
     meetingRef = database.doc(`users/${organizerId}/meeting/${meetingId}`);
 
 
-    console.log("organ" + organizerId)
+    //console.log("organ" + organizerId)
     meetingRef.onSnapshot((doc) => {
         if (!doc.exists) console.log("Aint here chief");
         var length = doc.data()['attendeeList'].length
         for (var i = 0; i < length; i++) {
             var attendee = doc.data()['attendeeList'][i]['email'];
             if (attendee == email) {
-                console.log(doc.data()['attendeeList'][i]['email']);
+                //console.log(doc.data()['attendeeList'][i]['email']);
                 loadResults()
             }
         }
@@ -47,7 +47,7 @@ function loadResults() {
 
     meetingRef.onSnapshot((doc) => {
         if (!doc.exists) console.log("Aint here chief");
-        console.log("Document data:", doc.data());
+        //console.log("Document data:", doc.data());
         document.getElementById("title").innerHTML = doc.data()['title']
         document.getElementById("content").innerHTML = doc.data()['content']
         document.getElementById("time").innerHTML = doc.data()['dateTime']
