@@ -48,7 +48,7 @@ body {
     background: linear-gradient(135deg, #71b7e6, #9b59b6);
 }
 
-.content form .user-details {
+.check .user-details {
     background-color: rgb(230, 230, 230);
     display: flex;
     flex-wrap: wrap;
@@ -64,20 +64,20 @@ body {
     margin-bottom: 5px;
 }
 
-form .input-box span.details {
+.input-box span.details {
     display: block;
     font-weight: 900;
     margin-bottom: 5px;
 }
 
-form .button {
+.button {
     height: 45px;
     display: flex;
     flex-direction: row;
     justify-content: center;
 }
 
-form .button input {
+.button input {
     margin: 0 auto;
     height: 100%;
     width: 45%;
@@ -92,7 +92,7 @@ form .button input {
     background: #71b7e6;
 }
 
-form .button .decline {
+.button .decline {
     background: #f55b5b;
 }
 
@@ -100,14 +100,14 @@ form .button .decline {
     .container {
         max-width: 100%;
     }
-    form .user-details .input-box {
+    .user-details .input-box {
         margin-bottom: 15px;
         width: 100%;
     }
-    form .category {
+    .category {
         width: 100%;
     }
-    .content form .user-details {
+    .content .user-details {
         max-height: 300px;
         overflow-y: scroll;
     }

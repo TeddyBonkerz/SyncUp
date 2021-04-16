@@ -1,7 +1,3 @@
-const firebase = require("firebase/app");
-require("firebase/firestore");
-
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
 var firebaseConfig = {
     apiKey: "AIzaSyAb0PE7nlKlJNQ9uDD34Sxs8CzDTAGs3Ts",
     authDomain: "syncup-4cda3.firebaseapp.com",
@@ -14,45 +10,58 @@ var firebaseConfig = {
 };
 
 firebase.initializeApp(firebaseConfig);
-const database = firebase.firestore();
 
-
-const organizerId = document.getElementById("organizer-id").value;
-const meetingId = document.getElementById("meeting-id").value;
-const email = document.getElementById("email").value;
-
-//For Testing
-// const organizerId = "4iOHIovYTBaglQW0bnYnMSC3vm02";
-// const meetingId = "HPs2ADDsNHEXIuc236wS";
-// const email = "rtihdfh@gmail.com";
-
-const meetingRef = database.collection("users").doc(organizerId).collection("meeting").doc(meetingId);
+globalThis.organizerId;
 
 function checkAttendee() {
+    database = firebase.firestore();
+    organizerId = document.getElementById("organizer-id").value;
+    meetingId = document.getElementById("meeting-id").value;
+    email = document.getElementById("email").value;
+
+    const meetingRef = database.doc(`users/${organizerId}/meeting/${meetingId}`);
+
+
+    //console.log("organ" + organizerId)
     meetingRef.onSnapshot((doc) => {
-        if (!doc.exists) return;
+        if (!doc.exists) console.log("Aint here chief");
         var length = doc.data()['attendeeList'].length
         for (var i = 0; i < length; i++) {
             var attendee = doc.data()['attendeeList'][i]['email'];
             if (attendee == email) {
                 console.log(doc.data()['attendeeList'][i]['email']);
-                //location.href = "attendee_response.html"
+
+                location.href = "attendee_response.html"
+                loadResults()
             }
         }
     });
 }
 
-function setResponse() {
-    meetingRef.where()
-        .update({ attendeeList: [{ email: email, response: true }] })
-        .then(() => {
-            console.log("Document updated"); // Document updated
-        })
-        .catch((error) => {
-            console.error("Error updating doc", error);
-        });
+function loadResults() {
 
+    const meetingRef = database.doc(`users/${organizerId}/meeting/${meetingId}`);
+    meetingRef.onSnapshot((doc) => {
+        if (!doc.exists) console.log("Aint here chief");
+        console.log("Document data:", doc.data());
+        document.getElementById("title").innerHTML = doc.data()['title']
+        document.getElementById("content").innerHTML = doc.data()['content']
+        document.getElementById("time").innerHTML = doc.data()['dateTime']
+        document.getElementById("location").innerHTML = doc.data()['location']
+    });
 }
 
-//checkAttendee();
-setResponse();
+// function setResponse() {
+//     meetingRef.where()
+//         .update({ attendeeList: [{ email: email, response: true }] })
+//         .then(() => {
+//             console.log("Document updated"); // Document updated
+//         })
+//         .catch((error) => {
+//             console.error("Error updating doc", error);
+//         });
+
+// }
+
+// //checkAttendee();
+// setResponse();

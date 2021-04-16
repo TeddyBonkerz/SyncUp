@@ -5,47 +5,48 @@
     <meta charset="UTF-8">
     <link rel="stylesheet" href="attendee_response.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body onload="loadResults()">
+    <div class="container">
+        <div class="title">SyncUp Response Form</div>
+        <div class="content">
+            <span class="meeting-dets">Meeting Details</span>
+            <div class="user-details">
+                <div class="input-box">
+                    <span class="details">Title: </span>
+                    <p id="title" type="text"></p>
+                </div>
+                <div class="input-box">
+                    <span class="details">Decription: </span>
+                    <p id="content" type="text"></p>
+                </div>
+                <div class="input-box">
+                    <span class="details">When: </span>
+                    <p id="time" type="text"></p>
+                </div>
+                <div class="input-box">
+                    <span class="details">Where: </span>
+                    <p id="location" type="text"></p>
+                </div>
+            </div>
+            <div class="response-prompt">
+                Would you like to accept this meeting ?
+            </div>
+            <div class="button">
+                <input onclick="setResponse()" class="confirm" type="submit" value="Confirm">
+                <input class="decline" type="submit" value="Decline">
+            </div>
+        </div>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.4.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.4.1/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.4.1/firebase-database.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.4.1/firebase-firestore.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.4.1/firebase-storage.js"></script>
-</head>
 
-<body>
-    <div class="container">
-        <div class="title">SyncUp Response Form</div>
-        <div class="content">
-            <span class="meeting-dets">Meeting Details</span>
-            <form action="#">
-                <div class="user-details">
-                    <div class="input-box">
-                        <span class="details">Title: </span>
-                        <p>stufff jhkbakhfvnbkjenv oinaevufkejuvnev oinn;asvjnwvnjwev oinase;vnewvnew oni;onvnwsevnweav oniwnovjnwvn;env </p>
-                    </div>
-                    <div class="input-box">
-                        <span class="details">Decription: </span>
-                        <p>stufff jhkbakhfvnbkjenv oinaevufkejuvnev oinn;asvjnwvnjwev oinase;vnewvnew oni;onvnwsevnweav oniwnovjnwvn;env </p>
-                    </div>
-                    <div class="input-box">
-                        <span class="details">When: </span>
-                        <p>stufff jhkbakhfvnbkjenv oinaevufkejuvnev oinn;asvjnwvnjwev oinase;vnewvnew oni;onvnwsevnweav oniwnovjnwvn;env </p>
-                    </div>
-                    <div class="input-box">
-                        <span class="details">Where: </span>
-                        <p>stufff jhkbakhfvnbkjenv oinaevufkejuvnev oinn;asvjnwvnjwev oinase;vnewvnew oni;onvnwsevnweav oniwnovjnwvn;env </p>
-                    </div>
-                </div>
-                <div class="response-prompt">
-                    Would you like to accept this meeting ?
-                </div>
-                <div class="button">
-                    <input class="confirm" type="submit" value="Confirm">
-                    <input class="decline" type="submit" value="Decline">
-                </div>
-            </form>
-        </div>
-    </div>
     <script src="js/main.js"></script>
 
 </body>
