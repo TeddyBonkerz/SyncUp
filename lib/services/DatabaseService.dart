@@ -40,22 +40,27 @@ class DatabaseService {
   }
 
   Future<void> addMeeting(String title, String content, String dateTime,
-      String location, List<String> list) async {
-    print(
-      userCollection.doc(uId),
-    );
-
+      String location, List<String> list, String meetingId) async {
+    print(userCollection.doc(uId));
+    // String organizer;
+    // await userCollection.doc(uId).get().then((snapshot) {
+    //   organizer = snapshot.get('organizer').toString();
+    // });
     List<Map<String, Object>> attendeeList =
         list.map((e) => {'email': e, 'response': false}).toList();
-    return await userCollection.doc(uId).collection('meeting').add(
-      {
-        'title': title,
-        'content': content,
-        'dateTime': dateTime,
-        'location': location,
-        'attendeeList': attendeeList,
-        'completed': false,
-      },
-    );
+    return await userCollection
+        .doc(uId)
+        .collection('meeting')
+        .doc(meetingId)
+        .set({
+      'title': title,
+      'content': content,
+      'dateTime': dateTime,
+      'location': location,
+      'attendeeList': attendeeList,
+      'completed': false,
+      // 'organizer': organizer,
+    });
+
   }
 }

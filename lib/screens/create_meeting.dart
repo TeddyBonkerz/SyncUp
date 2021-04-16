@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
@@ -8,6 +9,7 @@ import 'package:syncup/models/meetingModel.dart';
 import 'package:syncup/models/userModel.dart';
 import 'package:mailer/mailer.dart';
 import 'package:mailer/smtp_server.dart';
+import 'package:syncup/screens/loading.dart';
 import 'package:syncup/screens/wrapper.dart';
 import 'package:syncup/services/DatabaseService.dart';
 
@@ -72,223 +74,278 @@ class _CreateMeetingState extends State<CreateMeeting> {
     SystemChrome.setEnabledSystemUIOverlays([SystemUiOverlay.top]);
     UserModel user = Provider.of<UserModel>(context);
 
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Create A Meeting'),
-      ),
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: EdgeInsets.symmetric(vertical: 80.0, horizontal: 20.0),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: <Widget>[
-              TextField(
-                controller: _subjectText,
-                decoration: InputDecoration(
-                  errorText:
-                      _validateSubject ? null : 'Subject cannot be empty',
-                  icon: Icon(
-                    Icons.topic_outlined,
-                    color: primaryColor,
-                  ),
-                  labelText: 'Subject',
-                  labelStyle: TextStyle(
-                      //fontWeight: FontWeight.bold,
-                      fontFamily: 'Montserrat',
-                      color: Colors.grey),
-                  focusedBorder: UnderlineInputBorder(
-                    borderSide: BorderSide(color: primaryColor),
-                  ),
-                ),
-              ),
-              TextField(
-                controller: _contentText,
-                keyboardType: TextInputType.multiline,
-                minLines: 1,
-                maxLines: 3,
-                decoration: InputDecoration(
-                  icon: Icon(
-                    Icons.content_paste_rounded,
-                    color: primaryColor,
-                  ),
-                  labelText: 'Content',
-                  labelStyle: TextStyle(
-                      //fontWeight: FontWeight.bold,
-                      fontFamily: 'Montserrat',
-                      color: Colors.grey),
-                  focusedBorder: UnderlineInputBorder(
-                    borderSide: BorderSide(color: primaryColor),
-                  ),
-                ),
-              ),
-              // Text("${selectedDate.toLocal()}".split(' ')[0]),
-              TextField(
-                controller: _locationText,
-                decoration: InputDecoration(
-                  errorText:
-                      _validateLocation ? null : 'Location cannot be empty',
-                  icon: Icon(
-                    Icons.location_pin,
-                    color: primaryColor,
-                  ),
-                  labelText: 'Location',
-                  labelStyle: TextStyle(
-                      //fontWeight: FontWeight.bold,
-                      fontFamily: 'Montserrat',
-                      color: Colors.grey),
-                  focusedBorder: UnderlineInputBorder(
-                    borderSide: BorderSide(color: primaryColor),
-                  ),
-                ),
-              ),
-              SizedBox(
-                height: 10.0,
-              ),
-              Row(
-                children: <Widget>[
-                  Icon(
-                    Icons.calendar_today_rounded,
-                    color: primaryColor,
-                  ),
-                  SizedBox(width: 15.0),
-                  ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10.0),
-                      ),
-                      primary: primaryColor,
-                    ),
-                    onPressed: () => _selectDate(context),
-                    // child: Text('Select date'),
-                    child: Text(
-                      selectedDate == null
-                          ? 'Select a date'
-                          : "${selectedDate.toLocal()}".split(' ')[0],
-                      style: TextStyle(
-                        color: Colors.white,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-              Row(
-                children: <Widget>[
-                  Icon(
-                    Icons.av_timer_rounded,
-                    color: primaryColor,
-                  ),
-                  SizedBox(width: 15.0),
-                  ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10.0),
-                      ),
-                      primary: primaryColor,
-                    ),
-                    onPressed: () => _selectTime(context),
-                    // child: Text('Select date'),
-                    child: Text(
-                      selectedTime == null
-                          ? 'Select time'
-                          : selectedTime.format(context),
-                      style: TextStyle(
-                        color: Colors.white,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-              TextField(
-                controller: _emailList,
-                keyboardType: TextInputType.multiline,
-                minLines: 1,
-                maxLines: 3,
-                // controller: _firstNameText,
-                decoration: InputDecoration(
-                  errorText:
-                      _validateEmail ? null : 'Email list cannot be empty',
-                  icon: Icon(
-                    Icons.alternate_email_rounded,
-                    color: primaryColor,
-                  ),
-                  labelText: "invitees' emails (seperate by new line)",
-                  labelStyle: TextStyle(
-                      //fontWeight: FontWeight.bold,
-                      fontFamily: 'Montserrat',
-                      color: Colors.grey),
-                  focusedBorder: UnderlineInputBorder(
-                    borderSide: BorderSide(color: primaryColor),
-                  ),
-                ),
-              ),
-              SizedBox(height: 10.0),
-              ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10.0),
-                  ),
-                  primary: primaryColor,
-                ),
-                onPressed: () {
-                  setState(
-                    () {
-                      bool subjectTextValid = _subjectText.text.isNotEmpty;
-                      bool emailListValid = _emailList.text.isNotEmpty;
-                      bool locationTextValid = _locationText.text.isNotEmpty;
-                      if (subjectTextValid &&
-                          emailListValid &&
-                          locationTextValid &&
-                          date != null &&
-                          time != null) {
-                        error = '';
-                        _validateEmail = true;
-                        _validateSubject = true;
-                        _validateLocation = true;
-                        subject = _subjectText.text.toString();
-                        content = _contentText.text.toString();
-                        location = _locationText.text.toString();
-                        emailList = _emailList.text.toString().split("\n");
+    CollectionReference meetingCollection = FirebaseFirestore.instance
+        .collection('users')
+        .doc(user.uId)
+        .collection('meeting');
 
-                        showAlertDialog(context, subject, content, date, time,
-                            location, emailList, user);
-                        print("$subject $date $time $content $emailList");
-                      } else {
-                        if (!subjectTextValid) {
-                          _validateSubject = false;
-                        }
-                        if (!emailListValid) {
-                          _validateEmail = false;
-                        }
-                        if (date == null || time == null) {
-                          error = "You haven't chosen date or time";
-                        }
-                      }
-                    },
-                  );
-                },
-                child: Text(
-                  'Create',
-                  style: TextStyle(
-                    color: Colors.white,
+    String meetingId = meetingCollection.doc().id;
+
+    Future<DocumentSnapshot> getData() async {
+      return FirebaseFirestore.instance.collection('users').doc(user.uId).get();
+    }
+
+    return FutureBuilder(
+        future: getData(),
+        builder:
+            (BuildContext context, AsyncSnapshot<DocumentSnapshot> snapshot) {
+          if (snapshot.hasError) {
+            return Loading();
+          }
+
+          if (snapshot.connectionState == ConnectionState.done) {
+            Map<String, dynamic> data = snapshot.data.data();
+
+            return Scaffold(
+              appBar: AppBar(
+                title: Text('Create A Meeting'),
+              ),
+              body: SingleChildScrollView(
+                child: Padding(
+                  padding:
+                      EdgeInsets.symmetric(vertical: 80.0, horizontal: 20.0),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: <Widget>[
+                      TextField(
+                        controller: _subjectText,
+                        decoration: InputDecoration(
+                          errorText: _validateSubject
+                              ? null
+                              : 'Subject cannot be empty',
+                          icon: Icon(
+                            Icons.topic_outlined,
+                            color: primaryColor,
+                          ),
+                          labelText: 'Subject',
+                          labelStyle: TextStyle(
+                              //fontWeight: FontWeight.bold,
+                              fontFamily: 'Montserrat',
+                              color: Colors.grey),
+                          focusedBorder: UnderlineInputBorder(
+                            borderSide: BorderSide(color: primaryColor),
+                          ),
+                        ),
+                      ),
+                      TextField(
+                        controller: _contentText,
+                        keyboardType: TextInputType.multiline,
+                        minLines: 1,
+                        maxLines: 3,
+                        decoration: InputDecoration(
+                          icon: Icon(
+                            Icons.content_paste_rounded,
+                            color: primaryColor,
+                          ),
+                          labelText: 'Content',
+                          labelStyle: TextStyle(
+                              //fontWeight: FontWeight.bold,
+                              fontFamily: 'Montserrat',
+                              color: Colors.grey),
+                          focusedBorder: UnderlineInputBorder(
+                            borderSide: BorderSide(color: primaryColor),
+                          ),
+                        ),
+                      ),
+                      // Text("${selectedDate.toLocal()}".split(' ')[0]),
+                      TextField(
+                        controller: _locationText,
+                        decoration: InputDecoration(
+                          errorText: _validateLocation
+                              ? null
+                              : 'Location cannot be empty',
+                          icon: Icon(
+                            Icons.location_pin,
+                            color: primaryColor,
+                          ),
+                          labelText: 'Location',
+                          labelStyle: TextStyle(
+                              //fontWeight: FontWeight.bold,
+                              fontFamily: 'Montserrat',
+                              color: Colors.grey),
+                          focusedBorder: UnderlineInputBorder(
+                            borderSide: BorderSide(color: primaryColor),
+                          ),
+                        ),
+                      ),
+                      SizedBox(
+                        height: 10.0,
+                      ),
+                      Row(
+                        children: <Widget>[
+                          Icon(
+                            Icons.calendar_today_rounded,
+                            color: primaryColor,
+                          ),
+                          SizedBox(width: 15.0),
+                          ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(10.0),
+                              ),
+                              primary: primaryColor,
+                            ),
+                            onPressed: () => _selectDate(context),
+                            // child: Text('Select date'),
+                            child: Text(
+                              selectedDate == null
+                                  ? 'Select a date'
+                                  : "${selectedDate.toLocal()}".split(' ')[0],
+                              style: TextStyle(
+                                color: Colors.white,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                      Row(
+                        children: <Widget>[
+                          Icon(
+                            Icons.av_timer_rounded,
+                            color: primaryColor,
+                          ),
+                          SizedBox(width: 15.0),
+                          ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(10.0),
+                              ),
+                              primary: primaryColor,
+                            ),
+                            onPressed: () => _selectTime(context),
+                            // child: Text('Select date'),
+                            child: Text(
+                              selectedTime == null
+                                  ? 'Select time'
+                                  : selectedTime.format(context),
+                              style: TextStyle(
+                                color: Colors.white,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                      TextField(
+                        controller: _emailList,
+                        keyboardType: TextInputType.multiline,
+                        minLines: 1,
+                        maxLines: 3,
+                        // controller: _firstNameText,
+                        decoration: InputDecoration(
+                          errorText: _validateEmail
+                              ? null
+                              : 'Email list cannot be empty',
+                          icon: Icon(
+                            Icons.alternate_email_rounded,
+                            color: primaryColor,
+                          ),
+                          labelText: "invitees' emails (seperate by new line)",
+                          labelStyle: TextStyle(
+                              //fontWeight: FontWeight.bold,
+                              fontFamily: 'Montserrat',
+                              color: Colors.grey),
+                          focusedBorder: UnderlineInputBorder(
+                            borderSide: BorderSide(color: primaryColor),
+                          ),
+                        ),
+                      ),
+                      SizedBox(height: 10.0),
+                      ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10.0),
+                          ),
+                          primary: primaryColor,
+                        ),
+                        onPressed: () {
+                          setState(
+                            () {
+                              bool subjectTextValid =
+                                  _subjectText.text.isNotEmpty;
+                              bool emailListValid = _emailList.text.isNotEmpty;
+                              bool locationTextValid =
+                                  _locationText.text.isNotEmpty;
+                              if (subjectTextValid &&
+                                  emailListValid &&
+                                  locationTextValid &&
+                                  date != null &&
+                                  time != null) {
+                                error = '';
+                                _validateEmail = true;
+                                _validateSubject = true;
+                                _validateLocation = true;
+                                subject = _subjectText.text.toString();
+                                content = _contentText.text.toString();
+                                location = _locationText.text.toString();
+                                emailList =
+                                    _emailList.text.toString().split("\n");
+
+                                showAlertDialog(
+                                    context,
+                                    subject,
+                                    content,
+                                    date,
+                                    time,
+                                    location,
+                                    emailList,
+                                    user,
+                                    meetingId,
+                                    data['firstName'].toString(),
+                                    data['lastName'].toString());
+                                print(
+                                    "$subject $date $time $content $emailList");
+                              } else {
+                                if (!subjectTextValid) {
+                                  _validateSubject = false;
+                                }
+                                if (!emailListValid) {
+                                  _validateEmail = false;
+                                }
+                                if (date == null || time == null) {
+                                  error = "You haven't chosen date or time";
+                                }
+                              }
+                            },
+                          );
+                        },
+                        child: Text(
+                          'Create',
+                          style: TextStyle(
+                            color: Colors.white,
+                          ),
+                        ),
+                      ),
+                      Text(
+                        error,
+                        style: TextStyle(color: Colors.red, fontSize: 14.0),
+                      ),
+                    ],
                   ),
                 ),
               ),
-              Text(
-                error,
-                style: TextStyle(color: Colors.red, fontSize: 14.0),
-              ),
-            ],
-          ),
-        ),
-      ),
-    );
+            );
+          }
+          return Loading();
+
+          // );
+        });
+
   }
 }
 
 //Method for sending email to recipients
-sendEmail(String firstName, String lastName, String subject, String content,
-    String date, String time, String location, List<String> emailList) async {
+sendEmail(
+    String subject,
+    String content,
+    String date,
+    String time,
+    String location,
+    List<String> emailList,
+    String meetingId,
+    String userId,
+    String firstName,
+    String lastName) async {
   //Enter email and password, ensure you enable less secure app access if its a gmail account
   String username = 'mysyncupapp@gmail.com';
   String password = 'cYQ3gUZp7X@hPeG';
@@ -318,7 +375,18 @@ sendEmail(String firstName, String lastName, String subject, String content,
         ',' +
         time +
         '</p>' +
-        '\n <p>To respond, follow the link below.</p> \n **Link To Response Form**';
+        '\n <p><b>Organizer Name: </b>' +
+        firstName +
+        ' ' +
+        lastName +
+        '</p>' +
+        '\n <p><b>Organizer ID: </b>' +
+        userId +
+        '</p>' +
+        '\n <p><b>Meeting ID: </b>' +
+        meetingId +
+        '</p>' +
+        '\n <p>To respond, follow the link below.</p> \n <a href="https://syncup-4cda3.web.app">Sync Up</a>';
 
   try {
     final sendReport = await send(message, smtpServer);
@@ -339,7 +407,10 @@ showAlertDialog(
     String time,
     String location,
     List<String> emailList,
-    UserModel user) {
+    UserModel user,
+    String meetingId,
+    String firstName,
+    String lastName) {
   // set up the buttons
   Widget cancelButton = TextButton(
     child: Text("Go back"),
@@ -359,8 +430,8 @@ showAlertDialog(
           location: location,
           attendees: emailList.map((email) => Attendee(email: email)).toList());
       MeetingList.instance.meetingList.add(meeting);
-      await DatabaseService(uId: user.uId)
-          .addMeeting(subject, content, '$date at $time', location, emailList);
+      await DatabaseService(uId: user.uId).addMeeting(
+          subject, content, '$date at $time', location, emailList, meetingId);
 
       Navigator.pushAndRemoveUntil(
         context,
@@ -371,8 +442,8 @@ showAlertDialog(
       print(fName);
       String lName = user.getFirstName;
       print(lName);
-      sendEmail(
-          fName, lName, subject, content, date, time, location, emailList);
+      sendEmail(subject, content, date, time, location, emailList, meetingId,
+          user.uId, firstName, lastName);
     },
   );
 
