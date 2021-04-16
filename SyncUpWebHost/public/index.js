@@ -1,7 +1,5 @@
 const form = document.querySelector('#authorize-form');
-
 const yesButton = document.querySelector('.yes');
-
 const noButton = document.querySelector('.no');
 
 function voteYes(meetingList,organizerId,meetingId,email){
