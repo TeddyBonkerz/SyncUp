@@ -15,7 +15,7 @@ body {
     background: linear-gradient(135deg, #71b7e6, #9b59b6);
 }
 
-.container {
+.resp-container {
     max-width: 700px;
     width: 100%;
     background-color: #fff;
@@ -24,20 +24,20 @@ body {
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15);
 }
 
-.container .title {
+.resp-container .resp-title {
     font-size: 25px;
     font-weight: 500;
     position: relative;
 }
 
-.container .response-prompt {
+.resp-container .resp-response-prompt {
     margin: 1.5rem;
     font-size: 25px;
     font-weight: 500;
     position: relative;
 }
 
-.container .title::before {
+.resp-container .resp-title::before {
     content: "";
     position: absolute;
     left: 0;
@@ -48,36 +48,37 @@ body {
     background: linear-gradient(135deg, #71b7e6, #9b59b6);
 }
 
-.check .user-details {
+.resp-check .resp-user-details {
     background-color: rgb(230, 230, 230);
     display: flex;
     flex-wrap: wrap;
+    flex-direction: column;
     justify-content: space-between;
     margin: 20px 0 12px 0;
     padding: 1.5rem 1.5rem;
 }
 
-.meeting-dets {
+.resp-meeting-dets {
     display: block;
     font-size: large;
     font-weight: 900;
     margin-bottom: 5px;
 }
 
-.input-box span.details {
+.resp-input-box span.resp-details {
     display: block;
     font-weight: 900;
     margin-bottom: 5px;
 }
 
-.button {
+.resp-button {
     height: 45px;
     display: flex;
     flex-direction: row;
     justify-content: center;
 }
 
-.button input {
+.resp-button input {
     margin: 0 auto;
     height: 100%;
     width: 45%;
@@ -92,26 +93,26 @@ body {
     background: #71b7e6;
 }
 
-.button .decline {
+.resp-button .resp-decline {
     background: #f55b5b;
 }
 
 @media(max-width: 584px) {
-    .container {
+    .resp-container {
         max-width: 100%;
     }
-    .user-details .input-box {
+    .resp-user-details .resp-input-box {
         margin-bottom: 15px;
         width: 100%;
     }
-    .category {
+    .resp-category {
         width: 100%;
     }
-    .content .user-details {
+    .resp-content .resp-user-details {
         max-height: 300px;
         overflow-y: scroll;
     }
-    .user-details::-webkit-scrollbar {
+    .resp-user-details::-webkit-scrollbar {
         width: 5px;
     }
 }

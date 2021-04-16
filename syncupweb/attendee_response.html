@@ -7,35 +7,35 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 
-<body onload="loadResults()">
-    <div class="container">
-        <div class="title">SyncUp Response Form</div>
-        <div class="content">
-            <span class="meeting-dets">Meeting Details</span>
-            <div class="user-details">
-                <div class="input-box">
-                    <span class="details">Title: </span>
+<body>
+    <div class="resp-container">
+        <div class="resp-title">SyncUp Response Form</div>
+        <div class="resp-check">
+            <span class="resp-meeting-dets">Meeting Details</span>
+            <div class="resp-user-details">
+                <div class="resp-input-box">
+                    <span class="resp-details">Title: </span>
                     <p id="title" type="text"></p>
                 </div>
-                <div class="input-box">
-                    <span class="details">Decription: </span>
+                <div class="resp-input-box">
+                    <span class="resp-details">Decription: </span>
                     <p id="content" type="text"></p>
                 </div>
-                <div class="input-box">
-                    <span class="details">When: </span>
+                <div class="resp-input-box">
+                    <span class="resp-details">When: </span>
                     <p id="time" type="text"></p>
                 </div>
-                <div class="input-box">
-                    <span class="details">Where: </span>
+                <div class="resp-input-box">
+                    <span class="resp-details">Where: </span>
                     <p id="location" type="text"></p>
                 </div>
             </div>
-            <div class="response-prompt">
+            <div class="resp-response-prompt">
                 Would you like to accept this meeting ?
             </div>
-            <div class="button">
-                <input onclick="setResponse()" class="confirm" type="submit" value="Confirm">
-                <input class="decline" type="submit" value="Decline">
+            <div class="resp-button">
+                <input onclick="setResponse()" class="resp-confirm" type="submit" value="Confirm">
+                <input class="resp-decline" type="submit" value="Decline">
             </div>
         </div>
     </div>
