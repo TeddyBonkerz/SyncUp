@@ -1,6 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import 'package:syncup/constants.dart';
 import 'package:syncup/models/userModel.dart';
@@ -19,7 +18,6 @@ class _MeetingDetails extends State<MeetingDetails> {
   QueryDocumentSnapshot meeting;
   _MeetingDetails({this.meeting});
   bool checkCompleted;
-
 
   @override
   Widget build(BuildContext context) {
@@ -53,29 +51,31 @@ class _MeetingDetails extends State<MeetingDetails> {
                   children: <Widget>[
                     ListTile(
                       leading: Icon(
-                            Icons.note,
-                            color: primaryColor,
-                          ),
+                        Icons.note,
+                        color: primaryColor,
+                      ),
                       contentPadding: const EdgeInsets.all(5.0),
                       title: Text('Meeting Details'),
-                      subtitle: Text(meeting.data()['content'],
-                        textAlign: TextAlign.left,)
+                      subtitle: Text(
+                        meeting.data()['content'],
+                        textAlign: TextAlign.left,
+                      ),
                     ),
                     // Time and Date Info
                     ListTile(
                         leading: Icon(
-                            Icons.av_timer_rounded,
-                            color: primaryColor,
-                          ),
+                          Icons.av_timer_rounded,
+                          color: primaryColor,
+                        ),
                         contentPadding: const EdgeInsets.all(5.0),
                         title: Text('Time / Date'),
                         subtitle: Text(meeting.data()['dateTime'])),
                     // Location Info
                     ListTile(
                         leading: Icon(
-                            Icons.map,
-                            color: primaryColor,
-                          ),
+                          Icons.map,
+                          color: primaryColor,
+                        ),
                         contentPadding: const EdgeInsets.all(5.0),
                         title: Text('Location'),
                         subtitle: Text(meeting.data()['location'])),
@@ -83,15 +83,14 @@ class _MeetingDetails extends State<MeetingDetails> {
                 ),
                 // View who is attending List
                 ListTile(
-                  leading: Icon(
-                            Icons.people,
-                            color: primaryColor,
-                          ),
-                  title: Text('List of Attendee Emails')),
-                
+                    leading: Icon(
+                      Icons.people,
+                      color: primaryColor,
+                    ),
+                    title: Text('List of Attendee Emails')),
+
                 Expanded(
-                  child: 
-                  ListView.builder(
+                  child: ListView.builder(
                     itemCount: meeting
                         .data()['attendeeList']
                         .length, // filler till we have actual list length
