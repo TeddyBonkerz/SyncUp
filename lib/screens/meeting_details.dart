@@ -20,6 +20,7 @@ class _MeetingDetails extends State<MeetingDetails> {
   _MeetingDetails({this.meeting});
   bool checkCompleted;
 
+
   @override
   Widget build(BuildContext context) {
     final user = Provider.of<UserModel>(context);
@@ -51,28 +52,46 @@ class _MeetingDetails extends State<MeetingDetails> {
                   //General Info: Description, time / date, Complete or not
                   children: <Widget>[
                     ListTile(
-                      contentPadding: const EdgeInsets.all(10.0),
-                      title: Text(
-                        meeting.data()['content'],
-                        textAlign: TextAlign.center,
-                      ),
+                      leading: Icon(
+                            Icons.note,
+                            color: primaryColor,
+                          ),
+                      contentPadding: const EdgeInsets.all(5.0),
+                      title: Text('Meeting Details'),
+                      subtitle: Text(meeting.data()['content'],
+                        textAlign: TextAlign.left,)
                     ),
                     // Time and Date Info
                     ListTile(
-                        contentPadding: const EdgeInsets.all(10.0),
+                        leading: Icon(
+                            Icons.av_timer_rounded,
+                            color: primaryColor,
+                          ),
+                        contentPadding: const EdgeInsets.all(5.0),
                         title: Text('Time / Date'),
                         subtitle: Text(meeting.data()['dateTime'])),
                     // Location Info
                     ListTile(
-                        contentPadding: const EdgeInsets.all(10.0),
+                        leading: Icon(
+                            Icons.map,
+                            color: primaryColor,
+                          ),
+                        contentPadding: const EdgeInsets.all(5.0),
                         title: Text('Location'),
                         subtitle: Text(meeting.data()['location'])),
                   ],
                 ),
                 // View who is attending List
-                ListTile(title: Text('List of Attendee Emails')),
+                ListTile(
+                  leading: Icon(
+                            Icons.people,
+                            color: primaryColor,
+                          ),
+                  title: Text('List of Attendee Emails')),
+                
                 Expanded(
-                  child: ListView.builder(
+                  child: 
+                  ListView.builder(
                     itemCount: meeting
                         .data()['attendeeList']
                         .length, // filler till we have actual list length
