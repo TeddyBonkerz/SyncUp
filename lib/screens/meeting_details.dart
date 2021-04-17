@@ -1,6 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import 'package:syncup/constants.dart';
 import 'package:syncup/models/userModel.dart';
@@ -51,26 +50,45 @@ class _MeetingDetails extends State<MeetingDetails> {
                   //General Info: Description, time / date, Complete or not
                   children: <Widget>[
                     ListTile(
-                      contentPadding: const EdgeInsets.all(10.0),
-                      title: Text(
+                      leading: Icon(
+                        Icons.note,
+                        color: primaryColor,
+                      ),
+                      contentPadding: const EdgeInsets.all(5.0),
+                      title: Text('Meeting Details'),
+                      subtitle: Text(
                         meeting.data()['content'],
-                        textAlign: TextAlign.center,
+                        textAlign: TextAlign.left,
                       ),
                     ),
                     // Time and Date Info
                     ListTile(
-                        contentPadding: const EdgeInsets.all(10.0),
+                        leading: Icon(
+                          Icons.av_timer_rounded,
+                          color: primaryColor,
+                        ),
+                        contentPadding: const EdgeInsets.all(5.0),
                         title: Text('Time / Date'),
                         subtitle: Text(meeting.data()['dateTime'])),
                     // Location Info
                     ListTile(
-                        contentPadding: const EdgeInsets.all(10.0),
+                        leading: Icon(
+                          Icons.map,
+                          color: primaryColor,
+                        ),
+                        contentPadding: const EdgeInsets.all(5.0),
                         title: Text('Location'),
                         subtitle: Text(meeting.data()['location'])),
                   ],
                 ),
                 // View who is attending List
-                ListTile(title: Text('List of Attendee Emails')),
+                ListTile(
+                    leading: Icon(
+                      Icons.people,
+                      color: primaryColor,
+                    ),
+                    title: Text('List of Attendee Emails')),
+
                 Expanded(
                   child: ListView.builder(
                     itemCount: meeting

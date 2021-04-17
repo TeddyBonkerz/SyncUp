@@ -12,6 +12,7 @@ import 'package:mailer/smtp_server.dart';
 import 'package:syncup/screens/loading.dart';
 import 'package:syncup/screens/wrapper.dart';
 import 'package:syncup/services/DatabaseService.dart';
+import 'package:intl/intl.dart';
 
 class CreateMeeting extends StatefulWidget {
   @override
@@ -47,7 +48,8 @@ class _CreateMeetingState extends State<CreateMeeting> {
     if (picked != null && picked != selectedDate)
       setState(() {
         selectedDate = picked;
-        date = "${selectedDate.toLocal()}".split(' ')[0];
+        //"${selectedDate.toLocal()}".split(' ')[0];
+        date = DateFormat.yMMMd().format(selectedDate).toString();
       });
   }
 
