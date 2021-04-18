@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:syncup/constants.dart';
 import 'package:syncup/models/userModel.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:syncup/services/DatabaseService.dart';
 
 class MeetingDetails extends StatefulWidget {
@@ -55,11 +56,18 @@ class _MeetingDetails extends State<MeetingDetails> {
                         color: primaryColor,
                       ),
                       contentPadding: const EdgeInsets.all(5.0),
-                      title: Text('Meeting Details'),
-                      subtitle: Text(
-                        meeting.data()['content'],
-                        textAlign: TextAlign.left,
-                      ),
+                      title: Text('Meeting Details',
+                        style: GoogleFonts.sourceSansPro(
+                        fontSize: 20,
+                        color: primaryColor,
+                        letterSpacing: 1,
+                        fontWeight: FontWeight.bold)),
+                      subtitle: Text(meeting.data()['content'],
+                      style: GoogleFonts.sourceSansPro(
+                          fontSize: 15,
+                          color: Colors.black,
+                          letterSpacing: 1),
+                      textAlign: TextAlign.left,)
                     ),
                     // Time and Date Info
                     ListTile(
@@ -68,8 +76,17 @@ class _MeetingDetails extends State<MeetingDetails> {
                           color: primaryColor,
                         ),
                         contentPadding: const EdgeInsets.all(5.0),
-                        title: Text('Time / Date'),
-                        subtitle: Text(meeting.data()['dateTime'])),
+                        title: Text('Time / Date',
+                          style: GoogleFonts.sourceSansPro(
+                          fontSize: 20,
+                          color: primaryColor,
+                          letterSpacing: 1,
+                          fontWeight: FontWeight.bold)),
+                        subtitle: Text(meeting.data()['dateTime'],
+                        style: GoogleFonts.sourceSansPro(
+                          fontSize: 15,
+                          color: Colors.black,
+                          letterSpacing: 1))),
                     // Location Info
                     ListTile(
                         leading: Icon(
@@ -77,47 +94,77 @@ class _MeetingDetails extends State<MeetingDetails> {
                           color: primaryColor,
                         ),
                         contentPadding: const EdgeInsets.all(5.0),
-                        title: Text('Location'),
-                        subtitle: Text(meeting.data()['location'])),
+                        title: Text('Location',
+                          style: GoogleFonts.sourceSansPro(
+                          fontSize: 20,
+                          color: primaryColor,
+                          letterSpacing: 1,
+                          fontWeight: FontWeight.bold)),
+                        subtitle: Text(meeting.data()['location'],
+                          style: GoogleFonts.sourceSansPro(
+                          fontSize: 15,
+                          color: Colors.black,
+                          letterSpacing: 1))),
                   ],
                 ),
                 // View who is attending List
                 ListTile(
-                    leading: Icon(
-                      Icons.people,
-                      color: primaryColor,
+                  leading: Icon(
+                            Icons.people,
+                            color: primaryColor,
+                          ),
+                  contentPadding: const EdgeInsets.all(5.0),       
+                  title: 
+                  Text('List of Attendee Emails',
+                    style: GoogleFonts.sourceSansPro(
+                    fontSize: 20,
+                    color: primaryColor,
+                    letterSpacing: 1,
+                    fontWeight: FontWeight.bold)),
+                    subtitle: Text('Response',
+                        textAlign: TextAlign.right,
+                        style:TextStyle( 
+                          fontSize: 15,
+                          fontWeight: FontWeight.bold,
+                          letterSpacing: 1,
+                          color: primaryColor),
+                      ),
                     ),
-                    title: Text('List of Attendee Emails')),
-
+                
                 Expanded(
-                  child: ListView.builder(
-                    itemCount: meeting
-                        .data()['attendeeList']
-                        .length, // filler till we have actual list length
-                    itemBuilder: (context, index) {
-                      return ListTile(
-                        // will change to variables / values when we have actual list to grab from
-                        trailing: Icon(
-                          meeting
-                                      .data()['attendeeList'][index]['response']
-                                      .toString() ==
-                                  "true"
-                              ? Icons.done
-                              : Icons.clear,
-                          color: meeting
-                                      .data()['attendeeList'][index]['response']
-                                      .toString() ==
-                                  "true"
-                              ? Colors.green
-                              : Colors.red,
-                        ),
-                        title: Text(
-                          meeting
-                              .data()['attendeeList'][index]['email']
-                              .toString(),
-                        ),
-                      );
-                    },
+                  child: 
+                  Container(
+                    color: Colors.grey,
+                    child: ListView.builder(
+                      itemCount: meeting
+                          .data()['attendeeList']
+                          .length, // filler till we have actual list length
+                      itemBuilder: (context, index) {
+                        return ListTile(
+                          // will change to variables / values when we have actual list to grab from
+                          trailing: 
+                          Icon(
+                            meeting
+                                        .data()['attendeeList'][index]['response']
+                                        .toString() ==
+                                    "true"
+                                ? Icons.done
+                                : Icons.clear,
+                            color: meeting
+                                        .data()['attendeeList'][index]['response']
+                                        .toString() ==
+                                    "true"
+                                ? Colors.green
+                                : Colors.red,
+                          ),
+                          title: Text(
+                            meeting
+                                .data()['attendeeList'][index]['email']
+                                .toString(),
+                          ),
+                          );
+                      },
+                    ),
                   ),
                 ),
                 ElevatedButton(
