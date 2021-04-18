@@ -132,6 +132,8 @@ class HomePageCards extends StatelessWidget {
                       Padding(padding: EdgeInsets.only(top: 8)),
                       Text(
                         meetingList[index].data()['content'],
+                        maxLines: 2,
+                        overflow: TextOverflow.ellipsis,
                       ),
                       Padding(padding: EdgeInsets.only(left: 16)),
                       Padding(padding: EdgeInsets.only(top: 8)),

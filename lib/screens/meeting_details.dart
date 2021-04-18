@@ -1,6 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import 'package:syncup/constants.dart';
 import 'package:syncup/models/userModel.dart';
@@ -20,7 +19,6 @@ class _MeetingDetails extends State<MeetingDetails> {
   QueryDocumentSnapshot meeting;
   _MeetingDetails({this.meeting});
   bool checkCompleted;
-
 
   @override
   Widget build(BuildContext context) {
@@ -54,9 +52,9 @@ class _MeetingDetails extends State<MeetingDetails> {
                   children: <Widget>[
                     ListTile(
                       leading: Icon(
-                            Icons.note,
-                            color: primaryColor,
-                          ),
+                        Icons.note,
+                        color: primaryColor,
+                      ),
                       contentPadding: const EdgeInsets.all(5.0),
                       title: Text('Meeting Details',
                         style: GoogleFonts.sourceSansPro(
@@ -74,9 +72,9 @@ class _MeetingDetails extends State<MeetingDetails> {
                     // Time and Date Info
                     ListTile(
                         leading: Icon(
-                            Icons.av_timer_rounded,
-                            color: primaryColor,
-                          ),
+                          Icons.av_timer_rounded,
+                          color: primaryColor,
+                        ),
                         contentPadding: const EdgeInsets.all(5.0),
                         title: Text('Time / Date',
                           style: GoogleFonts.sourceSansPro(
@@ -92,9 +90,9 @@ class _MeetingDetails extends State<MeetingDetails> {
                     // Location Info
                     ListTile(
                         leading: Icon(
-                            Icons.map,
-                            color: primaryColor,
-                          ),
+                          Icons.map,
+                          color: primaryColor,
+                        ),
                         contentPadding: const EdgeInsets.all(5.0),
                         title: Text('Location',
                           style: GoogleFonts.sourceSansPro(
