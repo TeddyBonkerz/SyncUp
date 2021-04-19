@@ -64,7 +64,7 @@ class NavDrawer extends StatelessWidget {
                                 data['lastName'].toString(),
                             style: GoogleFonts.sourceSansPro(
                               textStyle: TextStyle(
-                                fontSize: 22,
+                                fontSize: 25,
                                 color: Colors.white,
                               ),
                             ),
@@ -74,6 +74,7 @@ class NavDrawer extends StatelessWidget {
                             user.email,
                             style: GoogleFonts.sourceSansPro(
                               textStyle: TextStyle(
+                                fontSize: 18,
                                 color: Colors.white,
                               ),
                             ),
@@ -89,7 +90,7 @@ class NavDrawer extends StatelessWidget {
                         'Home',
                         style: GoogleFonts.sourceSansPro(
                           textStyle: TextStyle(
-                            fontSize: 15,
+                            fontSize: 18,
                             color: Colors.black,
                           ),
                         ),
@@ -107,7 +108,7 @@ class NavDrawer extends StatelessWidget {
                       'Profile',
                       style: GoogleFonts.sourceSansPro(
                         textStyle: TextStyle(
-                          fontSize: 15,
+                          fontSize: 18,
                           color: Colors.black,
                         ),
                       ),
@@ -128,7 +129,7 @@ class NavDrawer extends StatelessWidget {
                       'About',
                       style: GoogleFonts.sourceSansPro(
                         textStyle: TextStyle(
-                          fontSize: 15,
+                          fontSize: 18,
                           color: Colors.black,
                         ),
                       ),
@@ -147,7 +148,7 @@ class NavDrawer extends StatelessWidget {
                       'LogOut',
                       style: GoogleFonts.sourceSansPro(
                         textStyle: TextStyle(
-                          fontSize: 15,
+                          fontSize: 18,
                           color: Colors.black,
                         ),
                       ),
