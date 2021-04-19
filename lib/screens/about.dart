@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:syncup/components/about_style.dart';
 import 'package:syncup/screens/home.dart';
+import 'package:syncup/screens/wrapper.dart';
 
 class AboutScreen extends StatefulWidget {
   @override
@@ -205,7 +206,7 @@ class _AboutScreenState extends State<AboutScreen> {
                 onTap: () {
                   Navigator.pushAndRemoveUntil(
                     context,
-                    MaterialPageRoute(builder: (context) => HomeScreen()),
+                    MaterialPageRoute(builder: (context) => Wrapper()),
                     (Route<dynamic> route) => false,
                   );
                 },

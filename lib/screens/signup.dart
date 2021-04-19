@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:syncup/services/authenticationservice.dart';
 import '../constants.dart';
 
@@ -39,15 +40,15 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   padding: EdgeInsets.fromLTRB(15.0, 110.0, 0.0, 0.0),
                   child: Text(
                     'Sync',
-                    style:
-                        TextStyle(fontSize: 80.0, fontWeight: FontWeight.bold),
+                    style: GoogleFonts.mcLaren(
+                        fontSize: 80.0, fontWeight: FontWeight.bold),
                   ),
                 ),
                 Container(
-                  padding: EdgeInsets.fromLTRB(193.0, 110.0, 0.0, 0.0),
+                  padding: EdgeInsets.fromLTRB(206.0, 110.0, 0.0, 0.0),
                   child: Text(
                     'Up',
-                    style: TextStyle(
+                    style: GoogleFonts.mcLaren(
                         fontSize: 80.0,
                         fontWeight: FontWeight.bold,
                         color: primaryColor),
