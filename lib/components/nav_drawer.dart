@@ -62,7 +62,7 @@ class NavDrawer extends StatelessWidget {
                             data['firstName'].toString() +
                                 ' ' +
                                 data['lastName'].toString(),
-                            style: GoogleFonts.mcLaren(
+                            style: GoogleFonts.sourceSansPro(
                               textStyle: TextStyle(
                                 fontSize: 22,
                                 color: Colors.white,
@@ -72,7 +72,7 @@ class NavDrawer extends StatelessWidget {
                           //Nav Drawer Email
                           Text(
                             user.email,
-                            style: GoogleFonts.mcLaren(
+                            style: GoogleFonts.sourceSansPro(
                               textStyle: TextStyle(
                                 color: Colors.white,
                               ),
@@ -87,7 +87,7 @@ class NavDrawer extends StatelessWidget {
                       leading: Icon(Icons.house, color: Colors.black),
                       title: Text(
                         'Home',
-                        style: GoogleFonts.lato(
+                        style: GoogleFonts.sourceSansPro(
                           textStyle: TextStyle(
                             fontSize: 15,
                             color: Colors.black,
@@ -105,7 +105,7 @@ class NavDrawer extends StatelessWidget {
                     leading: Icon(Icons.person, color: Colors.black),
                     title: Text(
                       'Profile',
-                      style: GoogleFonts.lato(
+                      style: GoogleFonts.sourceSansPro(
                         textStyle: TextStyle(
                           fontSize: 15,
                           color: Colors.black,
@@ -126,7 +126,7 @@ class NavDrawer extends StatelessWidget {
                     leading: Icon(Icons.info, color: Colors.black),
                     title: Text(
                       'About',
-                      style: GoogleFonts.lato(
+                      style: GoogleFonts.sourceSansPro(
                         textStyle: TextStyle(
                           fontSize: 15,
                           color: Colors.black,
@@ -145,7 +145,7 @@ class NavDrawer extends StatelessWidget {
                     leading: Icon(Icons.logout, color: Colors.black),
                     title: Text(
                       'LogOut',
-                      style: GoogleFonts.lato(
+                      style: GoogleFonts.sourceSansPro(
                         textStyle: TextStyle(
                           fontSize: 15,
                           color: Colors.black,

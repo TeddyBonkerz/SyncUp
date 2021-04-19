@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:syncup/animations/drop.dart';
 import 'package:syncup/animations/circle.dart';
 import 'package:syncup/constants.dart';
@@ -73,7 +74,8 @@ class _SplashScreenState extends State<SplashScreen>
               opacity: _animation.textOpacity.value,
               child: Text(
                 'Let\'s SyncUp',
-                style: TextStyle(color: Colors.white, fontSize: 32),
+                style: GoogleFonts.sourceSansPro(
+                    color: Colors.white, fontSize: 32),
               ),
             ),
           ),

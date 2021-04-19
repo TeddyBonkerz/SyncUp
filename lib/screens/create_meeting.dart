@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:syncup/constants.dart';
 import 'package:syncup/models/attendeeModel.dart';
@@ -193,7 +194,7 @@ class _CreateMeetingState extends State<CreateMeeting> {
                               selectedDate == null
                                   ? 'Select a date'
                                   : "${selectedDate.toLocal()}".split(' ')[0],
-                              style: TextStyle(
+                              style: GoogleFonts.sourceSansPro(
                                 color: Colors.white,
                               ),
                             ),
@@ -220,7 +221,7 @@ class _CreateMeetingState extends State<CreateMeeting> {
                               selectedTime == null
                                   ? 'Select time'
                                   : selectedTime.format(context),
-                              style: TextStyle(
+                              style: GoogleFonts.sourceSansPro(
                                 color: Colors.white,
                               ),
                             ),
@@ -312,14 +313,15 @@ class _CreateMeetingState extends State<CreateMeeting> {
                         },
                         child: Text(
                           'Create',
-                          style: TextStyle(
+                          style: GoogleFonts.sourceSansPro(
                             color: Colors.white,
                           ),
                         ),
                       ),
                       Text(
                         error,
-                        style: TextStyle(color: Colors.red, fontSize: 14.0),
+                        style: GoogleFonts.sourceSansPro(
+                            color: Colors.red, fontSize: 14.0),
                       ),
                     ],
                   ),
@@ -458,7 +460,7 @@ showAlertDialog(
             children: <Widget>[
               Text(
                 "Title:",
-                style: TextStyle(fontWeight: FontWeight.bold),
+                style: GoogleFonts.sourceSansPro(fontWeight: FontWeight.bold),
               ),
               SizedBox(width: 5.0),
               Text("$subject"),
@@ -468,7 +470,7 @@ showAlertDialog(
             children: <Widget>[
               Text(
                 "Date & Time:",
-                style: TextStyle(fontWeight: FontWeight.bold),
+                style: GoogleFonts.sourceSansPro(fontWeight: FontWeight.bold),
               ),
               SizedBox(width: 5.0),
               Text("$date at $time"),
@@ -478,7 +480,7 @@ showAlertDialog(
             children: <Widget>[
               Text(
                 "Location:",
-                style: TextStyle(fontWeight: FontWeight.bold),
+                style: GoogleFonts.sourceSansPro(fontWeight: FontWeight.bold),
               ),
               SizedBox(width: 5.0),
               Text(location),
@@ -489,7 +491,7 @@ showAlertDialog(
             children: <Widget>[
               Text(
                 "Email List:",
-                style: TextStyle(fontWeight: FontWeight.bold),
+                style: GoogleFonts.sourceSansPro(fontWeight: FontWeight.bold),
               ),
               SizedBox(width: 5.0),
               Column(

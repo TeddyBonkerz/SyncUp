@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:empty_widget/empty_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:syncup/constants.dart';
 import 'package:syncup/models/meetingModel.dart';
@@ -124,9 +125,9 @@ class HomePageCards extends StatelessWidget {
                     children: [
                       Text(
                         meetingList[index].data()['title'].toString(),
-                        style: TextStyle(
-                          fontSize: 15,
-                          fontWeight: FontWeight.w500,
+                        style: GoogleFonts.sourceSansPro(
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
                         ),
                       ),
                       Padding(padding: EdgeInsets.only(top: 8)),
