@@ -144,7 +144,7 @@ class _AboutScreenState extends State<AboutScreen> {
                             ),
                             SizedBox(height: 15.0),
                             Text(
-                              'Rao Oad, Eseosa Omobude, Paschal Aghamba, Alexandria Lightning, Jacob Nguyen, and Eric Oh.',
+                              'Umair Oad, Eseosa Omobude, Paschal Aghamba, Alexandria Lightning, Jacob Nguyen, and Eric Oh.',
                               style: kSubtitleStyle,
                             ),
                           ],
