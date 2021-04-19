@@ -134,7 +134,7 @@ class _MeetingDetails extends State<MeetingDetails> {
                 Expanded(
                   child: 
                   Container(
-                    color: Colors.grey,
+                    color: Colors.grey.shade200,
                     child: ListView.builder(
                       itemCount: meeting
                           .data()['attendeeList']
