@@ -47,7 +47,7 @@ class DatabaseService {
     //   organizer = snapshot.get('organizer').toString();
     // });
     List<Map<String, Object>> attendeeList =
-        list.map((e) => {'email': e, 'response': false}).toList();
+        list.map((e) => {'email': e, 'response': null}).toList();
     return await userCollection
         .doc(uId)
         .collection('meeting')
@@ -61,6 +61,5 @@ class DatabaseService {
       'completed': false,
       // 'organizer': organizer,
     });
-
   }
 }
