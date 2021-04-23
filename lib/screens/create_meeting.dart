@@ -360,7 +360,7 @@ sendEmail(
     ..from = Address(username, 'Team SyncUp')
     ..recipients.addAll(emailList)
     ..bccRecipients.add(Address(username))
-    ..subject = 'SyncUp Meeting Invitation}'
+    ..subject = 'SyncUp Meeting Invitation'
     ..html = '<div style="font-size: 18px"><h3>Hello</h3>\n<p>' +
         '<b> $firstName $lastName </b> has sent you a SyncUp invitation with the details below.</p>' +
         '\n <p><b>Title: </b>' +
