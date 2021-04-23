@@ -360,8 +360,8 @@ sendEmail(
     ..from = Address(username, 'Team SyncUp')
     ..recipients.addAll(emailList)
     ..bccRecipients.add(Address(username))
-    ..subject = 'SyncUp Invite ${DateTime.now()}'
-    ..html = '<h3>Hello</h3>\n<p>' +
+    ..subject = 'SyncUp Meeting Invitation}'
+    ..html = '<div style="font-size: 18px"><h3>Hello</h3>\n<p>' +
         '<b> $firstName $lastName </b> has sent you a SyncUp invitation with the details below.</p>' +
         '\n <p><b>Title: </b>' +
         subject +
@@ -388,7 +388,7 @@ sendEmail(
         '\n <p><b>Meeting ID: </b>' +
         meetingId +
         '</p>' +
-        '\n <p>To respond, follow the link below.</p> \n <a href="https://syncup-4cda3.web.app">Sync Up</a>';
+        '\n <p>To respond, follow the link below.</p> \n <a href="https://syncup-4cda3.web.app">Sync Up</a></div>';
 
   try {
     final sendReport = await send(message, smtpServer);
